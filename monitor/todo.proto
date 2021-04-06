@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package erda.monitor;
+option go_package = "github.com/erda-project/erda-proto/monitor/pb";
+
+service TODOService {
+}
+
+message TODO {
+    int64 id = 1;
+}
