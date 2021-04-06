@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package erda.example;
 import "google/api/annotations.proto";
-option go_package = "github.com/erda-project/erda-proto/examples/example-proto/pb";
+option go_package = "github.com/erda-project/erda-proto-go/examples/pb";
 
 // the greeting service definition.
 service GreeterService {

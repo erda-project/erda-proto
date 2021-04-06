@@ -1,11 +1,21 @@
 syntax = "proto3";
 
 package erda.monitor;
-option go_package = "github.com/erda-project/erda-proto/monitor/pb";
+import "google/api/annotations.proto";
+option go_package = "github.com/erda-project/erda-proto-go/monitor/pb";
 
 service TODOService {
+  rpc Do (TODORequst) returns (TODOResponse)  {
+    option (google.api.http) = {
+      get: "/api/todo",
+    };
+  }
 }
 
-message TODO {
+message TODORequst {
+    int64 id = 1;
+}
+
+message TODOResponse {
     int64 id = 1;
 }
