@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 package erda.monitor;
-option go_package = "github.com/erda-project/erda-proto/monitor/pb";
+option go_package = "github.com/erda-project/erda-proto-go/monitor/pb";
 
 service TODOService {
 }
