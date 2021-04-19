@@ -5,9 +5,11 @@ import "google/api/annotations.proto";
 option go_package = "github.com/erda-project/erda-proto-go/examples/pb";
 
 // The user service definition.
+// +publish prefix:"/api" service:"user-center"
 service UserService {
 
   // get user
+  // +publish path:"/user/{id}"
   rpc GetUser (GetUserRequest) returns (GetUserResponse)  {
     option (google.api.http) = {
       get: "/api/user/{id}",
@@ -15,6 +17,7 @@ service UserService {
   }
 
   // update user
+  // +private 
   rpc UpdateUser (GetUserRequest) returns (UpdateUserResponse)  {
     option (google.api.http) = {
       put: "/api/user/{id}",
