@@ -1,0 +1,74 @@
+syntax = "proto3";
+
+package erda.msp.configcenter;
+option go_package = "github.com/erda-project/erda-proto-go/msp/configcenter/pb";
+import "google/api/annotations.proto";
+
+service ConfigCenterService {
+    rpc GetGroups (GetGroupRequest) returns (GetGroupResponse)  {
+      option (google.api.http) = {
+        get: "/api/tmc/config/tenants/{tenantId}/groups",
+      };
+    }
+
+    rpc GetGroupProperties (GetGroupPropertiesRequest) returns (GetGroupPropertiesResponse)  {
+      option (google.api.http) = {
+        get: "/config/tenants/{tenantId}/groups/{groupId}",
+      };
+    }
+
+    rpc SaveGroupProperties (SaveGroupPropertiesRequest) returns (SaveGroupPropertiesResponse)  {
+      option (google.api.http) = {
+        post: "/api/tmc/config/tenants/{tenantId}/groups/{groupId}",
+        body: "properties",
+      };
+    }
+}
+
+// GetGroups
+message GetGroupRequest {
+  string tenantId = 1;
+  string keyword = 2;
+  int64 pageNum = 3;
+  int64 pageSize = 4;
+}
+
+message GetGroupResponse {
+  ConfigCenterGroups data = 1;
+}
+
+message ConfigCenterGroups {
+  int64 total = 1;
+  repeated string list = 2;
+}
+
+// GetGroupProperties
+message GetGroupPropertiesRequest {
+  string tenantId = 1;
+  string groupId = 2;
+}
+
+message GetGroupPropertiesResponse {
+  map<string, ConfigCenterPropertyList> data = 1;
+}
+
+message ConfigCenterPropertyList {
+  repeated ConfigCenterProperty list = 1;
+}
+
+message ConfigCenterProperty {
+  string key = 1;
+  string value = 2;
+  string source = 3;
+}
+
+// SaveGroupProperties
+message SaveGroupPropertiesRequest {
+  string tenantId = 1;
+  string groupId = 2;
+  repeated ConfigCenterProperty properties = 3;
+}
+
+message SaveGroupPropertiesResponse {
+  bool data = 1;
+}
