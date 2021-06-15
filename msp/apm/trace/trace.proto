@@ -5,13 +5,13 @@ import "github.com/mwitkow/go-proto-validators/validator.proto";
 import "google/api/annotations.proto";
 
 service TraceService {
-  rpc GetSpansBySpecifyTrace (GetSpansBySpecifyTraceRequest) returns (SpanResponse)  {
+  rpc GetSpansBySpecifyTrace (GetSpansBySpecifyTraceRequest) returns (GetSpansBySpecifyTraceResponse)  {
     option (google.api.http) = {
       get: "/api/apm/trace/{traceId}/spans",
     };
   }
 
-  rpc GetTraces (GetTracesRequest) returns (TraceResponse)  {
+  rpc GetTraces (GetTracesRequest) returns (GetTracesResponse)  {
     option (google.api.http) = {
       get: "/api/apm/traces",
     };
@@ -37,11 +37,11 @@ message GetTracesRequest {
   int64 limit = 6;
 }
 
-message SpanResponse {
+message GetSpansBySpecifyTraceResponse {
   repeated Span data = 1;
 }
 
-message TraceResponse {
+message GetTracesResponse {
   repeated Trace data = 1;
 }
 
