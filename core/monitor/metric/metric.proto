@@ -7,14 +7,46 @@ option go_package = "github.com/erda-project/erda-proto-go/core/monitor/metric/p
 service MetricService {
   rpc Query (QueryRequst) returns (QueryResponse)  {
     option (google.api.http) = {
-      get: "/api/todo",
+      get: "/api/query",
+    };
+  }
+  rpc Query (QueryRequst) returns (QueryResponse)  {
+    option (google.api.http) = {
+      post: "/api/query",
+    };
+  }
+  rpc Query (QueryRequst) returns (QueryResponse)  {
+    option (google.api.http) = {
+      get: "/query",
+    };
+  }
+  rpc Query (QueryRequst) returns (QueryResponse)  {
+    option (google.api.http) = {
+      post: "/query",
     };
   }
 }
 
 // MetricService
 message QueryRequst {
+  string ql=1;
+  string q=2;
+  string format=3;
+  int64  start=4;
+  int64  end=5;
 }
 
 message QueryResponse {
+ Results results=1;
 }
+
+message Services{
+  repeated string columns=1;
+  string name=2;
+  repeated google.protobuf.Any values=3;
+}
+
+message Results{
+  repeated Services services=1;
+  string statement_id=2;
+} 
