@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package erda.core.monitor.metric;
+import "google/api/annotations.proto";
+option go_package = "github.com/erda-project/erda-proto-go/core/monitor/metric/pb";
+
+service MetricService {
+  rpc Query (QueryRequst) returns (QueryResponse)  {
+    option (google.api.http) = {
+      get: "/api/todo",
+    };
+  }
+}
+
+// MetricService
+message QueryRequst {
+}
+
+message QueryResponse {
+}
