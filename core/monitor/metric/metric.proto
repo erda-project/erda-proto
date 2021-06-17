@@ -5,22 +5,22 @@ import "google/api/annotations.proto";
 option go_package = "github.com/erda-project/erda-proto-go/core/monitor/metric/pb";
 
 service MetricService {
-  rpc Query (QueryRequst) returns (QueryResponse)  {
+  rpc GetApiQuery (QueryRequst) returns (QueryResponse)  {
     option (google.api.http) = {
       get: "/api/query",
     };
   }
-  rpc Query (QueryRequst) returns (QueryResponse)  {
+  rpc PostApiQuery (QueryRequst) returns (QueryResponse)  {
     option (google.api.http) = {
       post: "/api/query",
     };
   }
-  rpc Query (QueryRequst) returns (QueryResponse)  {
+  rpc GetQuery (QueryRequst) returns (QueryResponse)  {
     option (google.api.http) = {
       get: "/query",
     };
   }
-  rpc Query (QueryRequst) returns (QueryResponse)  {
+  rpc PostQuery (QueryRequst) returns (QueryResponse)  {
     option (google.api.http) = {
       post: "/query",
     };
@@ -29,18 +29,19 @@ service MetricService {
 
 // MetricService
 message QueryRequst {
-  string ql=1;
-  string q=2;
-  string format=3;
-  int64  start=4;
-  int64  end=5;
+  int64  start = 1;
+  int64  end = 2;
+  string ql = 3;
+  string q = 4;
+  string format = 5;
+
 }
 
 message QueryResponse {
  Results results=1;
 }
 
-message Services{
+message Series{
   repeated string columns=1;
   string name=2;
   repeated google.protobuf.Any values=3;
