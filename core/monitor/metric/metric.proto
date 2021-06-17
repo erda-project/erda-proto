@@ -38,16 +38,16 @@ message QueryRequst {
 }
 
 message QueryResponse {
- Results results=1;
+ Results results = 1;
 }
 
 message Series{
-  repeated string columns=1;
-  string name=2;
-  repeated google.protobuf.Any values=3;
+  repeated string columns = 1;
+  string name = 2;
+  repeated google.protobuf.Any values = 3;
 }
 
 message Results{
-  repeated Services services=1;
-  string statement_id=2;
+  repeated Services services = 1;
+  string statement_id = 2;
 } 
