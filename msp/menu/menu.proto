@@ -6,17 +6,17 @@ import "google/api/annotations.proto";
 import "github.com/mwitkow/go-proto-validators/validator.proto";
 
 service MenuService {
-    rpc GetMenu (GetMenuRequest) returns (GetMenuResponse)  {
-      option (google.api.http) = {
-        get: "/api/tmc/micro-service/menu/tenantGroup/{tenantGroup}",
-      };
-    }
+  rpc GetMenu (GetMenuRequest) returns (GetMenuResponse)  {
+    option (google.api.http) = {
+      get: "/api/tmc/micro-service/menu/tenantGroup/{tenantGroup}",
+    };
+  }
 
-    rpc GetSetting (GetSettingRequest) returns (GetSettingResponse)  {
-      option (google.api.http) = {
-        get: "/api/tmc/micro-service/setting/tenantGroup/{tenantGroup}",
-      };
-    }
+  rpc GetSetting (GetSettingRequest) returns (GetSettingResponse)  {
+    option (google.api.http) = {
+      get: "/api/tmc/micro-service/setting/tenantGroup/{tenantGroup}",
+    };
+  }
 }
 
 message GetMenuRequest {
