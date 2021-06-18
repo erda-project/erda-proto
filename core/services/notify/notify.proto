@@ -58,27 +58,101 @@ service NotifyService {
     };
   }
 }
-
-message GetAllGroupsResponse {
-  repeated GetAllGroupData data = 1;
+message GetAllNotifyTemplatesRequest {
 }
 
-message GetAllGroupData {
-  string name  = 1;
-  string value = 2;
-  string type  = 3;
+message GetAllNotifyTemplatesResponse {
+  repeated Model data = 1;
 }
 
-message GetNotifyDetailResponse {
-  NotifyDetailResponse data = 1;
+message Model {
+  string             id        = 1;
+  Metadata           metadata  = 2;
+  Behavior           behavior  = 3;
+  repeated Templates templates = 4;
 }
 
-message NotifyDetailResponse {
-  int64  id         = 1;
-  string notifyId   = 2;
-  string notifyName = 3;
-  string target     = 4;
-  string groupType  = 5;
+message Metadata {
+  string          name   = 1;
+  string          type   = 2;
+  string          module = 3;
+  repeated string scope  = 4;
+}
+
+message Behavior {
+  string group = 1;
+}
+
+message Templates {
+  repeated string trigger = 1;
+  repeated string targets = 2;
+  repeated string i18n    = 3;
+  Render          render  = 4;
+}
+
+message Render {
+  map<string, string> formats  = 1;
+  string              title    = 2;
+  string              template = 3;
+}
+
+message GetNotifyTemplateRequest {
+  string scope   = 1;
+  string scopeId = 2;
+  string name    = 3;
+  string type    = 4;
+}
+
+message GetNotifyTemplateResponse {
+  repeated GetNotifyRes data = 1;
+}
+
+message GetNotifyRes {
+  string id   = 1;
+  string name = 2;
+}
+
+message CreateNotifyRequest {
+  string              scopeId       = 1;
+  string              scope         = 2;
+  repeated string     templateId    = 3;
+  string              notifyName    = 4;
+  int64               notifyGroupId = 5;
+  repeated string     channels      = 6;
+  map<string, string> attribute     = 7;
+}
+
+message CreateNotifyResponse {
+  uint64 data = 1;
+}
+
+message DeleteNotifyRequest {
+  int64  id      = 1;
+  string scope   = 2;
+  string scopeId = 3;
+}
+
+message DeleteNotifyResponse {
+  int64 data = 1;
+}
+
+message UpdateNotifyRequest {
+  int64               id            = 1;
+  string              scope         = 2;
+  string              scopeId       = 3;
+  repeated string     channels      = 4;
+  int64               notifyGroupId = 5;
+  repeated string     templateId    = 6;
+  map<string, string> attribute     = 7;
+}
+
+message UpdateNotifyResponse {
+  int64 data = 1;
+}
+
+message GetUserNotifyListRequest {
+  string scope   = 1;
+  string scopeId = 2;
 }
 
 message GetUserNotifyListResponse {
@@ -106,26 +180,13 @@ message TargetValue {
   string secret   = 2;
 }
 
-message DeleteNotifyResponse {
-  int64 data = 1;
-}
-
-message GetNotifyTemplateResponse {
-  repeated GetNotifyRes data = 1;
-}
-
-message GetNotifyRes {
-  string id   = 1;
-  string name = 2;
-}
-
-message GetAllGroupsRequest {
-  string scope   = 1;
+message NotifyEnableRequest {
+  int64  id      = 1;
   string scopeId = 2;
+  string scope   = 3;
 }
 
-message GetNotifyDetailRequest {
-  int64 id = 1;
+message NotifyEnableResponse {
 }
 
 message CreateUserDefineNotifyTemplateRequest {
@@ -140,99 +201,37 @@ message CreateUserDefineNotifyTemplateRequest {
   repeated string     targets  = 9;
 }
 
-message NotifyEnableRequest {
-  int64  id      = 1;
-  string scopeId = 2;
-  string scope   = 3;
-}
-
-message GetUserNotifyListRequest {
-  string scope   = 1;
-  string scopeId = 2;
-}
-
-message UpdateNotifyRequest {
-  int64               id            = 1;
-  string              scope         = 2;
-  string              scopeId       = 3;
-  repeated string     channels      = 4;
-  int64               notifyGroupId = 5;
-  repeated string     templateId    = 6;
-  map<string, string> attribute     = 7;
-}
-
-message DeleteNotifyRequest {
-  int64  id      = 1;
-  string scope   = 2;
-  string scopeId = 3;
-}
-
-message CreateNotifyRequest {
-  string              scopeId       = 1;
-  string              scope         = 2;
-  repeated string     templateId    = 3;
-  string              notifyName    = 4;
-  int64               notifyGroupId = 5;
-  repeated string     channels      = 6;
-  map<string, string> attribute     = 7;
-}
-
-message GetNotifyTemplateRequest {
-  string scope   = 1;
-  string scopeId = 2;
-  string name    = 3;
-  string type    = 4;
-}
-
-message GetAllNotifyTemplatesResponse {
-  repeated Model data = 1;
-}
-
-message Model {
-  string             id        = 1;
-  Metadata           metadata  = 2;
-  Behavior           behavior  = 3;
-  repeated Templates templates = 4;
-}
-
-message Templates {
-  repeated string trigger = 1;
-  repeated string targets = 2;
-  repeated string i18n    = 3;
-  Render          render  = 4;
-}
-
-message Render {
-  map<string, string> formats  = 1;
-  string              title    = 2;
-  string              template = 3;
-}
-
-message Behavior {
-  string group = 1;
-}
-
-message Metadata {
-  string          name   = 1;
-  string          type   = 2;
-  string          module = 3;
-  repeated string scope  = 4;
-}
-
-message GetAllNotifyTemplatesRequest {
-}
-
-message CreateNotifyResponse {
-  uint64 data = 1;
-}
-
-message UpdateNotifyResponse {
-  int64 data = 1;
-}
-
-message NotifyEnableResponse {
-}
-
 message CreateUserDefineNotifyTemplateResponse {
   uint64 data = 1;
+}
+
+message GetNotifyDetailRequest {
+  int64 id = 1;
+}
+
+message GetNotifyDetailResponse {
+  NotifyDetailResponse data = 1;
+}
+
+message NotifyDetailResponse {
+  int64  id         = 1;
+  string notifyId   = 2;
+  string notifyName = 3;
+  string target     = 4;
+  string groupType  = 5;
+}
+
+message GetAllGroupsRequest {
+  string scope   = 1;
+  string scopeId = 2;
+}
+
+message GetAllGroupsResponse {
+  repeated GetAllGroupData data = 1;
+}
+
+message GetAllGroupData {
+  string name  = 1;
+  string value = 2;
+  string type  = 3;
 }
