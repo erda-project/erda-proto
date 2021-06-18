@@ -19,22 +19,22 @@ service NotifyService {
   }
   rpc CreateNotify (CreateNotifyRequest) returns (CreateNotifyResponse) {
     option (google.api.http) = {
-      post: "/api/notify/records",
+      post: "/api/notify",
     };
   }
   rpc DeleteNotify (DeleteNotifyRequest) returns (DeleteNotifyResponse) {
     option (google.api.http) = {
-      delete: "/api/notify/records/{id}",
+      delete: "/api/notify/{id}",
     };
   }
   rpc UpdateNotify (UpdateNotifyRequest) returns (UpdateNotifyResponse) {
     option (google.api.http) = {
-      put: "/api/notify/records/{id}",
+      put: "/api/notify/{id}",
     };
   }
   rpc GetUserNotifyList (GetUserNotifyListRequest) returns (GetUserNotifyListResponse) {
     option (google.api.http) = {
-      get: "/api/notify/records",
+      get: "/api/notify",
     };
   }
   rpc NotifyEnable (NotifyEnableRequest) returns (NotifyEnableResponse) {
