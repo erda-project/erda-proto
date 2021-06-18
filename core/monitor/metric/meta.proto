@@ -34,7 +34,7 @@ service MetricMetaService {
 // ListMetricNames
 message ListMetricNamesRequest {
   string scope = 1;
-	string scopeID = 2;
+  string scopeID = 2;
 }
 
 message ListMetricNamesResponse {
@@ -44,7 +44,7 @@ message ListMetricNamesResponse {
 // ListMetricMeta
 message ListMetricMetaRequest {
   string scope = 1;
-	string scopeID = 2;
+  string scopeID = 2;
   string metrics = 3;
 }
 
@@ -54,8 +54,8 @@ message ListMetricMetaResponse {
 // ListMetricGroups
 message ListMetricGroupsRequest {
   string scope = 1;
-	string scopeID = 2;
-	string mode = 3;
+  string scopeID = 2;
+  string mode = 3;
 }
 
 message ListMetricGroupsResponse {
@@ -65,12 +65,12 @@ message ListMetricGroupsResponse {
 // GetMetricGroup
 message GetMetricGroupRequest {
   string scope = 1;
-	string scopeID = 2;
+  string scopeID = 2;
   string id = 3;
   string mode = 4;
   string version = 5;
   string format = 6;
-	bool appendTags = 7;
+  bool appendTags = 7;
 }
 
 message GetMetricGroupResponse {
@@ -87,21 +87,21 @@ message MetricMeta {
 
 message NameDefine {
   string key = 1;
-	string name = 2;
+  string name = 2;
 }
 
 message TagDefine {
   string key = 1;
-	string name = 2;
+  string name = 2;
   repeated ValueDefine values = 5;
 }
 
 message FieldDefine {
   string key = 1;
-	string type = 2;
-	string name = 3;
-	string unit = 4;
-	repeated ValueDefine values = 5;
+  string type = 2;
+  string name = 3;
+  string unit = 4;
+  repeated ValueDefine values = 5;
 }
 
 message ValueDefine {
