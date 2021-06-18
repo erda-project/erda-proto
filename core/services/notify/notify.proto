@@ -1,13 +1,13 @@
 syntax = "proto3";
 package erda.notify;
-option go_package = "github.com/erda-project/erda-proto-go/notify/pb";
+option go_package = "github.com/erda-project/erda-proto-go/core/services/notify/pb";
 
 import "google/api/annotations.proto";
 import "google/protobuf/timestamp.proto";
 
 service NotifyService {
   // +private
-  rpc GetAllNotifyTemplates (Request) returns (GetAllNotifyTemplatesResponse) {
+  rpc GetAllNotifyTemplates (GetAllNotifyTemplatesRequest) returns (GetAllNotifyTemplatesResponse) {
     option (google.api.http) = {
       get: "/api/notify/all-templates",
     };
@@ -17,7 +17,7 @@ service NotifyService {
       get: "/api/notify/templates",
     };
   }
-  rpc CreateNotify (CreateNotifyRequest) returns (NotifyResponse) {
+  rpc CreateNotify (CreateNotifyRequest) returns (CreateNotifyResponse) {
     option (google.api.http) = {
       post: "/api/notify/records",
     };
@@ -27,7 +27,7 @@ service NotifyService {
       delete: "/api/notify/records/{id}",
     };
   }
-  rpc UpdateNotify (UpdateNotifyRequest) returns (NotifyResponse) {
+  rpc UpdateNotify (UpdateNotifyRequest) returns (UpdateNotifyResponse) {
     option (google.api.http) = {
       put: "/api/notify/records/{id}",
     };
@@ -37,12 +37,12 @@ service NotifyService {
       get: "/api/notify/records",
     };
   }
-  rpc NotifyEnable (NotifyEnableRequest) returns (Response) {
+  rpc NotifyEnable (NotifyEnableRequest) returns (NotifyEnableResponse) {
     option (google.api.http) = {
       put: "/api/notify/{id}/switch",
     };
   }
-  rpc CreateUserDefineNotifyTemplate (CreateUserDefineNotifyTemplateRequest) returns (NotifyResponse) {
+  rpc CreateUserDefineNotifyTemplate (CreateUserDefineNotifyTemplateRequest) returns (CreateUserDefineNotifyTemplateResponse) {
     option (google.api.http) = {
       post: "/api/notify/user-define/templates",
     };
@@ -104,10 +104,6 @@ message NotifyTarget {
 message TargetValue {
   string receiver = 1;
   string secret   = 2;
-}
-
-message NotifyResponse {
-  uint64 data = 1;
 }
 
 message DeleteNotifyResponse {
@@ -188,9 +184,6 @@ message GetNotifyTemplateRequest {
   string type    = 4;
 }
 
-message Request {
-}
-
 message GetAllNotifyTemplatesResponse {
   repeated Model data = 1;
 }
@@ -226,5 +219,20 @@ message Metadata {
   repeated string scope  = 4;
 }
 
-message Response {
+message GetAllNotifyTemplatesRequest {
+}
+
+message CreateNotifyResponse {
+  uint64 data = 1;
+}
+
+message UpdateNotifyResponse {
+  int64 data = 1;
+}
+
+message NotifyEnableResponse {
+}
+
+message CreateUserDefineNotifyTemplateResponse {
+  uint64 data = 1;
 }
