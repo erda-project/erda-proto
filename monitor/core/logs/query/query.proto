@@ -13,7 +13,6 @@ service LogQueryService {
     }
 
     // for runtime log
-    // +public
     rpc Query (QueryRequest) returns (QueryResponse) {
         option (google.api.http) = {
             get: "/api/runtime/logs",
@@ -21,7 +20,6 @@ service LogQueryService {
     }
 
     // for organization log
-    // +public
     rpc Query (QueryRequest) returns (QueryResponse) {
         option (google.api.http) = {
             get: "/api/orgCenter/logs",
