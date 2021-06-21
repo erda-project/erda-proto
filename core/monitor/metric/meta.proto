@@ -1,0 +1,117 @@
+syntax = "proto3";
+
+package erda.core.monitor.metric;
+option go_package = "github.com/erda-project/erda-proto-go/core/monitor/metric/pb";
+import "google/api/annotations.proto";
+import "google/protobuf/any.proto";
+
+service MetricMetaService {
+  
+  rpc ListMetricNames (ListMetricNamesRequest) returns (ListMetricNamesResponse)  {
+    option (google.api.http) = {
+      get: "/api/metric/names"
+    };
+  }
+  rpc ListMetricMeta (ListMetricMetaRequest) returns (ListMetricMetaResponse)  {
+    option (google.api.http) = {
+      get: "/api/metric/meta"
+    };
+  }
+
+  rpc ListMetricGroups (ListMetricGroupsRequest) returns (ListMetricGroupsResponse)  {
+    option (google.api.http) = {
+      get: "/api/metric/groups"
+    };
+  }
+  rpc GetMetricGroup (GetMetricGroupRequest) returns (GetMetricGroupResponse)  {
+    option (google.api.http) = {
+      get: "/api/metric/groups/{id}"
+    };
+  }
+
+}
+
+// ListMetricNames
+message ListMetricNamesRequest {
+  string scope = 1;
+  string scopeID = 2;
+}
+
+message ListMetricNamesResponse {
+  repeated NameDefine data = 1;
+}
+
+// ListMetricMeta
+message ListMetricMetaRequest {
+  string scope = 1;
+  string scopeID = 2;
+  string metrics = 3;
+}
+
+message ListMetricMetaResponse {
+}
+
+// ListMetricGroups
+message ListMetricGroupsRequest {
+  string scope = 1;
+  string scopeID = 2;
+  string mode = 3;
+}
+
+message ListMetricGroupsResponse {
+  repeated Group data = 1;
+}
+
+// GetMetricGroup
+message GetMetricGroupRequest {
+  string scope = 1;
+  string scopeID = 2;
+  string id = 3;
+  string mode = 4;
+  string version = 5;
+  string format = 6;
+  bool appendTags = 7;
+}
+
+message GetMetricGroupResponse {
+  // TODO
+}
+
+// common
+message MetricMeta {
+  NameDefine name = 1;
+  map<string, string> labels = 2;
+  map<string, TagDefine> tags = 3;
+  map<string, FieldDefine> fields = 4;
+}
+
+message NameDefine {
+  string key = 1;
+  string name = 2;
+}
+
+message TagDefine {
+  string key = 1;
+  string name = 2;
+  repeated ValueDefine values = 5;
+}
+
+message FieldDefine {
+  string key = 1;
+  string type = 2;
+  string name = 3;
+  string unit = 4;
+  repeated ValueDefine values = 5;
+}
+
+message ValueDefine {
+  string name = 1;
+  google.protobuf.Any value = 2;
+}
+
+message Group {
+  string id = 1;
+  string name = 2;
+  int32 order = 3;
+  repeated Group children = 4;
+}

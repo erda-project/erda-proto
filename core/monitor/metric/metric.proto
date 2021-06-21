@@ -1,0 +1,90 @@
+syntax = "proto3";
+
+package erda.core.monitor.metric;
+option go_package = "github.com/erda-project/erda-proto-go/core/monitor/metric/pb";
+import "google/api/annotations.proto";
+import "google/protobuf/any.proto";
+
+service MetricService {
+
+  rpc QueryWithInfluxFormat (QueryWithInfluxFormatRequest) returns (QueryWithInfluxFormatResponse)  {
+    option (google.api.http) = {
+      post: "/query"
+    };
+  }
+  rpc SearchWithInfluxFormat (QueryWithInfluxFormatRequest) returns (QueryWithInfluxFormatResponse)  {
+    option (google.api.http) = {
+      get: "/query"
+    };
+  }
+  rpc QueryWithTableFormat (QueryWithTableFormatRequest) returns (QueryWithTableFormatResponse)  {
+    option (google.api.http) = {
+      post: "/api/query"
+    };
+  }
+  rpc SearchWithTableFormat (QueryWithTableFormatRequest) returns (QueryWithTableFormatResponse)  {
+    option (google.api.http) = {
+      get: "/api/query"
+    };
+  }
+
+}
+
+// QueryWithInfluxFormat
+message QueryWithInfluxFormatRequest {
+  string start = 1;
+  string end = 2;
+  string q = 4;
+  map<string, string> options = 5;
+  repeated Filter filters = 6;
+}
+
+message QueryWithInfluxFormatResponse {
+  Results results = 1;
+}
+
+message Series {
+  string name = 1;
+  repeated string columns = 2;
+  repeated google.protobuf.Any values = 3;
+}
+
+message Results {
+  string statement_id = 2;
+  repeated Series services = 1;
+}
+
+// QueryWithTableFormat
+message QueryWithTableFormatRequest {
+  string start = 1;
+  string end = 2;
+  map<string, string> options = 5;
+  repeated Filter filters = 6;
+}
+
+message QueryWithTableFormatResponse {
+  TableResult data = 1;
+}
+
+message TableResult {
+  repeated TableColumn cols = 1;
+  repeated TableRow data = 2;
+  int64 interval = 3;
+}
+
+message TableColumn {
+  string key = 1;
+  string name = 2;
+  string flag = 3;
+}
+
+message TableRow {
+  map<string, google.protobuf.Any> values = 1;
+}
+
+// common
+message Filter {
+  string key = 1;
+  string op = 2;
+  google.protobuf.Any value = 3;
+}
