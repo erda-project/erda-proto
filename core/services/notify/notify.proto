@@ -1,5 +1,5 @@
 syntax = "proto3";
-package erda.notify;
+package erda.core.services.notify;
 option go_package = "github.com/erda-project/erda-proto-go/core/services/notify/pb";
 
 import "google/api/annotations.proto";
