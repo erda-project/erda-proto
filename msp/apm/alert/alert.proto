@@ -1,6 +1,661 @@
 syntax = "proto3";
-
 package erda.msp.apm.alert;
 option go_package = "github.com/erda-project/erda-proto-go/msp/apm/alert/pb";
+
+import "github.com/mwitkow/go-proto-validators/validator.proto";
 import "google/api/annotations.proto";
 import "google/protobuf/any.proto";
+import "google/protobuf/timestamp.proto";
+
+service AlertService {
+  rpc QueryAlertRule (QueryAlertRuleRequest) returns (QueryAlertRuleResponse) {
+    option (google.api.http) = {
+      get: "/api/apm/alerts/rules",
+    };
+  }
+  rpc QueryAlert (QueryAlertRequest) returns (QueryAlertResponse) {
+    option (google.api.http) = {
+      get: "/api/apm/alerts",
+    };
+  }
+  rpc GetAlert (GetAlertRequest) returns (GetAlertResponse) {
+    option (google.api.http) = {
+      get: "/api/apm/alert/{id}"
+    };
+  }
+  rpc CreateAlert (CreateAlertRequest) returns (CreateAlertResponse) {
+    option (google.api.http) = {
+      post: "/api/apm/alert",
+    };
+  }
+  rpc UpdateAlert (UpdateAlertRequest) returns (UpdateAlertResponse) {
+    option (google.api.http) = {
+      put: "/api/apm/alert/{id}",
+    };
+  }
+  rpc UpdateAlertEnable (UpdateAlertEnableRequest) returns (UpdateAlertEnableResponse) {
+    option (google.api.http) = {
+      put: "/api/apm/alert/{id}/switch",
+    };
+  }
+  rpc DeleteAlert (DeleteAlertRequest) returns (DeleteAlertResponse) {
+    option (google.api.http) = {
+      delete: "/api/apm/alert/{id}",
+    };
+  }
+  rpc QueryCustomizeMetric (QueryCustomizeMetricRequest) returns (QueryCustomizeMetricResponse) {
+    option (google.api.http) = {
+      get: "/api/apm/customize/alerts/metrics",
+    };
+  }
+  rpc QueryCustomizeNotifyTarget (QueryCustomizeNotifyTargetRequest) returns (QueryCustomizeNotifyTargetResponse) {
+    option (google.api.http) = {
+      get: "/api/apm/customize/alerts/notifies/targets",
+    };
+  }
+  rpc QueryCustomizeAlerts (QueryCustomizeAlertsRequest) returns (QueryCustomizeAlertsResponse) {
+    option (google.api.http) = {
+      get: "/api/apm/customize/alerts",
+    };
+  }
+  rpc GetCustomizeAlert (GetCustomizeAlertRequest) returns (GetCustomizeAlertResponse) {
+    option (google.api.http) = {
+      get: "/api/apm/customize/alert/{id}"
+    };
+  }
+  rpc CreateCustomizeAlert (CreateCustomizeAlertRequest) returns (CreateCustomizeAlertResponse) {
+    option (google.api.http) = {
+      post: "/api/apm/customize/alert",
+    };
+  }
+  rpc UpdateCustomizeAlert (UpdateCustomizeAlertRequest) returns (UpdateCustomizeAlertResponse) {
+    option (google.api.http) = {
+      put: "/api/apm/customize/alert/{id}",
+    };
+  }
+  rpc UpdateCustomizeAlertEnable (UpdateCustomizeAlertEnableRequest) returns (UpdateCustomizeAlertEnableResponse) {
+    option (google.api.http) = {
+      put: "/api/apm/customize/alert/{id}/switch",
+    };
+  }
+  rpc DeleteCustomizeAlert (DeleteCustomizeAlertRequest) returns (DeleteCustomizeAlertResponse) {
+    option (google.api.http) = {
+      delete: "/api/apm/customize/alert/{id}",
+    };
+  }
+  rpc GetAlertRecordAttrs (GetAlertRecordAttrsRequest) returns (GetAlertRecordAttrsResponse) {
+    option (google.api.http) = {
+      get: "/api/apm/alert-record-attrs",
+    };
+  }
+  rpc GetAlertRecords (GetAlertRecordsRequest) returns (GetAlertRecordsResponse) {
+    option (google.api.http) = {
+      get: "/api/apm/alert-records",
+    };
+  }
+  rpc GetAlertRecord (GetAlertRecordRequest) returns (GetAlertRecordResponse) {
+    option (google.api.http) = {
+      get: "/api/apm/alert-records/{groupId}",
+    };
+  }
+  rpc GetAlertHistories (GetAlertHistoriesRequest) returns (GetAlertHistoriesResponse) {
+    option (google.api.http) = {
+      get: "/api/apm/alert-records/{groupId}/histories",
+    };
+  }
+  rpc CreateAlertRecordIssue (CreateAlertRecordIssueRequest) returns (CreateAlertRecordIssueResponse) {
+    option (google.api.http) = {
+      post: "/api/apm/alert-records/{groupId}/issues",
+    };
+  }
+  rpc UpdateAlertRecordIssue (UpdateAlertRecordIssueRequest) returns (UpdateAlertRecordIssueResponse) {
+    option (google.api.http) = {
+      put: "/api/apm/alert-records/{groupId}/issues"
+    };
+  }
+  rpc DashboardPreview (DashboardPreviewRequest) returns (DashboardPreviewResponse) {
+    option (google.api.http) = {
+      post: "/api/apm/alert-records/customize/alerts/dash-preview/query"
+    };
+  }
+}
+
+message QueryAlertRuleRequest {
+  string tenantGroup = 1;
+}
+
+message QueryAlertRuleResponse {
+  AlertTypeRuleResp data = 1;
+}
+
+message AlertTypeRuleResp {
+  repeated AlertTypeRule alertTypeRules = 1;
+  repeated int64         windows        = 2;
+  repeated Operator      operators      = 3;
+  repeated DisplayKey    aggregator     = 4;
+  repeated NotifySilence silence        = 5;
+}
+
+message DisplayKey {
+  string key     = 1;
+  string display = 2;
+}
+
+message AlertTypeRule {
+  DisplayKey         alertType = 1;
+  repeated AlertRule rules     = 2;
+}
+
+message AlertRule {
+  uint64                           id         = 1;
+  string                           name       = 2;
+  string                           alertScope = 3;
+  string                           alertType  = 4;
+  DisplayKey                       alertIndex = 5;
+  map<string, google.protobuf.Any> template   = 6;
+  int64                            window     = 7;
+  repeated AlertRuleFunction       functions  = 8;
+  bool                             isRecover  = 9;
+  map<string, google.protobuf.Any> attributes = 10;
+  string                           version    = 11;
+  bool                             enable     = 12;
+  int64                            createTime = 13;
+  int64                            updateTime = 14;
+}
+
+message AlertRuleFunction {
+  DisplayKey          field      = 1;
+  string              aggregator = 2;
+  string              operator   = 3;
+  google.protobuf.Any value      = 4;
+  string              dataType   = 5;
+  string              unit       = 6;
+}
+
+message Operator {
+  string key     = 1;
+  string display = 2;
+  string type    = 3;
+}
+
+message NotifySilence {
+  int64      value = 1;
+  DisplayKey unit  = 2;
+}
+
+message QueryAlertRequest {
+  string tenantGroup = 1;
+  int64  pageNo      = 2 [(validator.field) = {int_gt: 0}];
+  int64  pageSize    = 3 [(validator.field) = {int_gt: 0, int_lt: 101}];
+}
+
+message QueryAlertResponse {
+  QueryAlertData data = 1;
+}
+
+message QueryAlertData {
+  repeated Alert list  = 1;
+  int64          total = 2;
+}
+
+message Alert {
+  uint64                           id           = 1;
+  string                           name         = 2;
+  string                           alertScope   = 3;
+  string                           alertScopeId = 4;
+  bool                             enable       = 5;
+  repeated AlertExpression         rules        = 6;
+  repeated AlertNotify             notifies     = 7;
+  map<string, google.protobuf.Any> filters      = 8;
+  map<string, google.protobuf.Any> attributes   = 9;
+  repeated string                  clusterNames = 10;
+  string                           domain       = 11;
+  int64                            createTime   = 12;
+  int64                            updateTime   = 13;
+}
+
+message AlertExpression {
+  uint64                           id         = 1;
+  uint64                           ruleId     = 2;
+  string                           alertIndex = 3;
+  int64                            window     = 4;
+  message AlertExpressionFunction {
+    string              field      = 1;
+    string              aggregator = 2;
+    string              operator   = 3;
+    google.protobuf.Any value      = 4;
+  }
+  repeated AlertExpressionFunction functions  = 5;
+  bool                             isRecover  = 6;
+  int64                            createTime = 7;
+  int64                            updateTime = 8;
+}
+
+message AlertNotify {
+  uint64             id          = 1;
+  string             type        = 2;
+  int64              groupId     = 3;
+  string             groupType   = 4;
+  NotifyGroup        notifyGroup = 5;
+  string             dingdingUrl = 6;
+  AlertNotifySilence silence     = 7;
+  int64              createTime  = 8;
+  int64              updateTime  = 9;
+}
+
+message NotifyGroup {
+  int64                     id        = 1;
+  string                    name      = 2;
+  string                    scopeType = 3;
+  string                    scopeId   = 4;
+  repeated NotifyTarget     targets   = 5;
+  google.protobuf.Timestamp createdAt = 6;
+  string                    creator   = 7;
+}
+
+message NotifyTarget {
+  string          type   = 1;
+  repeated Target values = 2;
+}
+
+message Target {
+  string receiver = 1;
+  string secret   = 2;
+}
+
+message AlertNotifySilence {
+  int64  value  = 1;
+  string unit   = 2;
+  string policy = 3;
+}
+
+message GetAlertRequest {
+  string tenantGroup = 1;
+  int64  id          = 2 [(validator.field) = {int_gt: 0}];
+}
+
+message GetAlertResponse {
+  Alert data = 1;
+}
+
+message CreateAlertRequest {
+  string                   tenantGroup = 1;
+  string                   name        = 2;
+  repeated string          appIds      = 3;
+  repeated AlertExpression rules       = 4;
+  repeated AlertNotify     notifies    = 5;
+  string                   domain      = 6;
+  int64                    createTime  = 7;
+  int64                    updateTime  = 8;
+}
+
+message CreateAlertResponse {
+  CreateAlertData data = 1;
+}
+
+message CreateAlertData {
+  uint64 id = 1;
+}
+
+message UpdateAlertRequest {
+  int64                    id          = 1 [(validator.field) = {int_gt: 0}];
+  string                   tenantGroup = 2;
+  string                   name        = 3;
+  repeated string          appIds      = 4;
+  bool                     enable      = 5;
+  repeated AlertExpression rules       = 6;
+  repeated AlertNotify     notifies    = 7;
+  string                   domain      = 8;
+  int64                    createTime  = 9;
+  int64                    updateTime  = 10;
+}
+
+message UpdateAlertResponse {
+}
+
+message UpdateAlertEnableRequest {
+  int64  id          = 1 [(validator.field) = {int_gt: 0}];
+  string tenantGroup = 2;
+  bool   enable      = 3;
+}
+
+message UpdateAlertEnableResponse {
+}
+
+message DeleteAlertRequest {
+  int64  id          = 1 [(validator.field) = {int_gt: 0}];
+  string tenantGroup = 2;
+}
+
+message DeleteAlertResponse {
+}
+
+message QueryCustomizeMetricRequest {
+  string tenantGroup = 1;
+}
+
+message QueryCustomizeMetricResponse {
+  CustomizeMetricData data = 1;
+}
+
+message CustomizeMetricData {
+  repeated MetricMeta metrics           = 1;
+  repeated Operator   functionOperators = 2;
+  repeated Operator   filterOperators   = 3;
+  repeated DisplayKey aggregator        = 4;
+  string              notifySample      = 5;
+}
+
+message MetricMeta {
+  DisplayKey         name   = 1;
+  repeated FieldMeta fields = 2;
+  repeated TagMeta   tags   = 3;
+}
+
+message FieldMeta {
+  DisplayKey field    = 1;
+  string     dataType = 2;
+}
+
+message TagMeta {
+  DisplayKey tag      = 1;
+  string     dataType = 2;
+}
+
+message QueryCustomizeNotifyTargetRequest {
+  string tenantGroup = 1;
+}
+
+message QueryCustomizeNotifyTargetResponse {
+  QueryCustomizeNotifyTargetData data = 1;
+}
+
+message QueryCustomizeNotifyTargetData {
+  repeated DisplayKey targets = 1;
+}
+
+message QueryCustomizeAlertsRequest {
+  string tenantGroup = 1;
+  int64  pageNo      = 2 [(validator.field) = {int_gt: 0}];
+  int64  pageSize    = 3 [(validator.field) = {int_gt: 0,int_lt: 101}];
+}
+
+message QueryCustomizeAlertsResponse {
+  QueryCustomizeAlertsData data = 1;
+}
+
+message QueryCustomizeAlertsData {
+  int64                           total = 1;
+  repeated CustomizeAlertOverview list  = 2;
+}
+
+message CustomizeAlertOverview {
+  uint64          id            = 1;
+  string          name          = 2;
+  string          metric        = 3;
+  uint64          window        = 4;
+  repeated string notifyTargets = 5;
+  string          dashboardId   = 6;
+  bool            enable        = 7;
+  int64           createTime    = 8;
+  int64           updateTime    = 9;
+}
+
+message GetCustomizeAlertRequest {
+  uint64 id          = 1 [(validator.field) = {int_gt: 0}];
+  string tenantGroup = 2;
+}
+
+message GetCustomizeAlertResponse {
+  CustomizeAlertDetail data = 1;
+}
+
+message CustomizeAlertDetail {
+  uint64                                 id           = 1;
+  string                                 clusterName  = 2;
+  string                                 name         = 3;
+  string                                 alertType    = 4;
+  string                                 alertScope   = 5;
+  string                                 alertScopeId = 6;
+  bool                                   enable       = 7;
+  map<string, google.protobuf.Any>       attributes   = 8;
+  repeated CustomizeAlertRule            rules        = 9;
+  repeated CustomizeAlertNotifyTemplates notifies     = 10;
+  int64                                  createTime   = 11;
+  int64                                  updateTime   = 12;
+  repeated LanguageCode                  lang         = 13;
+}
+
+message CustomizeAlertRule {
+  uint64                              id                  = 1;
+  string                              name                = 2;
+  string                              metric              = 3;
+  uint64                              window              = 4;
+  repeated CustomizeAlertRuleFunction functions           = 5;
+  repeated CustomizeAlertRuleFilter   filters             = 6;
+  repeated string                     group               = 7;
+  repeated string                     outputs             = 8;
+  map<string, string>                 select              = 9;
+  map<string, google.protobuf.Any>    attributes          = 10;
+  repeated string                     activedMetricGroups = 11;
+  int64                               createTime          = 12;
+  int64                               updateTime          = 13;
+}
+
+message CustomizeAlertRuleFunction {
+  string              field      = 1;
+  string              alias      = 2;
+  string              aggregator = 3;
+  string              operator   = 4;
+  google.protobuf.Any value      = 5;
+  string              dataType   = 6;
+  string              unit       = 7;
+}
+
+message CustomizeAlertRuleFilter {
+  string              tag      = 1;
+  string              operator = 2;
+  google.protobuf.Any value    = 3;
+  string              dataType = 4;
+}
+
+message CustomizeAlertNotifyTemplates {
+  uint64                           id         = 1;
+  string                           name       = 2;
+  repeated string                  targets    = 3;
+  string                           title      = 4;
+  string                           content    = 5;
+  map<string, google.protobuf.Any> attributes = 6;
+  int64                            createTime = 7;
+  int64                            updateTime = 8;
+}
+
+message LanguageCode {
+  string code    = 1;
+  float  quality = 2;
+}
+
+message CreateCustomizeAlertRequest {
+  string               tenantGroup = 1;
+  CustomizeAlertDetail alert       = 2;
+}
+
+message CreateCustomizeAlertResponse {
+  CreateCustomizeAlertData data = 1;
+}
+
+message CreateCustomizeAlertData {
+  uint64 id = 1;
+}
+
+message UpdateCustomizeAlertRequest {
+  uint64               id          = 1 [(validator.field) = {int_gt: 0}];
+  string               tenantGroup = 2;
+  CustomizeAlertDetail alert       = 3;
+}
+
+message UpdateCustomizeAlertResponse {
+}
+
+message UpdateCustomizeAlertEnableRequest {
+  uint64 id          = 1 [(validator.field) = {int_gt: 0}];
+  string tenantGroup = 2;
+  bool   enable      = 3;
+}
+
+message UpdateCustomizeAlertEnableResponse {
+}
+
+message DeleteCustomizeAlertRequest {
+  uint64 id          = 1 [(validator.field) = {int_gt: 0}];
+  string tenantGroup = 2;
+}
+
+message DeleteCustomizeAlertResponse {
+  DeleteCustomizeAlertData data = 1;
+}
+
+message DeleteCustomizeAlertData {
+  string name = 1;
+}
+
+message GetAlertRecordAttrsRequest {
+  string tenantGroup = 1;
+}
+
+message GetAlertRecordAttrsResponse {
+  AlertRecordAttr data = 1;
+}
+
+message AlertRecordAttr {
+  repeated DisplayKey alertState  = 1;
+  repeated DisplayKey alertType   = 2;
+  repeated DisplayKey handleState = 3;
+}
+
+message GetAlertRecordsRequest {
+  string          tenantGroup = 1;
+  repeated string alertGroup  = 2;
+  repeated string alertState  = 3;
+  repeated string alertType   = 4;
+  repeated string handleState = 5;
+  repeated string handlerId   = 6;
+  int64           pageNo      = 7;
+  int64           pageSize    = 8;
+}
+
+message GetAlertRecordsResponse {
+  GetAlertRecordsData data = 1;
+}
+
+message GetAlertRecordsData {
+  repeated AlertRecord list    = 1;
+  int64                total   = 2;
+  repeated string      userIds = 3;
+}
+
+message AlertRecord {
+  string groupId       = 1;
+  string scope         = 2;
+  string scopeKey      = 3;
+  string alertGroup    = 4;
+  string title         = 5;
+  string alertState    = 6;
+  string alertType     = 7;
+  string alertIndex    = 8;
+  string expressionKey = 9;
+  uint64 alertId       = 10;
+  string alertName     = 11;
+  uint64 ruleId        = 12;
+  uint64 projectId     = 13;
+  uint64 issueId       = 14;
+  string handleState   = 15;
+  string handlerId     = 16;
+  int64  alertTime     = 17;
+  int64  handleTime    = 18;
+  int64  createTime    = 19;
+  int64  updateTime    = 20;
+}
+
+message GetAlertRecordRequest {
+  string groupId     = 1;
+  string tenantGroup = 2;
+}
+
+message GetAlertRecordResponse {
+  AlertRecord data = 1;
+}
+
+message GetAlertHistoriesRequest {
+  string groupId     = 1;
+  string tenantGroup = 2;
+  int64  start       = 3;
+  int64  end         = 4;
+  int64  limit       = 5;
+}
+
+message GetAlertHistoriesResponse {
+  repeated AlertHistory data = 1;
+}
+
+message AlertHistory {
+  string groupId    = 1;
+  int64  timestamp  = 2;
+  string alertState = 3;
+  string title      = 4;
+  string content    = 5;
+  string displayUrl = 6;
+}
+
+message CreateAlertRecordIssueRequest {
+  string                           groupId     = 1;
+  string                           tenantGroup = 2;
+  map<string, google.protobuf.Any> body        = 3;
+}
+
+message CreateAlertRecordIssueResponse {
+}
+
+message UpdateAlertRecordIssueRequest {
+  string                           groupId     = 1;
+  string                           tenantGroup = 2;
+  map<string, google.protobuf.Any> body        = 3;
+}
+
+message UpdateAlertRecordIssueResponse {
+}
+
+message DashboardPreviewRequest {
+  string               tenantGroup = 1;
+  CustomizeAlertDetail alert       = 2;
+}
+
+message DashboardPreviewResponse {
+  View data = 1;
+}
+
+message View {
+  string              title          = 1;
+  string              description    = 2;
+  string              chartType      = 3;
+  string              dataSourceType = 4;
+  google.protobuf.Any staticData     = 5;
+  Config              config         = 6;
+  API                 api            = 7;
+  google.protobuf.Any controls       = 8;
+}
+
+message Config {
+  map<string, google.protobuf.Any> optionProps      = 1;
+  google.protobuf.Any              dataSourceConfig = 2;
+  google.protobuf.Any              option           = 3;
+}
+
+message API {
+  string                           url       = 1;
+  map<string, google.protobuf.Any> query     = 2;
+  map<string, google.protobuf.Any> body      = 3;
+  map<string, google.protobuf.Any> header    = 4;
+  map<string, google.protobuf.Any> extraData = 5;
+  string                           method    = 6;
+}
