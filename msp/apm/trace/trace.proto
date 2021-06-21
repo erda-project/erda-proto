@@ -1,4 +1,5 @@
 syntax = "proto3";
+
 package erda.msp.apm.trace;
 option go_package = "github.com/erda-project/erda-proto-go/msp/apm/trace/pb";
 import "github.com/mwitkow/go-proto-validators/validator.proto";

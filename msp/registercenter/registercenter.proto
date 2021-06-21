@@ -6,104 +6,104 @@ import "google/api/annotations.proto";
 import "github.com/mwitkow/go-proto-validators/validator.proto";
 
 service RegisterCenterService {
-    rpc ListInterface (ListInterfaceRequest) returns (ListInterfaceResponse)  {
-      option (google.api.http) = {
-        get: "/api/tmc/mesh/listinterface/{projectID}/{env}?az={clusterName}&appid={appID}&tenantId={tenantID}&runtimeId={runtimeID}",
-      };
-    }
-    rpc GetHTTPServices (GetHTTPServicesRequest) returns (GetHTTPServicesResponse)  {
-      option (google.api.http) = {
-        get: "/api/tmc/mesh/listhttpinterface/{projectID}/{env}?az={clusterName}&appid={appID}&nacosId={nacosID}",
-      };
-    }
-    rpc EnableHTTPService (EnableHTTPServiceRequest) returns (EnableHTTPServiceResponse)  {
-      option (google.api.http) = {
-        post: "/api/tmc/mesh/enable/{projectID}/{env}?az={clusterName}&nacosId={nacosID}",
-        body: "service",
-      };
-    }
+  rpc ListInterface (ListInterfaceRequest) returns (ListInterfaceResponse)  {
+    option (google.api.http) = {
+      get: "/api/tmc/mesh/listinterface/{projectID}/{env}?az={clusterName}&appid={appID}&tenantId={tenantID}&runtimeId={runtimeID}",
+    };
+  }
+  rpc GetHTTPServices (GetHTTPServicesRequest) returns (GetHTTPServicesResponse)  {
+    option (google.api.http) = {
+      get: "/api/tmc/mesh/listhttpinterface/{projectID}/{env}?az={clusterName}&appid={appID}&nacosId={nacosID}",
+    };
+  }
+  rpc EnableHTTPService (EnableHTTPServiceRequest) returns (EnableHTTPServiceResponse)  {
+    option (google.api.http) = {
+      post: "/api/tmc/mesh/enable/{projectID}/{env}?az={clusterName}&nacosId={nacosID}",
+      body: "service",
+    };
+  }
 
-    // +depracated
-    rpc GetRouteRule (GetRouteRuleRequest) returns (GetRouteRuleResponse)  {
-      option (google.api.http) = {
-        get: "/api/tmc/mesh/interface/route/{interfaceName}/{projectID}/{env}?az={clusterName}&appid={appID}&tenantId={tenantID}&runtimeId={runtimeID}",
-      };
-    }
-    // +depracated
-    rpc CreateRouteRule (CreateRouteRuleRequest) returns (CreateRouteRuleResponse)  {
-      option (google.api.http) = {
-        post: "/api/tmc/mesh/interface/route/{interfaceName}/{projectID}/{env}?az={clusterName}&appid={appID}&tenantId={tenantID}&runtimeId={runtimeID}",
-        body : "rule",
-      };
-    }
-    // +depracated
-    rpc DeleteRouteRule (DeleteRouteRuleRequest) returns (DeleteRouteRuleResponse)  {
-      option (google.api.http) = {
-        delete: "/api/tmc/mesh/interface/route/{interfaceName}/{projectID}/{env}?az={clusterName}&appid={appID}&tenantId={tenantID}&runtimeId={runtimeID}",
-      };
-    }
-    // +depracated
-    rpc GetHostRule (CetHostRuleRequest) returns (CetHostRuleResponse)  {
-      option (google.api.http) = {
-        get: "/api/tmc/mesh/rule/branch/{projectID}/{env}/{appID}?az={clusterName}&tenantId={tenantID}&runtimeId={runtimeID}",
-      };
-    }
-    // +depracated
-    rpc CreateHostRule (CreateHostRuleRequest) returns (CreateHostRuleResponse)  {
-      option (google.api.http) = {
-        post: "/api/tmc/mesh/rule/branch/{projectID}/{env}/{appID}?az={clusterName}&tenantId={tenantID}&runtimeId={runtimeID}",
-        body: "rules",
-      };
-    }
-    // +depracated
-    rpc DeleteHostRule (DeleteHostRuleRequest) returns (DeleteHostRuleResponse)  {
-      option (google.api.http) = {
-        delete: "/api/tmc/mesh/rule/branch/{projectID}/{env}/{appID}?az={clusterName}&tenantId={tenantID}&runtimeId={runtimeID}",
-      };
-    }
-    // +depracated
-    rpc GetHostRuntimeRule (GetHostRuntimeRuleRequest) returns (GetHostRuntimeRuleResponse)  {
-      option (google.api.http) = {
-        get: "/api/tmc/mesh/rule/host/{projectID}/{env}/{host}?az={clusterName}&tenantId={tenantID}&runtimeId={runtimeID}",
-      };
-    }
-    // +depracated
-    rpc CreateHostRuntimeRule (CreateHostRuntimeRuleRequest) returns (CreateHostRuntimeRuleResponse)  {
-      option (google.api.http) = {
-        post: "/api/tmc/mesh/rule/host/{projectID}/{env}/{host}?az={clusterName}&tenantId={tenantID}&runtimeId={runtimeID}",
-        body: "rules",
-      };
-    }
-    // +depracated
-    rpc GetAllHostRuntimeRules (GetAllHostRuntimeRulesRequest) returns (GetAllHostRuntimeRulesResponse)  {
-      option (google.api.http) = {
-        get: "/api/tmc/mesh/listhostinterface/{projectID}/{env}?az={clusterName}&appid={appID}&tenantId={tenantID}&runtimeId={runtimeID}",
-      };
-    }
-    // +depracated
-    rpc GetDubboInterfaceTime (GetDubboInterfaceTimeRequest) returns (GetDubboInterfaceTimeResponse)  {
-      option (google.api.http) = {
-        get: "/api/tmc/mesh/timestamp/{interfaceName}/{projectID}/{env}?az={clusterName}&appid={appID}&tenantId={tenantID}",
-      };
-    }
-    // +depracated
-    rpc GetDubboInterfaceQPS (GetDubboInterfaceQPSRequest) returns (GetDubboInterfaceQPSResponse)  {
-      option (google.api.http) = {
-        get: "/api/tmc/mesh/qps/{interfaceName}/{projectID}/{env}?az={clusterName}&appid={appID}&tenantId={tenantID}",
-      };
-    }
-    // +depracated
-    rpc GetDubboInterfaceFailed (GetDubboInterfaceFailedRequest) returns (GetDubboInterfaceFailedResponse)  {
-      option (google.api.http) = {
-        get: "/api/tmc/mesh/failed/{interfaceName}/{projectID}/{env}?az={clusterName}&appid={appID}&tenantId={tenantID}",
-      };
-    }
-    // +depracated
-    rpc GetDubboInterfaceAvgTime (GetDubboInterfaceAvgTimeRequest) returns (GetDubboInterfaceAvgTimeResponse)  {
-      option (google.api.http) = {
-        get: "/api/tmc/mesh/avgtime/{interfaceName}/{projectID}/{env}?az={clusterName}&appid={appID}&tenantId={tenantID}",
-      };
-    }
+  // +depracated
+  rpc GetRouteRule (GetRouteRuleRequest) returns (GetRouteRuleResponse)  {
+    option (google.api.http) = {
+      get: "/api/tmc/mesh/interface/route/{interfaceName}/{projectID}/{env}?az={clusterName}&appid={appID}&tenantId={tenantID}&runtimeId={runtimeID}",
+    };
+  }
+  // +depracated
+  rpc CreateRouteRule (CreateRouteRuleRequest) returns (CreateRouteRuleResponse)  {
+    option (google.api.http) = {
+      post: "/api/tmc/mesh/interface/route/{interfaceName}/{projectID}/{env}?az={clusterName}&appid={appID}&tenantId={tenantID}&runtimeId={runtimeID}",
+      body : "rule",
+    };
+  }
+  // +depracated
+  rpc DeleteRouteRule (DeleteRouteRuleRequest) returns (DeleteRouteRuleResponse)  {
+    option (google.api.http) = {
+      delete: "/api/tmc/mesh/interface/route/{interfaceName}/{projectID}/{env}?az={clusterName}&appid={appID}&tenantId={tenantID}&runtimeId={runtimeID}",
+    };
+  }
+  // +depracated
+  rpc GetHostRule (CetHostRuleRequest) returns (CetHostRuleResponse)  {
+    option (google.api.http) = {
+      get: "/api/tmc/mesh/rule/branch/{projectID}/{env}/{appID}?az={clusterName}&tenantId={tenantID}&runtimeId={runtimeID}",
+    };
+  }
+  // +depracated
+  rpc CreateHostRule (CreateHostRuleRequest) returns (CreateHostRuleResponse)  {
+    option (google.api.http) = {
+      post: "/api/tmc/mesh/rule/branch/{projectID}/{env}/{appID}?az={clusterName}&tenantId={tenantID}&runtimeId={runtimeID}",
+      body: "rules",
+    };
+  }
+  // +depracated
+  rpc DeleteHostRule (DeleteHostRuleRequest) returns (DeleteHostRuleResponse)  {
+    option (google.api.http) = {
+      delete: "/api/tmc/mesh/rule/branch/{projectID}/{env}/{appID}?az={clusterName}&tenantId={tenantID}&runtimeId={runtimeID}",
+    };
+  }
+  // +depracated
+  rpc GetHostRuntimeRule (GetHostRuntimeRuleRequest) returns (GetHostRuntimeRuleResponse)  {
+    option (google.api.http) = {
+      get: "/api/tmc/mesh/rule/host/{projectID}/{env}/{host}?az={clusterName}&tenantId={tenantID}&runtimeId={runtimeID}",
+    };
+  }
+  // +depracated
+  rpc CreateHostRuntimeRule (CreateHostRuntimeRuleRequest) returns (CreateHostRuntimeRuleResponse)  {
+    option (google.api.http) = {
+      post: "/api/tmc/mesh/rule/host/{projectID}/{env}/{host}?az={clusterName}&tenantId={tenantID}&runtimeId={runtimeID}",
+      body: "rules",
+    };
+  }
+  // +depracated
+  rpc GetAllHostRuntimeRules (GetAllHostRuntimeRulesRequest) returns (GetAllHostRuntimeRulesResponse)  {
+    option (google.api.http) = {
+      get: "/api/tmc/mesh/listhostinterface/{projectID}/{env}?az={clusterName}&appid={appID}&tenantId={tenantID}&runtimeId={runtimeID}",
+    };
+  }
+  // +depracated
+  rpc GetDubboInterfaceTime (GetDubboInterfaceTimeRequest) returns (GetDubboInterfaceTimeResponse)  {
+    option (google.api.http) = {
+      get: "/api/tmc/mesh/timestamp/{interfaceName}/{projectID}/{env}?az={clusterName}&appid={appID}&tenantId={tenantID}",
+    };
+  }
+  // +depracated
+  rpc GetDubboInterfaceQPS (GetDubboInterfaceQPSRequest) returns (GetDubboInterfaceQPSResponse)  {
+    option (google.api.http) = {
+      get: "/api/tmc/mesh/qps/{interfaceName}/{projectID}/{env}?az={clusterName}&appid={appID}&tenantId={tenantID}",
+    };
+  }
+  // +depracated
+  rpc GetDubboInterfaceFailed (GetDubboInterfaceFailedRequest) returns (GetDubboInterfaceFailedResponse)  {
+    option (google.api.http) = {
+      get: "/api/tmc/mesh/failed/{interfaceName}/{projectID}/{env}?az={clusterName}&appid={appID}&tenantId={tenantID}",
+    };
+  }
+  // +depracated
+  rpc GetDubboInterfaceAvgTime (GetDubboInterfaceAvgTimeRequest) returns (GetDubboInterfaceAvgTimeResponse)  {
+    option (google.api.http) = {
+      get: "/api/tmc/mesh/avgtime/{interfaceName}/{projectID}/{env}?az={clusterName}&appid={appID}&tenantId={tenantID}",
+    };
+  }
 }
 
 // ListInterface

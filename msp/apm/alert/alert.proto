@@ -1,0 +1,6 @@
+syntax = "proto3";
+
+package erda.msp.apm.alert;
+option go_package = "github.com/erda-project/erda-proto-go/msp/apm/alert/pb";
+import "google/api/annotations.proto";
+import "google/protobuf/any.proto";
