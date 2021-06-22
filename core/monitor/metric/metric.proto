@@ -34,7 +34,6 @@ service MetricService {
 message QueryWithInfluxFormatRequest {
   string start = 1;
   string end = 2;
-  string format = 3;
   string q = 4;
   map<string, string> options = 5;
   repeated Filter filters = 6;
@@ -59,7 +58,6 @@ message Results {
 message QueryWithTableFormatRequest {
   string start = 1;
   string end = 2;
-  string format = 4;
   map<string, string> options = 5;
   repeated Filter filters = 6;
 }

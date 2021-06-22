@@ -81,11 +81,11 @@ message GetMetricGroupResponse {
 }
 
 message GroupMetricMeta {
-	string Metric = 1;            
-	string Name = 2;               
-	repeated Filter filters =3;           
-  repeated FieldDefine fields =4;
-  repeated TagDefine tags =5;
+  string Metric = 1;            
+  string Name = 2;               
+  repeated Filter filters = 3;           
+  repeated FieldDefine fields = 4;
+  repeated TagDefine tags = 5;
 }
 
 // common
@@ -125,12 +125,6 @@ message Group {
   string name = 2;
   int32 order = 3;
   repeated Group children = 4;
-}
-
-message Filter {
-  string key = 1;
-  string op = 2;
-  google.protobuf.Any value = 3;
 }
 
 message MetaMode {
