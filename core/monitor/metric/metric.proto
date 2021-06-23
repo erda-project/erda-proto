@@ -35,7 +35,7 @@ message QueryWithInfluxFormatRequest {
   string start = 1;
   string end = 2;
   string q = 4;
-  map<string, string> options = 5;
+  map<string, MapValue> options = 5;
   repeated Filter filters = 6;
 }
 
@@ -58,7 +58,7 @@ message Results {
 message QueryWithTableFormatRequest {
   string start = 1;
   string end = 2;
-  map<string, string> options = 5;
+  map<string, MapValue> options = 5;
   repeated Filter filters = 6;
 }
 
@@ -87,4 +87,8 @@ message Filter {
   string key = 1;
   string op = 2;
   google.protobuf.Any value = 3;
+}
+
+message MapValue{
+  repeated string value = 1;
 }
