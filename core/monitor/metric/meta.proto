@@ -4,6 +4,7 @@ package erda.core.monitor.metric;
 option go_package = "github.com/erda-project/erda-proto-go/core/monitor/metric/pb";
 import "google/api/annotations.proto";
 import "google/protobuf/any.proto";
+import "metric.proto";
 
 service MetricMetaService {
   
@@ -49,6 +50,7 @@ message ListMetricMetaRequest {
 }
 
 message ListMetricMetaResponse {
+  repeated MetricMeta metas = 1;
 }
 
 // ListMetricGroups
@@ -74,7 +76,17 @@ message GetMetricGroupRequest {
 }
 
 message GetMetricGroupResponse {
-  // TODO
+  string id = 1;
+  repeated MetaMode meta = 2;
+  repeated GroupMetricMeta metrics = 3;
+}
+
+message GroupMetricMeta {
+  string Metric = 1;            
+  string Name = 2;               
+  repeated Filter filters = 3;           
+  repeated FieldDefine fields = 4;
+  repeated TagDefine tags = 5;
 }
 
 // common
@@ -115,3 +127,27 @@ message Group {
   int32 order = 3;
   repeated Group children = 4;
 }
+
+message MetaMode {
+  map<string, TypeDefine> types = 1;
+  repeated Operation filters = 2;
+}
+
+message TypeDefine  {
+  repeated Aggregation aggregations = 1;
+  repeated Operation operations = 2;
+  repeated Operation filters = 3;
+}
+
+message Aggregation {
+  string aggregation = 1;
+  string name = 2;
+  string result_type = 3;
+}
+
+message Operation {
+  string operation = 1;
+  string name = 2;
+  bool multi = 3;
+}
+
