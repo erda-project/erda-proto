@@ -4,7 +4,6 @@ package erda.core.monitor.metric;
 option go_package = "github.com/erda-project/erda-proto-go/core/monitor/metric/pb";
 import "google/api/annotations.proto";
 import "google/protobuf/any.proto";
-import "meta.proto";
 
 service MetricService {
 
@@ -81,4 +80,11 @@ message TableColumn {
 
 message TableRow {
   map<string, google.protobuf.Any> values = 1;
+}
+
+// common
+message Filter {
+  string key = 1;
+  string op = 2;
+  google.protobuf.Any value = 3;
 }
