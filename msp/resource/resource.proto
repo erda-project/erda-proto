@@ -3,12 +3,19 @@ syntax = "proto3";
 package erda.msp.resource;
 option go_package = "github.com/erda-project/erda-proto-go/msp/resource/pb";
 import "google/api/annotations.proto";
+import "google/protobuf/wrappers.proto";
 
 service ResourceService {
   rpc CreateResource(CreateResourceRequest) returns (CreateResourceResponse) {
     option (google.api.http) = {
       post: "/{engine}/dice/resources"
       body: "*"
+    };
+  }
+
+  rpc DeleteResource(DeleteResourceRequest) returns (.google.protobuf.BoolValue){
+    option (google.api.http) = {
+      delete: "/{engine}/dice/resources/{id}"
     };
   }
 }
@@ -36,4 +43,9 @@ message CreateResourceResponse {
     RESOURCE_STATUS_DELETED = 2;        // 已删除
     RESOURCE_STATUS_DELETE_ERROR = 3;   // 删除失败
   }
+}
+
+message DeleteResourceRequest {
+  string engine = 1;                    // 资源类型
+  string id = 2;                        // 资源id
 }
