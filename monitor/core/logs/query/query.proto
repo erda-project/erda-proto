@@ -6,21 +6,21 @@ import "google/api/annotations.proto";
 
 service LogQueryService {
     // +private
-    rpc Query (QueryRequest) returns (QueryResponse) {
+    rpc GetLog (GetLogRequest) returns (GetLogResponse) {
         option (google.api.http) = {
             get: "/api/logs",
           };
     }
 
     // for runtime log
-    rpc QueryRuntime (QueryRequest) returns (QueryResponse) {
+    rpc GetLogByRuntime (GetLogByRuntimeRequest) returns (GetLogByRuntimeResponse) {
         option (google.api.http) = {
             get: "/api/runtime/logs",
           };
     }
 
     // for organization log
-    rpc QueryOrganization (QueryRequest) returns (QueryResponse) {
+    rpc GetLogByOrganization (GetLogByOrganizationRequest) returns (GetLogByOrganizationResponse) {
         option (google.api.http) = {
             get: "/api/orgCenter/logs",
           };
@@ -40,7 +40,7 @@ message LogItem {
     string requestId = 9;
 }
 
-message QueryRequest {
+message GetLogRequest {
     string id = 1;
     string source = 2; // job or container
     string stream = 3;
@@ -48,12 +48,38 @@ message QueryRequest {
     int64 start = 5;
     int64 end = 6;
     int64 count = 7;
-    // permission check for runtime
-    string applicationId = 14;
-    // permission check for organization
-    string clusterName = 15;
 }
 
-message QueryResponse {
+message GetLogByRuntimeRequest {
+    string id = 1;
+    string source = 2; // job or container
+    string stream = 3;
+    string requestId = 4;
+    int64 start = 5;
+    int64 end = 6;
+    int64 count = 7;
+    string applicationId = 8;
+}
+
+message GetLogByOrganizationRequest {
+    string id = 1;
+    string source = 2; // job or container
+    string stream = 3;
+    string requestId = 4;
+    int64 start = 5;
+    int64 end = 6;
+    int64 count = 7;
+    string clusterName = 8;
+}
+
+message GetLogResponse {
+    repeated LogItem lines = 1;
+}
+
+message GetLogByRuntimeResponse {
+    repeated LogItem lines = 1;
+}
+
+message GetLogByOrganizationResponse {
     repeated LogItem lines = 1;
 }
