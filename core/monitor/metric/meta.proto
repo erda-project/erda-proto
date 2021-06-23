@@ -149,3 +149,10 @@ message Operation {
   string name = 2;
   bool multi = 3;
 }
+
+// common
+message Filter {
+  string key = 1;
+  string op = 2;
+  google.protobuf.Any value = 3;
+}
