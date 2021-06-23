@@ -13,14 +13,14 @@ service LogQueryService {
     }
 
     // for runtime log
-    rpc Query (QueryRequest) returns (QueryResponse) {
+    rpc QueryRuntime (QueryRequest) returns (QueryResponse) {
         option (google.api.http) = {
             get: "/api/runtime/logs",
           };
     }
 
     // for organization log
-    rpc Query (QueryRequest) returns (QueryResponse) {
+    rpc QueryOrganization (QueryRequest) returns (QueryResponse) {
         option (google.api.http) = {
             get: "/api/orgCenter/logs",
           };
@@ -41,7 +41,7 @@ message LogItem {
 }
 
 message QueryRequest {
-    stirng id = 1;
+    string id = 1;
     string source = 2; // job or container
     string stream = 3;
     string requestId = 4;
