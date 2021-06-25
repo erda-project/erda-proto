@@ -94,7 +94,9 @@ message DescribeCheckerV1Request {
   string period = 2;
 }
 
-message DescribeCheckerV1Response {}
+message DescribeCheckerV1Response {
+  DescribeResultV1 data = 1;
+}
 
 // GetCheckerStatusV1
 message GetCheckerStatusV1Request {
@@ -102,7 +104,12 @@ message GetCheckerStatusV1Request {
 }
 
 message GetCheckerStatusV1Response {
-  DescribeResultV1 data = 1;
+  CheckerStatusV1 data = 1;
+}
+
+message CheckerStatusV1 {
+  repeated int64 time = 1;
+  repeated string status = 2;
 }
 
 // GetCheckerIssuesV1
