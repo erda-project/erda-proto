@@ -51,7 +51,7 @@ message Series {
 
 message Results {
   string statement_id = 2;
-  repeated Series services = 1;
+  repeated Series series = 1;
 }
 
 // QueryWithTableFormat
