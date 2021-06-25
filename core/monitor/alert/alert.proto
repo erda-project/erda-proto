@@ -257,11 +257,11 @@ message QueryCustomizeMetricResponse {
 }
 
 message CustomizeMetrics {
-  repeated MetricMeta metrics = 1;
-  repeated Operator functionOperators = 2;
-  repeated Operator filterOperators = 3;
-  repeated DisplayKey aggregator = 4;
-  string notifySample = 5;
+  repeated MetricMeta metrics           = 1;
+  repeated Operator   functionOperators = 2;
+  repeated Operator   filterOperators   = 3;
+  repeated DisplayKey aggregator        = 4;
+  string              notifySample      = 5;
 }
 
 message MetricMeta {
@@ -321,7 +321,7 @@ message QueryCustomizeAlertResponse {
 }
 
 message QueryCustomizeAlertData {
-  int64                                 total = 1;
+  int64                           total = 1;
   repeated CustomizeAlertOverview list  = 2;
 }
 
@@ -353,7 +353,7 @@ message CustomizeAlertDetail {
   string                                 alertScope   = 5;
   string                                 alertScopeId = 6;
   bool                                   enable       = 7;
-  map<string, google.protobuf.Any>       attributes   = 8;
+  map<string, string>                    attributes   = 8;
   repeated CustomizeAlertRule            rules        = 9;
   repeated CustomizeAlertNotifyTemplates notifies     = 10;
   int64                                  createTime   = 11;
@@ -427,7 +427,8 @@ message CreateCustomizeAlertResponse {
 }
 
 message UpdateCustomizeAlertRequest {
-  uint64 id = 1 [(validator.field) = {int_gt: 0}];
+  uint64               id    = 1 [(validator.field) = {int_gt: 0}];
+  CustomizeAlertDetail alert = 2;
 }
 
 message UpdateCustomizeAlertResponse {
@@ -465,7 +466,7 @@ message QueryOrgCustomizeAlertsResponse {
 }
 
 message QueryOrgCustomizeAlertsData {
-  int64                                 total = 1;
+  int64                           total = 1;
   repeated CustomizeAlertOverview list  = 2;
 }
 
@@ -486,7 +487,7 @@ message CreateOrgCustomizeAlertResponse {
 }
 
 message UpdateOrgCustomizeAlertRequest {
-  uint64 id     = 1 [(validator.field) = {int_gt: 0}];
+  uint64               id       = 1 [(validator.field) = {int_gt: 0}];
   CustomizeAlertDetail newAlert = 2;
 }
 
@@ -614,7 +615,7 @@ message QueryAlertsResponse {
 
 message QueryAlertsData {
   repeated Alert list  = 1;
-  int64                total = 2;
+  int64          total = 2;
 }
 
 message Alert {
@@ -747,7 +748,7 @@ message QueryOrgAlertResponse {
 }
 
 message QueryOrgAlertData {
-  int64                total = 1;
+  int64          total = 1;
   repeated Alert list  = 2;
 }
 
@@ -764,7 +765,7 @@ message CreateOrgAlertResponse {
 }
 
 message UpdateOrgAlertRequest {
-  int64       id    = 1 [(validator.field) = {int_gt: 0}];
+  int64 id    = 1 [(validator.field) = {int_gt: 0}];
   Alert alert = 2;
 }
 
@@ -780,7 +781,7 @@ message UpdateOrgAlertEnableResponse {
 }
 
 message DeleteOrgAlertRequest {
-  int64       id    = 1 [(validator.field) = {int_gt: 0}];
+  int64 id = 1 [(validator.field) = {int_gt: 0}];
 }
 
 message DeleteOrgAlertResponse {
@@ -818,7 +819,7 @@ message QueryAlertRecordResponse {
 
 message ListResult {
   repeated AlertRecord list  = 1;
-  int64                      total = 2;
+  int64                total = 2;
 }
 
 message AlertRecord {
@@ -997,7 +998,7 @@ message QueryOrgAlertHistoryRequest {
 }
 
 message QueryOrgAlertHistoryResponse {
-  repeated AlertHistory data =1;
+  repeated AlertHistory data = 1;
 }
 
 message CreateOrgAlertIssueRequest {
