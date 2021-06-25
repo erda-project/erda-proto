@@ -1,9 +1,11 @@
 syntax = "proto3";
 
 package erda.core.monitor.dashboard.report;
-option go_package = "github.com/erda-project/erda-proto-go/core/monitor/logs/pb";
+option go_package = "github.com/erda-project/erda-proto-go/core/monitor/dashboard/report/pb";
+import "github.com/mwitkow/go-proto-validators/validator.proto";
 import "google/api/annotations.proto";
 import "google/protobuf/any.proto";
+
 
 service DashboardReportService {
   
@@ -17,7 +19,7 @@ service DashboardReportService {
         get: "/api/org/report/tasks/{id}"
       };
     }
-    rpc CreatOrgReportTask (CreatOrgReportTask) returns (StatusResponse)  {
+    rpc CreatOrgReportTask (CreatOrgReportTaskRequest) returns (StatusResponse)  {
       option (google.api.http) = {
         post: "/api/org/report/tasks"
       };
@@ -58,11 +60,11 @@ message ListOrgReportTasksRequest {
 }
 
 message ListOrgReportTasksResponse {
-    repeated ReportTaskResponse list = 0;
-    int64 total = 1;
+    repeated ReportTaskResponse list = 1;
+    int64 total = 2;
 }
 
-message CreatOrgReportTask {
+message CreatOrgReportTaskRequest {
     uint64 id = 1;
     string name = 2;
     string scope = 3;
@@ -116,6 +118,54 @@ message DashboardBlock {
     int64 createAt = 8;
     int64 updatedAt = 9;
     string version = 10;
+}
+
+message ViewConfig {
+    repeated ViewConfigItem viewConfig = 1;
+}
+
+message ViewConfigItem {
+    int64 w = 1;
+    int64 h = 2;
+    int64 x = 3;
+    int64 y = 4;
+    string i = 5;
+    View view = 6;
+}
+
+message View {
+    string      title = 1;
+    string      description = 2;
+    string      chartType = 3;
+    string      dataSourceType = 4;
+    google.protobuf.Any staticData = 5;
+    Config      config = 6;
+    API         api = 7;
+    google.protobuf.Any controls = 8;
+}
+
+message Config {
+    map<string,google.protobuf.Any> optionProps = 1;
+    google.protobuf.Any dataSourceConfig = 2;
+    google.protobuf.Any option = 3;
+}
+
+message API {
+    string url = 1;
+    map<string,google.protobuf.Any> query = 2;
+    map<string,google.protobuf.Any> body = 3;
+    map<string,google.protobuf.Any> header = 4;
+    map<string,google.protobuf.Any> extraData = 5;
+    string method = 6;
+}
+
+message DataConfig {
+    repeated DataConfigItem dataConfig = 1;
+}
+
+message DataConfigItem {
+    string i = 1;
+    google.protobuf.Any staticData = 2;
 }
 
 message Notify {
