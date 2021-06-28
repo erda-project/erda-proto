@@ -38,7 +38,7 @@ service MonitorService {
       get: "/api/customize/alerts/{id}/detail",
     };
   }
-  rpc CreateCustomizeAlert (CreateCustomizeAlertRequest) returns (CreateCustomizeAlertResponse) {
+  rpc CreateCustomizeAlert (CustomizeAlertDetail) returns (CreateCustomizeAlertResponse) {
     option (google.api.http) = {
       post: "/api/customize/alerts",
     };
@@ -73,12 +73,12 @@ service MonitorService {
       get: "/api/orgs/customize/alerts/{id}",
     };
   }
-  rpc CreateOrgCustomizeAlert (CreateOrgCustomizeAlertRequest) returns (CreateOrgCustomizeAlertResponse) {
+  rpc CreateOrgCustomizeAlert (CustomizeAlertDetail) returns (CreateOrgCustomizeAlertResponse) {
     option (google.api.http) = {
       post: "/api/orgs/customize/alerts",
     };
   }
-  rpc UpdateOrgCustomizeAlert (UpdateOrgCustomizeAlertRequest) returns (UpdateOrgCustomizeAlertResponse) {
+  rpc UpdateOrgCustomizeAlert (CustomizeAlertDetail) returns (UpdateOrgCustomizeAlertResponse) {
     option (google.api.http) = {
       put: "/api/orgs/customize/alerts/{id}",
     };
@@ -93,12 +93,12 @@ service MonitorService {
       delete: "/api/orgs/customize/alerts/{id}",
     };
   }
-  rpc QueryDashboardByAlert (QueryDashboardByAlertRequest) returns (QueryDashboardByAlertResponse) {
+  rpc QueryDashboardByAlert (CustomizeAlertDetail) returns (QueryDashboardByAlertResponse) {
     option (google.api.http) = {
       post: "/api/customize/alerts/dash-preview/query",
     };
   }
-  rpc QueryOrgDashboardByAlert (alert.CustomizeAlertDetail) returns (QueryOrgDashboardByAlertResponse) {
+  rpc QueryOrgDashboardByAlert (CustomizeAlertDetail) returns (QueryOrgDashboardByAlertResponse) {
     option (google.api.http) = {
       post: "/api/orgs/customize/alerts/dash-preview/query",
     };
@@ -123,7 +123,7 @@ service MonitorService {
       get: "/api/alerts/{id}/detail",
     };
   }
-  rpc CreateAlert (alert.Alert) returns (CreateAlertResponse) {
+  rpc CreateAlert (Alert) returns (CreateAlertResponse) {
     option (google.api.http) = {
       post: "/api/alerts",
     };
@@ -158,7 +158,7 @@ service MonitorService {
       get: "/api/orgs/alerts/{id}",
     };
   }
-  rpc CreateOrgAlert (alert.Alert) returns (CreateOrgAlertResponse) {
+  rpc CreateOrgAlert (Alert) returns (CreateOrgAlertResponse) {
     option (google.api.http) = {
       post: "/api/orgs/alerts",
     };
@@ -418,10 +418,6 @@ message GetCustomizeAlertDetailResponse {
   CustomizeAlertDetail data = 1;
 }
 
-message CreateCustomizeAlertRequest {
-  CustomizeAlertDetail alert = 1;
-}
-
 message CreateCustomizeAlertResponse {
   uint64 data = 1;
 }
@@ -447,6 +443,7 @@ message DeleteCustomizeAlertRequest {
 }
 
 message DeleteCustomizeAlertResponse {
+  string data = 1;
 }
 
 message QueryOrgCustomizeMetricRequest {
@@ -478,17 +475,8 @@ message GetOrgCustomizeAlertDetailResponse {
   CustomizeAlertDetail data = 1;
 }
 
-message CreateOrgCustomizeAlertRequest {
-  CustomizeAlertDetail alert = 1;
-}
-
 message CreateOrgCustomizeAlertResponse {
   uint64 id = 1 [(validator.field) = {int_gt: 0}];
-}
-
-message UpdateOrgCustomizeAlertRequest {
-  uint64               id       = 1 [(validator.field) = {int_gt: 0}];
-  CustomizeAlertDetail newAlert = 2;
 }
 
 message UpdateOrgCustomizeAlertResponse {
@@ -508,11 +496,7 @@ message DeleteOrgCustomizeAlertRequest {
 }
 
 message DeleteOrgCustomizeAlertResponse {
-  bool data = 1;
-}
-
-message QueryDashboardByAlertRequest {
-  CustomizeAlertDetail alert = 1;
+  google.protobuf.Any data = 1;
 }
 
 message QueryDashboardByAlertResponse {
@@ -639,16 +623,17 @@ message AlertExpression {
   uint64                           ruleId     = 2;
   string                           alertIndex = 3;
   int64                            window     = 4;
-  message AlertExpressionFunction {
-    string              field      = 1;
-    string              aggregator = 2;
-    string              operator   = 3;
-    google.protobuf.Any value      = 4;
-  }
   repeated AlertExpressionFunction functions  = 5;
   bool                             isRecover  = 6;
   int64                            createTime = 7;
   int64                            updateTime = 8;
+}
+
+message AlertExpressionFunction {
+  string              field      = 1;
+  string              aggregator = 2;
+  string              operator   = 3;
+  google.protobuf.Any value      = 4;
 }
 
 message AlertNotify {
@@ -711,6 +696,7 @@ message CreateAlertResponse {
 
 message UpdateAlertRequest {
   int64 id = 1 [(validator.field) = {int_gt: 0}];
+  Alert alert = 2;
 }
 
 message UpdateAlertResponse {
@@ -729,6 +715,7 @@ message DeleteAlertRequest {
 }
 
 message DeleteAlertResponse {
+  map<string,google.protobuf.Any> data = 1;
 }
 
 message QueryOrgAlertRuleRequest {
@@ -785,6 +772,7 @@ message DeleteOrgAlertRequest {
 }
 
 message DeleteOrgAlertResponse {
+    map<string,google.protobuf.Any> data = 1;
 }
 
 message GetAlertRecordAttrRequest {
@@ -962,10 +950,6 @@ message QueryOrgAlertRecordRequest {
 }
 
 message QueryOrgHostsAlertRecordRequest {
-  message clusterReq {
-    string          clusterName = 1;
-    repeated string hostIPs     = 2;
-  }
   repeated clusterReq clusters    = 1;
   repeated string     alertGroup  = 2;
   repeated string     alertState  = 3;
@@ -975,6 +959,11 @@ message QueryOrgHostsAlertRecordRequest {
   uint64              pageNo      = 7 [(validator.field) = {int_gt: 0}];
   uint64              pageSize    = 8 [(validator.field) = {int_gt: 0,int_lt: 101}];
 
+}
+
+message clusterReq {
+  string          clusterName = 1;
+  repeated string hostIPs     = 2;
 }
 
 message QueryOrgAlertRecordResponse {
