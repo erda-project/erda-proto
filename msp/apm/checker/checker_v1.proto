@@ -55,11 +55,12 @@ service CheckerV1Service {
 // CreateCheckerV1
 message CreateCheckerV1Request {
   int64 projectID = 1 [(validator.field) = {int_gt: 0}];
-  string env = 2 [(validator.field) = {string_not_empty : true}];
   CheckerV1 data = 3 [(validator.field) = {msg_exists : true}];
 }
 
-message CreateCheckerV1Response {}
+message CreateCheckerV1Response {
+  int64 data = 1;
+}
 
 // UpdateCheckerV1
 message UpdateCheckerV1Request {
@@ -67,7 +68,9 @@ message UpdateCheckerV1Request {
   CheckerV1 data = 3 [(validator.field) = {msg_exists : true}];
 }
 
-message UpdateCheckerV1Response {}
+message UpdateCheckerV1Response {
+  int64 data = 1;
+}
 
 // DeleteCheckerV1
 message DeleteCheckerV1Request {
@@ -126,6 +129,7 @@ message CheckerV1 {
   string name = 1 [(validator.field) = {string_not_empty : true}];
   string mode = 2 [(validator.field) = {string_not_empty : true}];
   string url = 3 [(validator.field) = {string_not_empty : true}];
+  string env = 4 [(validator.field) = {string_not_empty : true}];
 }
 
 message DescribeResultV1 {
