@@ -9,7 +9,6 @@ service ResourceService {
   rpc CreateResource(CreateResourceRequest) returns (CreateResourceResponse) {
     option (google.api.http) = {
       post: "/{engine}/dice/resources"
-      body: "*"
     };
   }
 
