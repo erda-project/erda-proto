@@ -150,4 +150,3 @@ message Operation {
   string name = 2;
   bool multi = 3;
 }
-
