@@ -9,12 +9,12 @@ service MetricService {
 
   rpc QueryWithInfluxFormat (QueryWithInfluxFormatRequest) returns (QueryWithInfluxFormatResponse)  {
     option (google.api.http) = {
-      post: "/query"
+      post: "/query?q={statement}"
     };
   }
   rpc SearchWithInfluxFormat (QueryWithInfluxFormatRequest) returns (QueryWithInfluxFormatResponse)  {
     option (google.api.http) = {
-      get: "/query"
+      get: "/query?q={statement}"
     };
   }
   rpc QueryWithTableFormat (QueryWithTableFormatRequest) returns (QueryWithTableFormatResponse)  {
@@ -34,32 +34,39 @@ service MetricService {
 message QueryWithInfluxFormatRequest {
   string start = 1;
   string end = 2;
-  string q = 4;
-  map<string, string> options = 5;
-  repeated Filter filters = 6;
+  repeated Filter filters = 3;
+  map<string, string> options = 4;
+  string statement = 5;
+  map<string, google.protobuf.Any> params = 6;
 }
 
 message QueryWithInfluxFormatResponse {
-  Results results = 1;
+  repeated Result results = 1;
 }
 
-message Series {
+message Serie {
   string name = 1;
   repeated string columns = 2;
-  repeated google.protobuf.Any values = 3;
+  repeated Row rows = 3;
 }
 
-message Results {
-  string statement_id = 2;
-  repeated Series services = 1;
+message Row {
+  repeated google.protobuf.Any values = 1;
+}
+
+message Result {
+  string statement_id = 1;
+  repeated Serie series = 2;
 }
 
 // QueryWithTableFormat
 message QueryWithTableFormatRequest {
   string start = 1;
   string end = 2;
-  map<string, string> options = 5;
-  repeated Filter filters = 6;
+  repeated Filter filters = 3;
+  map<string, string> options = 4;
+  string statement = 5;
+  map<string, google.protobuf.Any> params = 6;
 }
 
 message QueryWithTableFormatResponse {

@@ -10,23 +10,23 @@ service MetricMetaService {
   
   rpc ListMetricNames (ListMetricNamesRequest) returns (ListMetricNamesResponse)  {
     option (google.api.http) = {
-      get: "/api/metric/names"
+      get: "/api/metric/names?scopeId={scopeID}"
     };
   }
   rpc ListMetricMeta (ListMetricMetaRequest) returns (ListMetricMetaResponse)  {
     option (google.api.http) = {
-      get: "/api/metric/meta"
+      get: "/api/metric/meta?scopeId={scopeID}"
     };
   }
 
   rpc ListMetricGroups (ListMetricGroupsRequest) returns (ListMetricGroupsResponse)  {
     option (google.api.http) = {
-      get: "/api/metric/groups"
+      get: "/api/metric/groups?scopeId={scopeID}"
     };
   }
   rpc GetMetricGroup (GetMetricGroupRequest) returns (GetMetricGroupResponse)  {
     option (google.api.http) = {
-      get: "/api/metric/groups/{id}"
+      get: "/api/metric/groups/{id}?scopeId={scopeID}"
     };
   }
 
@@ -77,13 +77,13 @@ message GetMetricGroupRequest {
 
 message GetMetricGroupResponse {
   string id = 1;
-  repeated MetaMode meta = 2;
+  MetaMode meta = 2;
   repeated GroupMetricMeta metrics = 3;
 }
 
 message GroupMetricMeta {
-  string Metric = 1;            
-  string Name = 2;               
+  string metric = 1;            
+  string name = 2;               
   repeated Filter filters = 3;           
   repeated FieldDefine fields = 4;
   repeated TagDefine tags = 5;
@@ -150,4 +150,3 @@ message Operation {
   string name = 2;
   bool multi = 3;
 }
-
