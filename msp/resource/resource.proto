@@ -12,7 +12,7 @@ service ResourceService {
     };
   }
 
-  rpc DeleteResource(DeleteResourceRequest) returns (.google.protobuf.BoolValue){
+  rpc DeleteResource(DeleteResourceRequest) returns (DeleteResourceResponse){
     option (google.api.http) = {
       delete: "/{engine}/dice/resources/{id}"
     };
@@ -47,4 +47,8 @@ message CreateResourceResponse {
 message DeleteResourceRequest {
   string engine = 1;                    // 资源类型
   string id = 2;                        // 资源id
+}
+
+message DeleteResourceResponse {
+  bool success = 1;                     // 操作是否成功
 }
