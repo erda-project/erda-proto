@@ -50,5 +50,5 @@ message DeleteResourceRequest {
 }
 
 message DeleteResourceResponse {
-  bool success = 1;                     // 操作是否成功
+  bool result = 1;                     // 操作是否成功
 }
