@@ -299,7 +299,7 @@ message QueryCustomizeNotifyTargetResponse {
 }
 
 message QueryCustomizeNotifyTargetData {
-  repeated alert.DisplayKey targets = 1;
+  repeated DisplayKey targets = 1;
 }
 
 message QueryOrgCustomizeNotifyTargetRequest {
@@ -358,7 +358,7 @@ message CustomizeAlertDetail {
   repeated CustomizeAlertNotifyTemplates notifies     = 10;
   int64                                  createTime   = 11;
   int64                                  updateTime   = 12;
-  repeated LanguageCode                  lang         = 13;
+
 }
 
 message CustomizeAlertRule {
@@ -405,11 +405,6 @@ message CustomizeAlertNotifyTemplates {
   int64                            updateTime = 8;
 }
 
-message LanguageCode {
-  string code    = 1;
-  float  quality = 2;
-}
-
 message GetCustomizeAlertDetailRequest {
   uint64 id = 1 [(validator.field) = {int_gt: 0}];
 }
@@ -431,7 +426,6 @@ message CreateCustomizeAlertRequest {
   repeated CustomizeAlertNotifyTemplates notifies     = 10;
   int64                                  createTime   = 11;
   int64                                  updateTime   = 12;
-  repeated LanguageCode                  lang         = 13;
 }
 
 message CreateCustomizeAlertResponse {
@@ -504,7 +498,6 @@ message CreateOrgCustomizeAlertRequest {
   repeated CustomizeAlertNotifyTemplates notifies     = 10;
   int64                                  createTime   = 11;
   int64                                  updateTime   = 12;
-  repeated LanguageCode                  lang         = 13;
 }
 
 message CreateOrgCustomizeAlertResponse {
@@ -549,7 +542,6 @@ message QueryDashboardByAlertRequest {
   repeated CustomizeAlertNotifyTemplates notifies     = 10;
   int64                                  createTime   = 11;
   int64                                  updateTime   = 12;
-  repeated LanguageCode                  lang         = 13;
 }
 
 message QueryDashboardByAlertResponse {
@@ -595,7 +587,6 @@ message QueryOrgDashboardByAlertRequest {
   repeated CustomizeAlertNotifyTemplates notifies     = 10;
   int64                                  createTime   = 11;
   int64                                  updateTime   = 12;
-  repeated LanguageCode                  lang         = 13;
 }
 
 message QueryOrgDashboardByAlertResponse {
@@ -1051,7 +1042,7 @@ message QueryOrgAlertRecordRequest {
 }
 
 message QueryOrgHostsAlertRecordRequest {
-  repeated clusterReq clusters    = 1;
+  repeated ClusterReq clusters    = 1;
   repeated string     alertGroup  = 2;
   repeated string     alertState  = 3;
   repeated string     alertType   = 4;
@@ -1062,7 +1053,7 @@ message QueryOrgHostsAlertRecordRequest {
 
 }
 
-message clusterReq {
+message ClusterReq {
   string          clusterName = 1;
   repeated string hostIPs     = 2;
 }
