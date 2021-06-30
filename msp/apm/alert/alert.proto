@@ -4,7 +4,7 @@ option go_package = "github.com/erda-project/erda-proto-go/msp/apm/alert/pb";
 
 import "github.com/mwitkow/go-proto-validators/validator.proto";
 import "google/api/annotations.proto";
-import "google/protobuf/any.proto";
+import "google/protobuf/struct.proto";
 import "google/protobuf/timestamp.proto";
 
 service AlertService {
@@ -147,29 +147,29 @@ message AlertTypeRule {
 }
 
 message AlertRule {
-  uint64                           id         = 1;
-  string                           name       = 2;
-  string                           alertScope = 3;
-  string                           alertType  = 4;
-  DisplayKey                       alertIndex = 5;
-  map<string, google.protobuf.Any> template   = 6;
-  int64                            window     = 7;
-  repeated AlertRuleFunction       functions  = 8;
-  bool                             isRecover  = 9;
-  map<string, google.protobuf.Any> attributes = 10;
-  string                           version    = 11;
-  bool                             enable     = 12;
-  int64                            createTime = 13;
-  int64                            updateTime = 14;
+  uint64                              id         = 1;
+  string                              name       = 2;
+  string                              alertScope = 3;
+  string                              alertType  = 4;
+  DisplayKey                          alertIndex = 5;
+  map<string, google.protobuf.Value>  template   = 6;
+  int64                               window     = 7;
+  repeated AlertRuleFunction          functions  = 8;
+  bool                                isRecover  = 9;
+  map<string, google.protobuf.Value>  attributes = 10;
+  string                              version    = 11;
+  bool                                enable     = 12;
+  int64                               createTime = 13;
+  int64                               updateTime = 14;
 }
 
 message AlertRuleFunction {
-  DisplayKey          field      = 1;
-  string              aggregator = 2;
-  string              operator   = 3;
-  google.protobuf.Any value      = 4;
-  string              dataType   = 5;
-  string              unit       = 6;
+  DisplayKey            field      = 1;
+  string                aggregator = 2;
+  string                operator   = 3;
+  google.protobuf.Value value      = 4;
+  string                dataType   = 5;
+  string                unit       = 6;
 }
 
 message Operator {
@@ -199,19 +199,19 @@ message QueryAlertData {
 }
 
 message Alert {
-  uint64                           id           = 1;
-  string                           name         = 2;
-  string                           alertScope   = 3;
-  string                           alertScopeId = 4;
-  bool                             enable       = 5;
-  repeated AlertExpression         rules        = 6;
-  repeated AlertNotify             notifies     = 7;
-  map<string, google.protobuf.Any> filters      = 8;
-  map<string, google.protobuf.Any> attributes   = 9;
-  repeated string                  clusterNames = 10;
-  string                           domain       = 11;
-  int64                            createTime   = 12;
-  int64                            updateTime   = 13;
+  uint64                              id           = 1;
+  string                              name         = 2;
+  string                              alertScope   = 3;
+  string                              alertScopeId = 4;
+  bool                                enable       = 5;
+  repeated AlertExpression            rules        = 6;
+  repeated AlertNotify                notifies     = 7;
+  map<string, google.protobuf.Value>  filters      = 8;
+  map<string, google.protobuf.Value>  attributes   = 9;
+  repeated string                     clusterNames = 10;
+  string                              domain       = 11;
+  int64                               createTime   = 12;
+  int64                               updateTime   = 13;
 }
 
 message AlertExpression {
@@ -226,10 +226,10 @@ message AlertExpression {
 }
 
 message AlertExpressionFunction {
-  string              field      = 1;
-  string              aggregator = 2;
-  string              operator   = 3;
-  google.protobuf.Any value      = 4;
+  string                field      = 1;
+  string                aggregator = 2;
+  string                operator   = 3;
+  google.protobuf.Value value      = 4;
 }
 
 message AlertNotify {
@@ -424,7 +424,7 @@ message CustomizeAlertDetail {
   string                                 alertScope   = 5;
   string                                 alertScopeId = 6;
   bool                                   enable       = 7;
-  map<string, google.protobuf.Any>       attributes   = 8;
+  map<string, google.protobuf.Value>     attributes   = 8;
   repeated CustomizeAlertRule            rules        = 9;
   repeated CustomizeAlertNotifyTemplates notifies     = 10;
   int64                                  createTime   = 11;
@@ -441,7 +441,7 @@ message CustomizeAlertRule {
   repeated string                     group               = 7;
   repeated string                     outputs             = 8;
   map<string, string>                 select              = 9;
-  map<string, google.protobuf.Any>    attributes          = 10;
+  map<string, google.protobuf.Value>  attributes          = 10;
   repeated string                     activedMetricGroups = 11;
   int64                               createTime          = 12;
   int64                               updateTime          = 13;
@@ -452,7 +452,7 @@ message CustomizeAlertRuleFunction {
   string              alias      = 2;
   string              aggregator = 3;
   string              operator   = 4;
-  google.protobuf.Any value      = 5;
+  google.protobuf.Value value      = 5;
   string              dataType   = 6;
   string              unit       = 7;
 }
@@ -460,19 +460,19 @@ message CustomizeAlertRuleFunction {
 message CustomizeAlertRuleFilter {
   string              tag      = 1;
   string              operator = 2;
-  google.protobuf.Any value    = 3;
+  google.protobuf.Value value    = 3;
   string              dataType = 4;
 }
 
 message CustomizeAlertNotifyTemplates {
-  uint64                           id         = 1;
-  string                           name       = 2;
-  repeated string                  targets    = 3;
-  string                           title      = 4;
-  string                           content    = 5;
-  map<string, google.protobuf.Any> attributes = 6;
-  int64                            createTime = 7;
-  int64                            updateTime = 8;
+  uint64                              id         = 1;
+  string                              name       = 2;
+  repeated string                     targets    = 3;
+  string                              title      = 4;
+  string                              content    = 5;
+  map<string, google.protobuf.Value>  attributes = 6;
+  int64                               createTime = 7;
+  int64                               updateTime = 8;
 }
 
 message CreateCustomizeAlertRequest {
@@ -484,7 +484,7 @@ message CreateCustomizeAlertRequest {
   string                                 alertScope   = 6;
   string                                 alertScopeId = 7;
   bool                                   enable       = 8;
-  map<string, google.protobuf.Any>       attributes   = 9;
+  map<string, google.protobuf.Value>     attributes   = 9;
   repeated CustomizeAlertRule            rules        = 10;
   repeated CustomizeAlertNotifyTemplates notifies     = 11;
   int64                                  createTime   = 12;
@@ -508,7 +508,7 @@ message UpdateCustomizeAlertRequest {
   string                                 alertScope   = 6;
   string                                 alertScopeId = 7;
   bool                                   enable       = 8;
-  map<string, google.protobuf.Any>       attributes   = 9;
+  map<string, google.protobuf.Value>     attributes   = 9;
   repeated CustomizeAlertRule            rules        = 10;
   repeated CustomizeAlertNotifyTemplates notifies     = 11;
   int64                                  createTime   = 12;
@@ -629,18 +629,18 @@ message AlertHistory {
 }
 
 message CreateAlertRecordIssueRequest {
-  string                           groupId     = 1;
-  string                           tenantGroup = 2;
-  map<string, google.protobuf.Any> body        = 3;
+  string                              groupId     = 1;
+  string                              tenantGroup = 2;
+  map<string, google.protobuf.Value>  body        = 3;
 }
 
 message CreateAlertRecordIssueResponse {
 }
 
 message UpdateAlertRecordIssueRequest {
-  string                           groupId     = 1;
-  string                           tenantGroup = 2;
-  map<string, google.protobuf.Any> body        = 3;
+  string                             groupId     = 1;
+  string                             tenantGroup = 2;
+  map<string, google.protobuf.Value> body        = 3;
 }
 
 message UpdateAlertRecordIssueResponse {
@@ -655,7 +655,7 @@ message DashboardPreviewRequest {
   string                                 alertScope   = 6;
   string                                 alertScopeId = 7;
   bool                                   enable       = 8;
-  map<string, google.protobuf.Any>       attributes   = 9;
+  map<string, google.protobuf.Value>     attributes   = 9;
   repeated CustomizeAlertRule            rules        = 10;
   repeated CustomizeAlertNotifyTemplates notifies     = 11;
   int64                                  createTime   = 12;
@@ -667,27 +667,27 @@ message DashboardPreviewResponse {
 }
 
 message View {
-  string              title          = 1;
-  string              description    = 2;
-  string              chartType      = 3;
-  string              dataSourceType = 4;
-  google.protobuf.Any staticData     = 5;
-  Config              config         = 6;
-  API                 api            = 7;
-  google.protobuf.Any controls       = 8;
+  string                title          = 1;
+  string                description    = 2;
+  string                chartType      = 3;
+  string                dataSourceType = 4;
+  google.protobuf.Value staticData     = 5;
+  Config                config         = 6;
+  API                   api            = 7;
+  google.protobuf.Value controls       = 8;
 }
 
 message Config {
-  map<string, google.protobuf.Any> optionProps      = 1;
-  google.protobuf.Any              dataSourceConfig = 2;
-  google.protobuf.Any              option           = 3;
+  map<string, google.protobuf.Value> optionProps      = 1;
+  google.protobuf.Value              dataSourceConfig = 2;
+  google.protobuf.Value              option           = 3;
 }
 
 message API {
-  string                           url       = 1;
-  map<string, google.protobuf.Any> query     = 2;
-  map<string, google.protobuf.Any> body      = 3;
-  map<string, google.protobuf.Any> header    = 4;
-  map<string, google.protobuf.Any> extraData = 5;
-  string                           method    = 6;
+  string                              url       = 1;
+  map<string, google.protobuf.Value>  query     = 2;
+  map<string, google.protobuf.Value>  body      = 3;
+  map<string, google.protobuf.Value>  header    = 4;
+  map<string, google.protobuf.Value>  extraData = 5;
+  string                              method    = 6;
 }

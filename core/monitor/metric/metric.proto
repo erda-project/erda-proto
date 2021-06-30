@@ -3,7 +3,7 @@ syntax = "proto3";
 package erda.core.monitor.metric;
 option go_package = "github.com/erda-project/erda-proto-go/core/monitor/metric/pb";
 import "google/api/annotations.proto";
-import "google/protobuf/any.proto";
+import "google/protobuf/struct.proto";
 
 service MetricService {
 
@@ -17,6 +17,7 @@ service MetricService {
       get: "/query?q={statement}"
     };
   }
+
   rpc QueryWithTableFormat (QueryWithTableFormatRequest) returns (QueryWithTableFormatResponse)  {
     option (google.api.http) = {
       post: "/api/query"
@@ -37,7 +38,7 @@ message QueryWithInfluxFormatRequest {
   repeated Filter filters = 3;
   map<string, string> options = 4;
   string statement = 5;
-  map<string, google.protobuf.Any> params = 6;
+  map<string, google.protobuf.Value> params = 6;
 }
 
 message QueryWithInfluxFormatResponse {
@@ -51,7 +52,7 @@ message Serie {
 }
 
 message Row {
-  repeated google.protobuf.Any values = 1;
+  repeated google.protobuf.Value values = 1;
 }
 
 message Result {
@@ -66,7 +67,7 @@ message QueryWithTableFormatRequest {
   repeated Filter filters = 3;
   map<string, string> options = 4;
   string statement = 5;
-  map<string, google.protobuf.Any> params = 6;
+  map<string, google.protobuf.Value> params = 6;
 }
 
 message QueryWithTableFormatResponse {
@@ -86,12 +87,12 @@ message TableColumn {
 }
 
 message TableRow {
-  map<string, google.protobuf.Any> values = 1;
+  map<string, google.protobuf.Value> values = 1;
 }
 
 // common
 message Filter {
   string key = 1;
   string op = 2;
-  google.protobuf.Any value = 3;
+  google.protobuf.Value value = 3;
 }

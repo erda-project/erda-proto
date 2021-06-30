@@ -2,8 +2,9 @@ syntax = "proto3";
 
 package erda.core.monitor.metric;
 option go_package = "github.com/erda-project/erda-proto-go/core/monitor/metric/pb";
+import "github.com/mwitkow/go-proto-validators/validator.proto";
 import "google/api/annotations.proto";
-import "google/protobuf/any.proto";
+import "google/protobuf/struct.proto";
 import "metric.proto";
 
 service MetricMetaService {
@@ -34,8 +35,8 @@ service MetricMetaService {
 
 // ListMetricNames
 message ListMetricNamesRequest {
-  string scope = 1;
-  string scopeID = 2;
+  string scope = 1 [(validator.field) = {string_not_empty : true}];
+  string scopeID = 2 [(validator.field) = {string_not_empty : true}];
 }
 
 message ListMetricNamesResponse {
@@ -44,19 +45,19 @@ message ListMetricNamesResponse {
 
 // ListMetricMeta
 message ListMetricMetaRequest {
-  string scope = 1;
-  string scopeID = 2;
-  string metrics = 3;
+  string scope = 1 [(validator.field) = {string_not_empty : true}];
+  string scopeID = 2 [(validator.field) = {string_not_empty : true}];
+  repeated string metrics = 3;
 }
 
 message ListMetricMetaResponse {
-  repeated MetricMeta metas = 1;
+  repeated MetricMeta data = 1;
 }
 
 // ListMetricGroups
 message ListMetricGroupsRequest {
-  string scope = 1;
-  string scopeID = 2;
+  string scope = 1 [(validator.field) = {string_not_empty : true}];
+  string scopeID = 2 [(validator.field) = {string_not_empty : true}];
   string mode = 3;
 }
 
@@ -66,9 +67,9 @@ message ListMetricGroupsResponse {
 
 // GetMetricGroup
 message GetMetricGroupRequest {
-  string scope = 1;
-  string scopeID = 2;
-  string id = 3;
+  string scope = 1 [(validator.field) = {string_not_empty : true}];
+  string scopeID = 2 [(validator.field) = {string_not_empty : true}];
+  string id = 3  [(validator.field) = {string_not_empty : true}];
   string mode = 4;
   string version = 5;
   string format = 6;
@@ -76,6 +77,10 @@ message GetMetricGroupRequest {
 }
 
 message GetMetricGroupResponse {
+  MetricGroup data = 1;
+}
+
+message MetricGroup {
   string id = 1;
   MetaMode meta = 2;
   repeated GroupMetricMeta metrics = 3;
@@ -118,7 +123,7 @@ message FieldDefine {
 
 message ValueDefine {
   string name = 1;
-  google.protobuf.Any value = 2;
+  google.protobuf.Value value = 2;
 }
 
 message Group {
