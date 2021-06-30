@@ -505,8 +505,18 @@ message CreateOrgCustomizeAlertResponse {
 }
 
 message UpdateOrgCustomizeAlertRequest {
-  uint64               id       = 1 [(validator.field) = {int_gt: 0}];
-  CustomizeAlertDetail newAlert = 2;
+  uint64                                 id           = 1 [(validator.field) = {int_gt: 0}];
+  string                                 clusterName  = 3;
+  string                                 name         = 4;
+  string                                 alertType    = 5;
+  string                                 alertScope   = 6;
+  string                                 alertScopeId = 7;
+  bool                                   enable       = 8;
+  map<string, google.protobuf.Any>       attributes   = 9;
+  repeated CustomizeAlertRule            rules        = 10;
+  repeated CustomizeAlertNotifyTemplates notifies     = 11;
+  int64                                  createTime   = 12;
+  int64                                  updateTime   = 13;
 }
 
 message UpdateOrgCustomizeAlertResponse {
