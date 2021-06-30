@@ -219,16 +219,17 @@ message AlertExpression {
   uint64                           ruleId     = 2;
   string                           alertIndex = 3;
   int64                            window     = 4;
-  message AlertExpressionFunction {
-    string              field      = 1;
-    string              aggregator = 2;
-    string              operator   = 3;
-    google.protobuf.Any value      = 4;
-  }
   repeated AlertExpressionFunction functions  = 5;
   bool                             isRecover  = 6;
   int64                            createTime = 7;
   int64                            updateTime = 8;
+}
+
+message AlertExpressionFunction {
+  string              field      = 1;
+  string              aggregator = 2;
+  string              operator   = 3;
+  google.protobuf.Any value      = 4;
 }
 
 message AlertNotify {
@@ -328,6 +329,11 @@ message DeleteAlertRequest {
 }
 
 message DeleteAlertResponse {
+  DeleteAlertData data = 1;
+}
+
+message DeleteAlertData {
+  string Name = 1;
 }
 
 message QueryCustomizeMetricRequest {
@@ -423,7 +429,6 @@ message CustomizeAlertDetail {
   repeated CustomizeAlertNotifyTemplates notifies     = 10;
   int64                                  createTime   = 11;
   int64                                  updateTime   = 12;
-  repeated LanguageCode                  lang         = 13;
 }
 
 message CustomizeAlertRule {
@@ -470,14 +475,20 @@ message CustomizeAlertNotifyTemplates {
   int64                            updateTime = 8;
 }
 
-message LanguageCode {
-  string code    = 1;
-  float  quality = 2;
-}
-
 message CreateCustomizeAlertRequest {
-  string               tenantGroup = 1;
-  CustomizeAlertDetail alert       = 2;
+  string                                 tenantGroup  = 1;
+  uint64                                 id           = 2;
+  string                                 clusterName  = 3;
+  string                                 name         = 4;
+  string                                 alertType    = 5;
+  string                                 alertScope   = 6;
+  string                                 alertScopeId = 7;
+  bool                                   enable       = 8;
+  map<string, google.protobuf.Any>       attributes   = 9;
+  repeated CustomizeAlertRule            rules        = 10;
+  repeated CustomizeAlertNotifyTemplates notifies     = 11;
+  int64                                  createTime   = 12;
+  int64                                  updateTime   = 13;
 }
 
 message CreateCustomizeAlertResponse {
@@ -489,9 +500,19 @@ message CreateCustomizeAlertData {
 }
 
 message UpdateCustomizeAlertRequest {
-  uint64               id          = 1 [(validator.field) = {int_gt: 0}];
-  string               tenantGroup = 2;
-  CustomizeAlertDetail alert       = 3;
+  uint64                                 id           = 1 [(validator.field) = {int_gt: 0}];
+  string                                 tenantGroup  = 2;
+  string                                 clusterName  = 3;
+  string                                 name         = 4;
+  string                                 alertType    = 5;
+  string                                 alertScope   = 6;
+  string                                 alertScopeId = 7;
+  bool                                   enable       = 8;
+  map<string, google.protobuf.Any>       attributes   = 9;
+  repeated CustomizeAlertRule            rules        = 10;
+  repeated CustomizeAlertNotifyTemplates notifies     = 11;
+  int64                                  createTime   = 12;
+  int64                                  updateTime   = 13;
 }
 
 message UpdateCustomizeAlertResponse {
@@ -626,8 +647,19 @@ message UpdateAlertRecordIssueResponse {
 }
 
 message DashboardPreviewRequest {
-  string               tenantGroup = 1;
-  CustomizeAlertDetail alert       = 2;
+  string                                 tenantGroup  = 1;
+  uint64                                 id           = 2;
+  string                                 clusterName  = 3;
+  string                                 name         = 4;
+  string                                 alertType    = 5;
+  string                                 alertScope   = 6;
+  string                                 alertScopeId = 7;
+  bool                                   enable       = 8;
+  map<string, google.protobuf.Any>       attributes   = 9;
+  repeated CustomizeAlertRule            rules        = 10;
+  repeated CustomizeAlertNotifyTemplates notifies     = 11;
+  int64                                  createTime   = 12;
+  int64                                  updateTime   = 13;
 }
 
 message DashboardPreviewResponse {
