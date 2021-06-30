@@ -50,13 +50,13 @@ message CreateResourceResponse {
 
   enum ResourceStatusEnum {
     // 创建中
-    RESOURCE_STATUS_INIT         = 0;
+    INIT         = 0;
     // 运行中
-    RESOURCE_STATUS_RUNNING      = 1;
+    RUNNING      = 1;
     // 已删除
-    RESOURCE_STATUS_DELETED      = 2;
+    DELETED      = 2;
     // 删除失败
-    RESOURCE_STATUS_DELETE_ERROR = 3;
+    DELETE_ERROR = 3;
   }
 }
 
