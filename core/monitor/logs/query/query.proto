@@ -1,7 +1,6 @@
 syntax = "proto3";
-package erda.monitor.core.logs.query;
-option go_package = "github.com/erda-project/erda-proto-go/monitor/core/logs/query/pb";
-import "github.com/mwitkow/go-proto-validators/validator.proto";
+package erda.core.monitor.logs.query;
+option go_package = "github.com/erda-project/erda-proto-go/core/monitor/logs/query/pb";
 import "google/api/annotations.proto";
 
 service LogQueryService {

@@ -1,6 +1,0 @@
-syntax = "proto3";
-
-package erda.core.monitor.logs;
-option go_package = "github.com/erda-project/erda-proto-go/core/monitor/logs/pb";
-import "google/api/annotations.proto";
-import "google/protobuf/any.proto";
