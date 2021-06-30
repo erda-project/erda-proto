@@ -1,0 +1,54 @@
+syntax = "proto3";
+
+package erda.msp.resource;
+option go_package = "github.com/erda-project/erda-proto-go/msp/resource/pb";
+import "google/api/annotations.proto";
+import "google/protobuf/wrappers.proto";
+
+service ResourceService {
+  rpc CreateResource(CreateResourceRequest) returns (CreateResourceResponse) {
+    option (google.api.http) = {
+      post: "/{engine}/dice/resources"
+    };
+  }
+
+  rpc DeleteResource(DeleteResourceRequest) returns (DeleteResourceResponse){
+    option (google.api.http) = {
+      delete: "/{engine}/dice/resources/{id}"
+    };
+  }
+}
+
+message CreateResourceRequest {
+  string engine = 1;                    // 资源类型
+  string uuid = 2;                      // 请求资源ID
+  string plan = 3;                      // 规格
+  string az = 4;                        // 资源所在可用区
+  map<string,string> options = 5;       // 资源相关配置项
+  string callback = 6;                  // 回调
+}
+
+message CreateResourceResponse {
+  string id = 1;                        // 请求ID
+  map<string,string> config = 2;        // 环境变量
+  map<string,string> label = 3;         // 标签
+  string createdAt = 4;                 // 创建时间
+  string updateAt = 5;                  // 更新时间
+  ResourceStatusEnum status = 6;        // 资源实例状态
+
+  enum ResourceStatusEnum {
+    RESOURCE_STATUS_INIT = 0;           // 创建中
+    RESOURCE_STATUS_RUNNING = 1;        // 运行中
+    RESOURCE_STATUS_DELETED = 2;        // 已删除
+    RESOURCE_STATUS_DELETE_ERROR = 3;   // 删除失败
+  }
+}
+
+message DeleteResourceRequest {
+  string engine = 1;                    // 资源类型
+  string id = 2;                        // 资源id
+}
+
+message DeleteResourceResponse {
+  bool result = 1;                     // 操作是否成功
+}
