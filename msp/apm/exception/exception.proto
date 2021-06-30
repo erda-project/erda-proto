@@ -27,9 +27,9 @@ service ExceptionService {
 }
 
 message GetExceptionsRequest {
-  int64 startTime = 1 [(validator.field) = {string_not_empty: true}];
-  int64 endTime = 2 [(validator.field) = {string_not_empty: true}];
-  string scopeId = 3 [(validator.field) = {string_not_empty: true}];
+  int64  startTime = 1 [(validator.field) = {string_not_empty: true}];
+  int64  endTime   = 2 [(validator.field) = {string_not_empty: true}];
+  string scopeId   = 3 [(validator.field) = {string_not_empty: true}];
 }
 
 message GetExceptionsResponse {
@@ -37,8 +37,8 @@ message GetExceptionsResponse {
 }
 
 message GetExceptionEventIdsRequest {
-  string exceptionId = 1 [(validator.field) = {string_not_empty: true}];
-  string scopeId = 2 [(validator.field) = {string_not_empty: true}];
+  string exceptionID = 1 [(validator.field) = {string_not_empty: true}];
+  string scopeID     = 2 [(validator.field) = {string_not_empty: true}];
 }
 
 message GetExceptionEventIdsResponse {
@@ -46,8 +46,8 @@ message GetExceptionEventIdsResponse {
 }
 
 message GetExceptionEventRequest {
-  string exceptionEventId = 1 [(validator.field) = {string_not_empty: true}];
-  string scopeId = 2 [(validator.field) = {string_not_empty: true}];
+  string exceptionEventID = 1 [(validator.field) = {string_not_empty: true}];
+  string scopeID          = 2 [(validator.field) = {string_not_empty: true}];
 }
 
 message GetExceptionEventResponse {
@@ -55,19 +55,19 @@ message GetExceptionEventResponse {
 }
 
 message Exception {
-  string id = 1;
-  string className = 2;
-  string method = 3;
-  string type = 4;
-  int64 eventCount = 5;
+  string id               = 1;
+  string className        = 2;
+  string method           = 3;
+  string type             = 4;
+  int64  eventCount       = 5;
   string exceptionMessage = 6;
-  string file = 7;
-  string applicationId = 8;
-  string runtimeId = 9;
-  string serviceName = 10;
-  string scopeId = 11;
-  string createTime = 12;
-  string updateTime = 13;
+  string file             = 7;
+  string applicationID    = 8;
+  string runtimeID        = 9;
+  string serviceName      = 10;
+  string scopeID          = 11;
+  string createTime       = 12;
+  string updateTime       = 13;
 }
 
 message Stacks {
@@ -75,14 +75,14 @@ message Stacks {
 }
 
 message ExceptionEvent {
-  string id = 1;
-  string exceptionId = 2;
-  map<string, string> metadata = 3;
+  string              id             = 1;
+  string              exceptionID    = 2;
+  map<string, string> metadata       = 3;
   map<string, string> requestContext = 4;
   map<string, string> requestHeaders = 5;
-  string requestId = 6;
-  repeated Stacks stacks = 7;
-  map<string, string> tags = 8;
-  int64 timestamp = 9;
-  bool requestSampled = 10;
+  string              requestID      = 6;
+  repeated Stacks     stacks         = 7;
+  map<string, string> tags           = 8;
+  int64               timestamp      = 9;
+  bool                requestSampled = 10;
 }
