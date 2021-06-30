@@ -428,7 +428,6 @@ message CustomizeAlertDetail {
   repeated CustomizeAlertNotifyTemplates notifies     = 10;
   int64                                  createTime   = 11;
   int64                                  updateTime   = 12;
-  repeated LanguageCode                  lang         = 13;
 }
 
 message CustomizeAlertRule {
@@ -475,11 +474,6 @@ message CustomizeAlertNotifyTemplates {
   int64                            updateTime = 8;
 }
 
-message LanguageCode {
-  string code    = 1;
-  float  quality = 2;
-}
-
 message CreateCustomizeAlertRequest {
   string                                 tenantGroup  = 1;
   uint64                                 id           = 2;
@@ -494,7 +488,6 @@ message CreateCustomizeAlertRequest {
   repeated CustomizeAlertNotifyTemplates notifies     = 11;
   int64                                  createTime   = 12;
   int64                                  updateTime   = 13;
-  repeated LanguageCode                  lang         = 14;
 }
 
 message CreateCustomizeAlertResponse {
@@ -519,7 +512,6 @@ message UpdateCustomizeAlertRequest {
   repeated CustomizeAlertNotifyTemplates notifies     = 11;
   int64                                  createTime   = 12;
   int64                                  updateTime   = 13;
-  repeated LanguageCode                  lang         = 14;
 }
 
 message UpdateCustomizeAlertResponse {
@@ -667,7 +659,6 @@ message DashboardPreviewRequest {
   repeated CustomizeAlertNotifyTemplates notifies     = 11;
   int64                                  createTime   = 12;
   int64                                  updateTime   = 13;
-  repeated LanguageCode                  lang         = 14;
 }
 
 message DashboardPreviewResponse {
