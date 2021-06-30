@@ -43,9 +43,9 @@ service AlertService {
       delete: "/api/apm/alert/{id}",
     };
   }
-  rpc QueryOrgCustomizeMetric (QueryOrgCustomizeMetricRequest) returns (QueryOrgCustomizeMetricResponse) {
+  rpc QueryCustomizeMetric (QueryCustomizeMetricRequest) returns (QueryCustomizeMetricResponse) {
     option (google.api.http) = {
-      get: "/api/org/apm/customize/alerts/metrics",
+      get: "/api/apm/customize/alerts/metrics",
     };
   }
   rpc QueryCustomizeNotifyTarget (QueryCustomizeNotifyTargetRequest) returns (QueryCustomizeNotifyTargetResponse) {
@@ -336,11 +336,11 @@ message DeleteAlertData {
   string Name = 1;
 }
 
-message QueryOrgCustomizeMetricRequest {
+message QueryCustomizeMetricRequest {
   string tenantGroup = 1;
 }
 
-message QueryOrgCustomizeMetricResponse {
+message QueryCustomizeMetricResponse {
   CustomizeMetricData data = 1;
 }
 
