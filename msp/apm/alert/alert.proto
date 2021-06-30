@@ -43,9 +43,9 @@ service AlertService {
       delete: "/api/apm/alert/{id}",
     };
   }
-  rpc QueryCustomizeMetric (QueryCustomizeMetricRequest) returns (QueryCustomizeMetricResponse) {
+  rpc QueryOrgCustomizeMetric (QueryOrgCustomizeMetricRequest) returns (QueryOrgCustomizeMetricResponse) {
     option (google.api.http) = {
-      get: "/api/apm/customize/alerts/metrics",
+      get: "/api/org/apm/customize/alerts/metrics",
     };
   }
   rpc QueryCustomizeNotifyTarget (QueryCustomizeNotifyTargetRequest) returns (QueryCustomizeNotifyTargetResponse) {
@@ -328,13 +328,18 @@ message DeleteAlertRequest {
 }
 
 message DeleteAlertResponse {
+  DeleteAlertData data = 1;
 }
 
-message QueryCustomizeMetricRequest {
+message DeleteAlertData {
+  string Name = 1;
+}
+
+message QueryOrgCustomizeMetricRequest {
   string tenantGroup = 1;
 }
 
-message QueryCustomizeMetricResponse {
+message QueryOrgCustomizeMetricResponse {
   CustomizeMetricData data = 1;
 }
 
@@ -476,8 +481,20 @@ message LanguageCode {
 }
 
 message CreateCustomizeAlertRequest {
-  string               tenantGroup = 1;
-  CustomizeAlertDetail alert       = 2;
+  string                                 tenantGroup  = 1;
+  uint64                                 id           = 2;
+  string                                 clusterName  = 3;
+  string                                 name         = 4;
+  string                                 alertType    = 5;
+  string                                 alertScope   = 6;
+  string                                 alertScopeId = 7;
+  bool                                   enable       = 8;
+  map<string, google.protobuf.Any>       attributes   = 9;
+  repeated CustomizeAlertRule            rules        = 10;
+  repeated CustomizeAlertNotifyTemplates notifies     = 11;
+  int64                                  createTime   = 12;
+  int64                                  updateTime   = 13;
+  repeated LanguageCode                  lang         = 14;
 }
 
 message CreateCustomizeAlertResponse {
@@ -489,9 +506,20 @@ message CreateCustomizeAlertData {
 }
 
 message UpdateCustomizeAlertRequest {
-  uint64               id          = 1 [(validator.field) = {int_gt: 0}];
-  string               tenantGroup = 2;
-  CustomizeAlertDetail alert       = 3;
+  uint64                                 id           = 1 [(validator.field) = {int_gt: 0}];
+  string                                 tenantGroup  = 2;
+  string                                 clusterName  = 3;
+  string                                 name         = 4;
+  string                                 alertType    = 5;
+  string                                 alertScope   = 6;
+  string                                 alertScopeId = 7;
+  bool                                   enable       = 8;
+  map<string, google.protobuf.Any>       attributes   = 9;
+  repeated CustomizeAlertRule            rules        = 10;
+  repeated CustomizeAlertNotifyTemplates notifies     = 11;
+  int64                                  createTime   = 12;
+  int64                                  updateTime   = 13;
+  repeated LanguageCode                  lang         = 14;
 }
 
 message UpdateCustomizeAlertResponse {
@@ -626,8 +654,20 @@ message UpdateAlertRecordIssueResponse {
 }
 
 message DashboardPreviewRequest {
-  string               tenantGroup = 1;
-  CustomizeAlertDetail alert       = 2;
+  string                                 tenantGroup  = 1;
+  uint64                                 id           = 2;
+  string                                 clusterName  = 3;
+  string                                 name         = 4;
+  string                                 alertType    = 5;
+  string                                 alertScope   = 6;
+  string                                 alertScopeId = 7;
+  bool                                   enable       = 8;
+  map<string, google.protobuf.Any>       attributes   = 9;
+  repeated CustomizeAlertRule            rules        = 10;
+  repeated CustomizeAlertNotifyTemplates notifies     = 11;
+  int64                                  createTime   = 12;
+  int64                                  updateTime   = 13;
+  repeated LanguageCode                  lang         = 14;
 }
 
 message DashboardPreviewResponse {
