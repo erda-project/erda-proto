@@ -7,21 +7,21 @@ option go_package = "github.com/erda-project/erda-proto-go/pipeline/pb";
 import "google/protobuf/timestamp.proto";
 
 message QueueUsage {
-  double inUseCPU = 1;
-  double inUseMemoryMB = 2;
-  double remainingCPU = 3;
-  double remainingMemoryMB = 4;
-  int64 processingCount = 5;
-  int64 pendingCount = 6;
+  double                  inUseCPU          = 1;
+  double                  inUseMemoryMB     = 2;
+  double                  remainingCPU      = 3;
+  double                  remainingMemoryMB = 4;
+  int64                   processingCount   = 5;
+  int64                   pendingCount      = 6;
   repeated QueueUsageItem processingDetails = 7;
-  repeated QueueUsageItem pendingDetails = 8;
+  repeated QueueUsageItem pendingDetails    = 8;
 }
 
 message QueueUsageItem {
-  uint64 pipelineID = 1;
-  double requestsCPU = 2;
-  double requestsMemoryMB = 3;
-  int64 index = 4;
-  int64 priority = 5;
-  google.protobuf.Timestamp addedTime = 6;
+  uint64                    pipelineID       = 1;
+  double                    requestsCPU      = 2;
+  double                    requestsMemoryMB = 3;
+  int64                     index            = 4;
+  int64                     priority         = 5;
+  google.protobuf.Timestamp addedTime        = 6;
 }

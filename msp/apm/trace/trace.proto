@@ -25,17 +25,17 @@ message GetSpansRequest {
   string traceId = 1 [(validator.field) = {string_not_empty: true}];
   // The scopeId is similar to the tenant id, which can quickly locate the cluster, project, and environment
   string scopeId = 2 [(validator.field) = {string_not_empty: true}];
-  int64 limit = 3;
+  int64  limit   = 3;
 }
 
 message GetTracesRequest {
   // The scopeId is similar to the tenant id, which can quickly locate the cluster, project, and environment
-  string scopeId = 1 [(validator.field) = {string_not_empty: true}];
-  int64 applicationId = 2;
-  int64 status = 3;
-  int64 startTime = 4;
-  int64 endTime = 5;
-  int64 limit = 6;
+  string scopeId       = 1 [(validator.field) = {string_not_empty: true}];
+  int64  applicationId = 2;
+  int64  status        = 3;
+  int64  startTime     = 4;
+  int64  endTime       = 5;
+  int64  limit         = 6;
 }
 
 message GetSpansResponse {
@@ -50,31 +50,31 @@ message GetTracesResponse {
 // for example, it can represent a function call, an http request, etc.
 message Span {
   // Span id
-  string id = 1;
+  string              id            = 1;
   // The traceId to which the current span belongs
-  string traceId = 2;
+  string              traceId       = 2;
   //
-  string operationName = 3;
+  string              operationName = 3;
   // Start time of span
-  int64 startTime = 4;
+  int64               startTime     = 4;
   // End time of span
-  int64 endTime = 5;
+  int64               endTime       = 5;
   // Parent span id
-  string parentSpanId = 6;
-  int64 timestamp = 7;
+  string              parentSpanId  = 6;
+  int64               timestamp     = 7;
   // Tags store user-defined or agent defined tags in the form of K/V key-value pairs,
   // which are mainly used to query and filter link tracking results
-  map<string, string> tags = 8;
+  map<string, string> tags          = 8;
 }
 
 // Trace represents a complete trace link, and trace consists of one or more spans
 message Trace {
   // Trace id
-  string id = 1;
+  string          id        = 1;
   // The total time of trace
-  double elapsed = 2;
+  double          elapsed   = 2;
   // Service name of the trace link
-  repeated string services = 3;
+  repeated string services  = 3;
   // Start time of trace
-  int64 startTime = 4;
+  int64           startTime = 4;
 }

@@ -6,32 +6,32 @@ import "google/api/annotations.proto";
 import "github.com/mwitkow/go-proto-validators/validator.proto";
 
 service ConfigCenterService {
-    rpc GetGroups (GetGroupRequest) returns (GetGroupResponse)  {
-      option (google.api.http) = {
-        get: "/api/tmc/config/tenants/{tenantID}/groups",
-      };
-    }
+  rpc GetGroups (GetGroupRequest) returns (GetGroupResponse)  {
+    option (google.api.http) = {
+      get: "/api/tmc/config/tenants/{tenantID}/groups",
+    };
+  }
 
-    rpc GetGroupProperties (GetGroupPropertiesRequest) returns (GetGroupPropertiesResponse)  {
-      option (google.api.http) = {
-        get: "/api/tmc/config/tenants/{tenantID}/groups/{groupID}",
-      };
-    }
+  rpc GetGroupProperties (GetGroupPropertiesRequest) returns (GetGroupPropertiesResponse)  {
+    option (google.api.http) = {
+      get: "/api/tmc/config/tenants/{tenantID}/groups/{groupID}",
+    };
+  }
 
-    rpc SaveGroupProperties (SaveGroupPropertiesRequest) returns (SaveGroupPropertiesResponse)  {
-      option (google.api.http) = {
-        post: "/api/tmc/config/tenants/{tenantID}/groups/{groupID}",
-        body: "properties",
-      };
-    }
+  rpc SaveGroupProperties (SaveGroupPropertiesRequest) returns (SaveGroupPropertiesResponse)  {
+    option (google.api.http) = {
+      post: "/api/tmc/config/tenants/{tenantID}/groups/{groupID}",
+      body: "properties",
+    };
+  }
 }
 
 // GetGroups
 message GetGroupRequest {
   string tenantID = 1 [(validator.field) = {string_not_empty: true}];
-  string keyword = 2;
-  int64 pageNum = 3 [(validator.field) = {int_gt: 0}];
-  int64 pageSize = 4 [(validator.field) = {int_gt: 0}];
+  string keyword  = 2;
+  int64  pageNum  = 3 [(validator.field) = {int_gt: 0}];
+  int64  pageSize = 4 [(validator.field) = {int_gt: 0}];
 }
 
 message GetGroupResponse {
@@ -39,14 +39,14 @@ message GetGroupResponse {
 }
 
 message Groups {
-  int64 total = 1;
-  repeated string list = 2;
+  int64           total = 1;
+  repeated string list  = 2;
 }
 
 // GetGroupProperties
 message GetGroupPropertiesRequest {
   string tenantID = 1 [(validator.field) = {string_not_empty: true}];
-  string groupID = 2 [(validator.field) = {string_not_empty: true}];
+  string groupID  = 2 [(validator.field) = {string_not_empty: true}];
 }
 
 message GetGroupPropertiesResponse {
@@ -55,8 +55,8 @@ message GetGroupPropertiesResponse {
 
 // SaveGroupProperties
 message SaveGroupPropertiesRequest {
-  string tenantID = 1 [(validator.field) = {string_not_empty: true}];
-  string groupID = 2 [(validator.field) = {string_not_empty: true}];
+  string            tenantID   = 1 [(validator.field) = {string_not_empty: true}];
+  string            groupID    = 2 [(validator.field) = {string_not_empty: true}];
   repeated Property properties = 3;
 }
 
@@ -65,12 +65,12 @@ message SaveGroupPropertiesResponse {
 }
 
 message GroupProperties {
-  string group = 1;
+  string            group      = 1;
   repeated Property properties = 2;
 }
 
 message Property {
-  string key = 1;
-  string value = 2;
+  string key    = 1;
+  string value  = 2;
   string source = 3;
 }
