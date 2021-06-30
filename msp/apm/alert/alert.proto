@@ -219,16 +219,17 @@ message AlertExpression {
   uint64                           ruleId     = 2;
   string                           alertIndex = 3;
   int64                            window     = 4;
-  message AlertExpressionFunction {
-    string              field      = 1;
-    string              aggregator = 2;
-    string              operator   = 3;
-    google.protobuf.Any value      = 4;
-  }
   repeated AlertExpressionFunction functions  = 5;
   bool                             isRecover  = 6;
   int64                            createTime = 7;
   int64                            updateTime = 8;
+}
+
+message AlertExpressionFunction {
+  string              field      = 1;
+  string              aggregator = 2;
+  string              operator   = 3;
+  google.protobuf.Any value      = 4;
 }
 
 message AlertNotify {
