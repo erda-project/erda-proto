@@ -20,12 +20,12 @@ service MetricService {
 
   rpc QueryWithTableFormat (QueryWithTableFormatRequest) returns (QueryWithTableFormatResponse)  {
     option (google.api.http) = {
-      post: "/api/metric/query-table?q={statement}"
+      post: "/api/metric/query-table?q={statement}" // TODO: change api path in future
     };
   }
   rpc SearchWithTableFormat (QueryWithTableFormatRequest) returns (QueryWithTableFormatResponse)  {
     option (google.api.http) = {
-      get: "/api/metric/query-table?q={statement}"
+      get: "/api/metric/query-table?q={statement}" // TODO: change api path in future
     };
   }
 
