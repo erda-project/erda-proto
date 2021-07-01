@@ -35,6 +35,10 @@ message CreateResourceRequest {
 }
 
 message CreateResourceResponse {
+  ResourceCreateResult data = 1;
+}
+
+message ResourceCreateResult {
   // 请求ID
   string              id        = 1;
   // 环境变量
@@ -69,5 +73,5 @@ message DeleteResourceRequest {
 
 message DeleteResourceResponse {
   // 操作是否成功
-  bool result = 1;
+  bool data = 1;
 }
