@@ -464,7 +464,7 @@ message ServiceIpRequest {
   string ip = 3;
 }
 
-message ServiceIpInfoResult {
+message ServiceIpInfoResponse {
   string appID = 1;
   string runtimeID = 2;
   string serviceName = 3;
