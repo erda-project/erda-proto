@@ -128,61 +128,6 @@ message QueryAlertRuleResponse {
   erda.core.monitor.alert.AlertTypeRuleResp data = 1;
 }
 
-//message AlertTypeRuleResp {
-//  repeated AlertTypeRule alertTypeRules = 1;
-//  repeated int64         windows        = 2;
-//  repeated Operator      operators      = 3;
-//  repeated DisplayKey    aggregator     = 4;
-//  repeated NotifySilence silence        = 5;
-//}
-
-//message DisplayKey {
-//  string key     = 1;
-//  string display = 2;
-//}
-
-//message AlertTypeRule {
-//  DisplayKey         alertType = 1;
-//  repeated AlertRule rules     = 2;
-//}
-
-//message AlertRule {
-//  uint64                             id         = 1;
-//  string                             name       = 2;
-//  string                             alertScope = 3;
-//  string                             alertType  = 4;
-//  alert.DisplayKey                         alertIndex = 5;
-//  map<string, google.protobuf.Value> template   = 6;
-//  int64                              window     = 7;
-//  repeated AlertRuleFunction         functions  = 8;
-//  bool                               isRecover  = 9;
-//  map<string, google.protobuf.Value> attributes = 10;
-//  string                             version    = 11;
-//  bool                               enable     = 12;
-//  int64                              createTime = 13;
-//  int64                              updateTime = 14;
-//}
-//
-//message AlertRuleFunction {
-//  alert.DisplayKey            field      = 1;
-//  string                aggregator = 2;
-//  string                operator   = 3;
-//  google.protobuf.Value value      = 4;
-//  string                dataType   = 5;
-//  string                unit       = 6;
-//}
-//
-//message Operator {
-//  string key     = 1;
-//  string display = 2;
-//  string type    = 3;
-//}
-//
-//message NotifySilence {
-//  int64      value = 1;
-//  DisplayKey unit  = 2;
-//}
-
 message QueryAlertRequest {
   string tenantGroup = 1;
   int64  pageNo      = 2 [(validator.field) = {int_gt: 0}];
@@ -372,12 +317,6 @@ message GetAlertRecordAttrsRequest {
 message GetAlertRecordAttrsResponse {
   erda.core.monitor.alert.AlertRecordAttr data = 1;
 }
-
-//message AlertRecordAttr {
-//  repeated DisplayKey alertState  = 1;
-//  repeated DisplayKey alertType   = 2;
-//  repeated DisplayKey handleState = 3;
-//}
 
 message GetAlertRecordsRequest {
   string          tenantGroup = 1;
