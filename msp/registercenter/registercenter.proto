@@ -105,7 +105,7 @@ service RegisterCenterService {
     };
   }
 
-  rpc GetServiceIpInfo (ServiceIpRequest) returns (ServiceIpInfoResult) {
+  rpc GetServiceIpInfo (ServiceIpRequest) returns (ServiceIpInfoResponse) {
     option (google.api.http) = {
       get: "/api/tmc/service-ip",
     };
