@@ -9,7 +9,7 @@ import "google/protobuf/struct.proto";
 service ExceptionService {
   rpc GetExceptions (GetExceptionsRequest) returns (GetExceptionsResponse)  {
     option (google.api.http) = {
-      get: "/api/apm/exceptions?scopeId={scopeID}&startTime={startTime}&endTime={endTime}",
+      get: "/api/apm/exceptions?scopeId={scopeID}",
     };
   }
 
