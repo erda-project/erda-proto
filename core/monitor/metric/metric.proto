@@ -20,23 +20,23 @@ service MetricService {
 
   rpc QueryWithTableFormat (QueryWithTableFormatRequest) returns (QueryWithTableFormatResponse)  {
     option (google.api.http) = {
-      post: "/api/beta/metric/query?q={statement}" // TODO: change api path in future
+      post: "/api/monitor/metric/query?q={statement}" 
     };
   }
   rpc SearchWithTableFormat (QueryWithTableFormatRequest) returns (QueryWithTableFormatResponse)  {
     option (google.api.http) = {
-      get: "/api/beta/metric/query?q={statement}" // TODO: change api path in future
+      get: "/api/monitor/metric/query?q={statement}"
     };
   }
 
   rpc GeneralQuery (GeneralQueryRequest) returns (GeneralQueryResponse)  {
     option (google.api.http) = {
-      post: "/api/metric/general-query?q={statement}" // TODO: change api path in future
+      post: "/api/monitor/metric/general-query?q={statement}"
     };
   }
   rpc GeneralSearch (GeneralQueryRequest) returns (GeneralQueryResponse)  {
     option (google.api.http) = {
-      get: "/api/metric/general-query?q={statement}" // TODO: change api path in future
+      get: "/api/monitor/metric/general-query?q={statement}"
     };
   }
 
