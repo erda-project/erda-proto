@@ -20,12 +20,23 @@ service MetricService {
 
   rpc QueryWithTableFormat (QueryWithTableFormatRequest) returns (QueryWithTableFormatResponse)  {
     option (google.api.http) = {
-      post: "/api/metric/query-table?q={statement}" // TODO: change api path in future
+      post: "/api/monitor/metric/query?q={statement}" 
     };
   }
   rpc SearchWithTableFormat (QueryWithTableFormatRequest) returns (QueryWithTableFormatResponse)  {
     option (google.api.http) = {
-      get: "/api/metric/query-table?q={statement}" // TODO: change api path in future
+      get: "/api/monitor/metric/query?q={statement}"
+    };
+  }
+
+  rpc GeneralQuery (GeneralQueryRequest) returns (GeneralQueryResponse)  {
+    option (google.api.http) = {
+      post: "/api/monitor/metric/general-query?q={statement}"
+    };
+  }
+  rpc GeneralSearch (GeneralQueryRequest) returns (GeneralQueryResponse)  {
+    option (google.api.http) = {
+      get: "/api/monitor/metric/general-query?q={statement}"
     };
   }
 
@@ -88,6 +99,18 @@ message TableColumn {
 
 message TableRow {
   map<string, google.protobuf.Value> values = 1;
+}
+
+// GeneralQuery
+message GeneralQueryRequest {
+  string ql = 1;
+  string statement = 2;
+  string format = 3;
+  map<string, google.protobuf.Value> params = 4;
+}
+
+message GeneralQueryResponse {
+  google.protobuf.Value data = 1;
 }
 
 // common
