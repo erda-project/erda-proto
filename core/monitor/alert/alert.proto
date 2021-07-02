@@ -433,8 +433,19 @@ message CreateCustomizeAlertResponse {
 }
 
 message UpdateCustomizeAlertRequest {
-  uint64               id    = 1 [(validator.field) = {int_gt: 0}];
-  CustomizeAlertDetail alert = 2;
+  uint64                                 id           = 1[(validator.field) = {int_gt: 0}];
+  string                                 clusterName  = 2;
+  string                                 name         = 3;
+  string                                 alertType    = 4;
+  string                                 alertScope   = 5;
+  string                                 alertScopeId = 6;
+  bool                                   enable       = 7;
+  map<string, google.protobuf.Value>     attributes   = 8;
+  repeated CustomizeAlertRule            rules        = 9;
+  repeated CustomizeAlertNotifyTemplates notifies     = 10;
+  int64                                  createTime   = 11;
+  int64                                  updateTime   = 12;
+
 }
 
 message UpdateCustomizeAlertResponse {
@@ -781,8 +792,19 @@ message CreateAlertResponse {
 }
 
 message UpdateAlertRequest {
-  int64 id    = 1 [(validator.field) = {int_gt: 0}];
-  Alert alert = 2;
+  uint64                             id           = 1[(validator.field) = {int_gt: 0}];
+  string                             name         = 2;
+  string                             alertScope   = 3;
+  string                             alertScopeId = 4;
+  bool                               enable       = 5;
+  repeated AlertExpression           rules        = 6;
+  repeated AlertNotify               notifies     = 7;
+  map<string, google.protobuf.Value> filters      = 8;
+  map<string, google.protobuf.Value> attributes   = 9;
+  repeated string                    clusterNames = 10;
+  string                             domain       = 11;
+  int64                              createTime   = 12;
+  int64                              updateTime   = 13;
 }
 
 message UpdateAlertResponse {
