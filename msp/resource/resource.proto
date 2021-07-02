@@ -50,18 +50,7 @@ message ResourceCreateResult {
   // 更新时间
   string              updateAt  = 5;
   // 资源实例状态
-  ResourceStatusEnum  status    = 6;
-
-  enum ResourceStatusEnum {
-    // 创建中
-    INIT         = 0;
-    // 运行中
-    RUNNING      = 1;
-    // 已删除
-    DELETED      = 2;
-    // 删除失败
-    DELETE_ERROR = 3;
-  }
+  string              status    = 6;
 }
 
 message DeleteResourceRequest {
