@@ -104,6 +104,12 @@ service RegisterCenterService {
       get: "/api/tmc/mesh/avgtime/{interfaceName}/{projectID}/{env}?az={clusterName}&appid={appID}&tenantId={tenantID}",
     };
   }
+
+  rpc GetServiceIpInfo (ServiceIpRequest) returns (ServiceIpInfoResponse) {
+    option (google.api.http) = {
+      get: "/api/tmc/service-ip",
+    };
+  }
 }
 
 // ListInterface
@@ -450,4 +456,16 @@ message DubboMointor {
   string         unitType  = 5;
   string         chartType = 6;
   int64          axisIndex = 7;
+}
+
+message ServiceIpRequest {
+  string projectID = 1;
+  string workspace = 2;
+  string ip = 3;
+}
+
+message ServiceIpInfoResponse {
+  string appID = 1;
+  string runtimeID = 2;
+  string serviceName = 3;
 }

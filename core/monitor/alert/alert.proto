@@ -395,14 +395,14 @@ message CustomizeAlertRuleFilter {
 }
 
 message CustomizeAlertNotifyTemplates {
-  uint64                              id         = 1;
-  string                              name       = 2;
-  repeated string                     targets    = 3;
-  string                              title      = 4;
-  string                              content    = 5;
-  map<string, google.protobuf.Value>  attributes = 6;
-  int64                               createTime = 7;
-  int64                               updateTime = 8;
+  uint64                             id         = 1;
+  string                             name       = 2;
+  repeated string                    targets    = 3;
+  string                             title      = 4;
+  string                             content    = 5;
+  map<string, google.protobuf.Value> attributes = 6;
+  int64                              createTime = 7;
+  int64                              updateTime = 8;
 }
 
 message GetCustomizeAlertDetailRequest {
@@ -505,8 +505,18 @@ message CreateOrgCustomizeAlertResponse {
 }
 
 message UpdateOrgCustomizeAlertRequest {
-  uint64               id       = 1 [(validator.field) = {int_gt: 0}];
-  CustomizeAlertDetail newAlert = 2;
+  uint64                                 id           = 1 [(validator.field) = {int_gt: 0}];
+  string                                 clusterName  = 2;
+  string                                 name         = 3;
+  string                                 alertType    = 4;
+  string                                 alertScope   = 5;
+  string                                 alertScopeId = 6;
+  bool                                   enable       = 7;
+  map<string, google.protobuf.Value>     attributes   = 8;
+  repeated CustomizeAlertRule            rules        = 9;
+  repeated CustomizeAlertNotifyTemplates notifies     = 10;
+  int64                                  createTime   = 11;
+  int64                                  updateTime   = 12;
 }
 
 message UpdateOrgCustomizeAlertResponse {
@@ -566,12 +576,12 @@ message Config {
 }
 
 message API {
-  string                              url       = 1;
-  map<string, google.protobuf.Value>  query     = 2;
-  map<string, google.protobuf.Value>  body      = 3;
-  map<string, google.protobuf.Value>  header    = 4;
-  map<string, google.protobuf.Value>  extraData = 5;
-  string                              method    = 6;
+  string                             url       = 1;
+  map<string, google.protobuf.Value> query     = 2;
+  map<string, google.protobuf.Value> body      = 3;
+  map<string, google.protobuf.Value> header    = 4;
+  map<string, google.protobuf.Value> extraData = 5;
+  string                             method    = 6;
 }
 
 message QueryOrgDashboardByAlertRequest {
@@ -616,20 +626,20 @@ message AlertTypeRule {
 }
 
 message AlertRule {
-  uint64                              id         = 1;
-  string                              name       = 2;
-  string                              alertScope = 3;
-  string                              alertType  = 4;
-  DisplayKey                          alertIndex = 5;
-  map<string, google.protobuf.Value>  template   = 6;
-  int64                               window     = 7;
-  repeated AlertRuleFunction          functions  = 8;
-  bool                                isRecover  = 9;
-  map<string, google.protobuf.Value>  attributes = 10;
-  string                              version    = 11;
-  bool                                enable     = 12;
-  int64                               createTime = 13;
-  int64                               updateTime = 14;
+  uint64                             id         = 1;
+  string                             name       = 2;
+  string                             alertScope = 3;
+  string                             alertType  = 4;
+  DisplayKey                         alertIndex = 5;
+  map<string, google.protobuf.Value> template   = 6;
+  int64                              window     = 7;
+  repeated AlertRuleFunction         functions  = 8;
+  bool                               isRecover  = 9;
+  map<string, google.protobuf.Value> attributes = 10;
+  string                             version    = 11;
+  bool                               enable     = 12;
+  int64                              createTime = 13;
+  int64                              updateTime = 14;
 }
 
 message AlertRuleFunction {
@@ -663,19 +673,19 @@ message QueryAlertsData {
 }
 
 message Alert {
-  uint64                              id           = 1;
-  string                              name         = 2;
-  string                              alertScope   = 3;
-  string                              alertScopeId = 4;
-  bool                                enable       = 5;
-  repeated AlertExpression            rules        = 6;
-  repeated AlertNotify                notifies     = 7;
-  map<string, google.protobuf.Value>  filters      = 8;
-  map<string, google.protobuf.Value>  attributes   = 9;
-  repeated string                     clusterNames = 10;
-  string                              domain       = 11;
-  int64                               createTime   = 12;
-  int64                               updateTime   = 13;
+  uint64                             id           = 1;
+  string                             name         = 2;
+  string                             alertScope   = 3;
+  string                             alertScopeId = 4;
+  bool                               enable       = 5;
+  repeated AlertExpression           rules        = 6;
+  repeated AlertNotify               notifies     = 7;
+  map<string, google.protobuf.Value> filters      = 8;
+  map<string, google.protobuf.Value> attributes   = 9;
+  repeated string                    clusterNames = 10;
+  string                             domain       = 11;
+  int64                              createTime   = 12;
+  int64                              updateTime   = 13;
 }
 
 message AlertExpression {
@@ -751,19 +761,19 @@ message GetAlertDetailResponse {
 }
 
 message CreateAlertRequest {
-  uint64                              id           = 1;
-  string                              name         = 2;
-  string                              alertScope   = 3;
-  string                              alertScopeId = 4;
-  bool                                enable       = 5;
-  repeated AlertExpression            rules        = 6;
-  repeated AlertNotify                notifies     = 7;
-  map<string, google.protobuf.Value>  filters      = 8;
-  map<string, google.protobuf.Value>  attributes   = 9;
-  repeated string                     clusterNames = 10;
-  string                              domain       = 11;
-  int64                               createTime   = 12;
-  int64                               updateTime   = 13;
+  uint64                             id           = 1;
+  string                             name         = 2;
+  string                             alertScope   = 3;
+  string                             alertScopeId = 4;
+  bool                               enable       = 5;
+  repeated AlertExpression           rules        = 6;
+  repeated AlertNotify               notifies     = 7;
+  map<string, google.protobuf.Value> filters      = 8;
+  map<string, google.protobuf.Value> attributes   = 9;
+  repeated string                    clusterNames = 10;
+  string                             domain       = 11;
+  int64                              createTime   = 12;
+  int64                              updateTime   = 13;
 }
 
 message CreateAlertResponse {
@@ -824,19 +834,19 @@ message GetOrgAlertDetailResponse {
 }
 
 message CreateOrgAlertRequest {
-  uint64                              id           = 1;
-  string                              name         = 2;
-  string                              alertScope   = 3;
-  string                              alertScopeId = 4;
-  bool                                enable       = 5;
-  repeated AlertExpression            rules        = 6;
-  repeated AlertNotify                notifies     = 7;
-  map<string, google.protobuf.Value>  filters      = 8;
-  map<string, google.protobuf.Value>  attributes   = 9;
-  repeated string                     clusterNames = 10;
-  string                              domain       = 11;
-  int64                               createTime   = 12;
-  int64                               updateTime   = 13;
+  uint64                             id           = 1;
+  string                             name         = 2;
+  string                             alertScope   = 3;
+  string                             alertScopeId = 4;
+  bool                               enable       = 5;
+  repeated AlertExpression           rules        = 6;
+  repeated AlertNotify               notifies     = 7;
+  map<string, google.protobuf.Value> filters      = 8;
+  map<string, google.protobuf.Value> attributes   = 9;
+  repeated string                    clusterNames = 10;
+  string                             domain       = 11;
+  int64                              createTime   = 12;
+  int64                              updateTime   = 13;
 }
 
 message CreateOrgAlertResponse {
