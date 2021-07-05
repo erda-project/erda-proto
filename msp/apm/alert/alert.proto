@@ -172,16 +172,20 @@ message CreateAlertData {
 }
 
 message UpdateAlertRequest {
-  int64                                            id          = 1 [(validator.field) = {int_gt: 0}];
-  string                                           tenantGroup = 2;
-  string                                           name        = 3;
-  repeated string                                  appIds      = 4;
-  bool                                             enable      = 5;
-  repeated erda.core.monitor.alert.AlertExpression rules       = 6;
-  repeated erda.core.monitor.alert.AlertNotify     notifies    = 7;
-  string                                           domain      = 8;
-  int64                                            createTime  = 9;
-  int64                                            updateTime  = 10;
+  string                                           tenantGroup  = 1;
+  uint64                                           id           = 2;
+  string                                           name         = 3;
+  string                                           alertScope   = 4;
+  string                                           alertScopeId = 5;
+  bool                                             enable       = 6;
+  repeated erda.core.monitor.alert.AlertExpression rules        = 7;
+  repeated erda.core.monitor.alert.AlertNotify     notifies     = 8;
+  map<string, google.protobuf.Value>               filters      = 9;
+  map<string, google.protobuf.Value>               attributes   = 10;
+  repeated string                                  clusterNames = 11;
+  string                                           domain       = 12;
+  int64                                            createTime   = 13;
+  int64                                            updateTime   = 14;
 }
 
 message UpdateAlertResponse {
