@@ -9,44 +9,44 @@ import "google/protobuf/struct.proto";
 service CheckerV1Service {
   rpc CreateCheckerV1 (CreateCheckerV1Request) returns (CreateCheckerV1Response)  {
     option (google.api.http) = {
-      post: "/api/tmc/status/projects/{projectID}/metrics",
+      post: "/api/v1/msp/checkers/projects/{projectID}/metrics",
       body: "data",
     };
   }
   rpc UpdateCheckerV1 (UpdateCheckerV1Request) returns (UpdateCheckerV1Response)  {
     option (google.api.http) = {
-      post: "/api/tmc/status/metrics/{id}",
+      post: "/api/v1/msp/checkers/metrics/{id}",
       body: "data",
     };
   }
   rpc DeleteCheckerV1 (DeleteCheckerV1Request) returns (DeleteCheckerV1Response)  {
     option (google.api.http) = {
-      delete: "/api/tmc/status/metrics/{id}",
+      delete: "/api/v1/msp/checkers/metrics/{id}",
     };
   }
 
   rpc DescribeCheckersV1 (DescribeCheckersV1Request) returns (DescribeCheckersV1Response)  {
     option (google.api.http) = {
-      get: "/api/tmc/status/projects/{projectID}/dashboard",
+      get: "/api/v1/msp/checkers/projects/{projectID}/dashboard",
     };
   }
 
   rpc DescribeCheckerV1 (DescribeCheckerV1Request) returns (DescribeCheckerV1Response)  {
     option (google.api.http) = {
-      get: "/api/tmc/status/metrics/{id}/dashboard",
+      get: "/api/v1/msp/checkers/metrics/{id}/dashboard",
     };
   }
 
   rpc GetCheckerStatusV1 (GetCheckerStatusV1Request) returns (GetCheckerStatusV1Response)  {
     option (google.api.http) = {
-      get: "/api/tmc/status/metrics/{id}/status",
+      get: "/api/v1/msp/checkers/metrics/{id}/status",
     };
   }
 
   // +depracated
   rpc GetCheckerIssuesV1 (GetCheckerIssuesV1Request) returns (GetCheckerIssuesV1Response)  {
     option (google.api.http) = {
-      get: "/api/tmc/status/metrics/{id}/issues",
+      get: "/api/v1/msp/checkers/metrics/{id}/issues",
     };
   }
 

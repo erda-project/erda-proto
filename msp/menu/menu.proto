@@ -8,13 +8,13 @@ import "github.com/mwitkow/go-proto-validators/validator.proto";
 service MenuService {
   rpc GetMenu (GetMenuRequest) returns (GetMenuResponse)  {
     option (google.api.http) = {
-      get: "/api/tmc/micro-service/menu/tenantGroup/{tenantGroup}",
+      get: "/api/msp/menu/{tenantGroup}",
     };
   }
 
   rpc GetSetting (GetSettingRequest) returns (GetSettingResponse)  {
     option (google.api.http) = {
-      get: "/api/tmc/micro-service/setting/tenantGroup/{tenantGroup}",
+      get: "/api/msp/setting/{tenantGroup}",
     };
   }
 }

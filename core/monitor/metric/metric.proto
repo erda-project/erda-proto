@@ -20,23 +20,23 @@ service MetricService {
 
   rpc QueryWithTableFormat (QueryWithTableFormatRequest) returns (QueryWithTableFormatResponse)  {
     option (google.api.http) = {
-      post: "/api/monitor/metric/query?q={statement}" 
+      post: "/api/monitor/metric-query?q={statement}" 
     };
   }
   rpc SearchWithTableFormat (QueryWithTableFormatRequest) returns (QueryWithTableFormatResponse)  {
     option (google.api.http) = {
-      get: "/api/monitor/metric/query?q={statement}"
+      get: "/api/monitor/metric-query?q={statement}"
     };
   }
 
   rpc GeneralQuery (GeneralQueryRequest) returns (GeneralQueryResponse)  {
     option (google.api.http) = {
-      post: "/api/monitor/metric/general-query?q={statement}"
+      post: "/api/monitor/metric-general-query?q={statement}"
     };
   }
   rpc GeneralSearch (GeneralQueryRequest) returns (GeneralQueryResponse)  {
     option (google.api.http) = {
-      get: "/api/monitor/metric/general-query?q={statement}"
+      get: "/api/monitor/metric-general-query?q={statement}"
     };
   }
 
