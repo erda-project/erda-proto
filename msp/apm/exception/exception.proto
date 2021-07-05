@@ -9,19 +9,19 @@ import "google/protobuf/struct.proto";
 service ExceptionService {
   rpc GetExceptions (GetExceptionsRequest) returns (GetExceptionsResponse)  {
     option (google.api.http) = {
-      get: "/api/apm/exceptions?scopeId={scopeID}",
+      get: "/api/msp/apm/exceptions?scopeId={scopeID}",
     };
   }
 
   rpc GetExceptionEventIds (GetExceptionEventIdsRequest) returns (GetExceptionEventIdsResponse)  {
     option (google.api.http) = {
-      get: "/api/apm/exception/eventIds?exceptionId={exceptionID}&scopeId={scopeID}",
+      get: "/api/msp/apm/exceptions/event-ids?exceptionId={exceptionID}&scopeId={scopeID}",
     };
   }
 
   rpc GetExceptionEvent (GetExceptionEventRequest) returns (GetExceptionEventResponse)  {
     option (google.api.http) = {
-      get: "/api/apm/exception/event?exceptionEventId={exceptionEventID}&scopeId={scopeID}",
+      get: "/api/msp/apm/exceptions/events?exceptionEventId={exceptionEventID}&scopeId={scopeID}",
     };
   }
 }

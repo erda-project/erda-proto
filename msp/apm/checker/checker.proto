@@ -9,37 +9,37 @@ service CheckerService {
 
   rpc CreateChecker (CreateCheckerRequest) returns (CreateCheckerResponse)  {
     option (google.api.http) = {
-      post: "/api/tmc/checkers/{scope}/{scopeID}",
+      post: "/api/msp/checkers/{scope}/{scopeID}",
     };
   }
 
   rpc UpdateChecker (UpdateCheckerRequest) returns (UpdateCheckerResponse)  {
     option (google.api.http) = {
-      put: "/api/tmc/checkers/{scope}/{scopeID}/{id}",
+      put: "/api/msp/checkers/{scope}/{scopeID}/{id}",
     };
   }
 
   rpc DeleteChecker (UpdateCheckerRequest) returns (UpdateCheckerResponse)  {
     option (google.api.http) = {
-      delete: "/api/tmc/checkers/{scope}/{scopeID}/{id}",
+      delete: "/api/msp/checkers/{scope}/{scopeID}/{id}",
     };
   }
 
   rpc ListCheckers (ListCheckersRequest) returns (ListCheckersResponse)  {
     option (google.api.http) = {
-      get: "/api/tmc/checkers/{scope}/{scopeID}",
+      get: "/api/msp/checkers/{scope}/{scopeID}",
     };
   }
 
   rpc DescribeCheckers (DescribeCheckersRequest) returns (DescribeCheckersResponse)  {
     option (google.api.http) = {
-      get: "/api/tmc/checkers-description/{scope}/{scopeID}",
+      get: "/api/msp/checker-descriptions/{scope}/{scopeID}",
     };
   }
 
   rpc DescribeChecker (DescribeCheckerRequest) returns (DescribeCheckerResponse)  {
     option (google.api.http) = {
-      get: "/api/tmc/checkers-description/{scope}/{scopeID}/{id}",
+      get: "/api/msp/checker-descriptions/{scope}/{scopeID}/{id}",
     };
   }
 
