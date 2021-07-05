@@ -20,7 +20,7 @@ service ResourceService {
 
   rpc GetRuntime(GetRuntimeRequest) returns (GetRuntimeResponse){
     option (google.api.http) = {
-      get: "/api/tmc/monitor/runtime/{runtimeId}?terminus_key={terminusKey}&application_id={applicationId}&runtime_name={runtimeName}"
+      get: "/api/msp/monitor/runtime/{runtimeId}?terminus_key={terminusKey}&application_id={applicationId}&runtime_name={runtimeName}"
     };
   }
 }
