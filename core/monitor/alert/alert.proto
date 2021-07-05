@@ -433,7 +433,7 @@ message CreateCustomizeAlertResponse {
 }
 
 message UpdateCustomizeAlertRequest {
-  uint64                                 id           = 1[(validator.field) = {int_gt: 0}];
+  uint64                                 id           = 1 [(validator.field) = {int_gt: 0}];
   string                                 clusterName  = 2;
   string                                 name         = 3;
   string                                 alertType    = 4;
@@ -792,7 +792,7 @@ message CreateAlertResponse {
 }
 
 message UpdateAlertRequest {
-  uint64                             id           = 1[(validator.field) = {int_gt: 0}];
+  uint64                             id           = 1 [(validator.field) = {int_gt: 0}];
   string                             name         = 2;
   string                             alertScope   = 3;
   string                             alertScopeId = 4;
