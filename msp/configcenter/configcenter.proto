@@ -8,19 +8,19 @@ import "github.com/mwitkow/go-proto-validators/validator.proto";
 service ConfigCenterService {
   rpc GetGroups (GetGroupRequest) returns (GetGroupResponse)  {
     option (google.api.http) = {
-      get: "/api/tmc/config/tenants/{tenantID}/groups",
+      get: "/api/msp/config/tenants/{tenantID}/groups",
     };
   }
 
   rpc GetGroupProperties (GetGroupPropertiesRequest) returns (GetGroupPropertiesResponse)  {
     option (google.api.http) = {
-      get: "/api/tmc/config/tenants/{tenantID}/groups/{groupID}",
+      get: "/api/msp/config/tenants/{tenantID}/groups/{groupID}",
     };
   }
 
   rpc SaveGroupProperties (SaveGroupPropertiesRequest) returns (SaveGroupPropertiesResponse)  {
     option (google.api.http) = {
-      post: "/api/tmc/config/tenants/{tenantID}/groups/{groupID}",
+      post: "/api/msp/config/tenants/{tenantID}/groups/{groupID}",
       body: "properties",
     };
   }

@@ -11,23 +11,23 @@ service MetricMetaService {
   
   rpc ListMetricNames (ListMetricNamesRequest) returns (ListMetricNamesResponse)  {
     option (google.api.http) = {
-      get: "/api/metric/names?scopeId={scopeID}"
+      get: "/api/metric-names?scopeId={scopeID}"
     };
   }
   rpc ListMetricMeta (ListMetricMetaRequest) returns (ListMetricMetaResponse)  {
     option (google.api.http) = {
-      get: "/api/metric/meta?scopeId={scopeID}"
+      get: "/api/metric-meta?scopeId={scopeID}"
     };
   }
 
   rpc ListMetricGroups (ListMetricGroupsRequest) returns (ListMetricGroupsResponse)  {
     option (google.api.http) = {
-      get: "/api/metric/groups?scopeId={scopeID}"
+      get: "/api/metric-groups?scopeId={scopeID}"
     };
   }
   rpc GetMetricGroup (GetMetricGroupRequest) returns (GetMetricGroupResponse)  {
     option (google.api.http) = {
-      get: "/api/metric/groups/{id}?scopeId={scopeID}"
+      get: "/api/metric-groups/{id}?scopeId={scopeID}"
     };
   }
 
