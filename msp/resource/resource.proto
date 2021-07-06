@@ -17,6 +17,12 @@ service ResourceService {
       delete: "/{engine}/dice/resources/{id}"
     };
   }
+
+  rpc GetRuntime(GetRuntimeRequest) returns (GetRuntimeResponse){
+    option (google.api.http) = {
+      get: "/api/msp/monitor/runtime/{runtimeId}?terminus_key={terminusKey}&application_id={applicationId}&runtime_name={runtimeName}"
+    };
+  }
 }
 
 message CreateResourceRequest {
@@ -63,4 +69,26 @@ message DeleteResourceRequest {
 message DeleteResourceResponse {
   // 操作是否成功
   bool data = 1;
+}
+
+message GetRuntimeRequest {
+  string terminusKey   = 1;
+  string applicationId = 2;
+  string runtimeName   = 3;
+  string runtimeId     = 4;
+}
+
+message GetRuntimeResponse {
+    MonitorRuntime data = 1;
+}
+
+message MonitorRuntime {
+  string terminusKey     = 1;
+  string projectId       = 2;
+  string projectName     = 3;
+  string applicationId   = 4;
+  string applicationName = 5;
+  string workspace       = 6;
+  string runtimeId       = 7;
+  string runtimeName     = 8;
 }

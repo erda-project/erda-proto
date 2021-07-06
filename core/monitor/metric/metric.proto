@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package erda.core.monitor.metric;
 option go_package = "github.com/erda-project/erda-proto-go/core/monitor/metric/pb";
+import "google/protobuf/descriptor.proto";
 import "google/api/annotations.proto";
 import "google/protobuf/struct.proto";
 
@@ -67,7 +68,7 @@ message Row {
 }
 
 message Result {
-  int64 statement_id = 1;
+  int64 statement_id = 1 [json_name = "statement_id"];
   repeated Serie series = 2;
 }
 
