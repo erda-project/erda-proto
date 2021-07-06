@@ -3,6 +3,7 @@ syntax = "proto3";
 package erda.core.monitor.metric;
 option go_package = "github.com/erda-project/erda-proto-go/core/monitor/metric/pb";
 import "github.com/mwitkow/go-proto-validators/validator.proto";
+import "google/protobuf/descriptor.proto";
 import "google/api/annotations.proto";
 import "google/protobuf/struct.proto";
 import "metric.proto";
@@ -147,7 +148,7 @@ message TypeDefine  {
 message Aggregation {
   string aggregation = 1;
   string name = 2;
-  string result_type = 3;
+  string result_type = 3 [json_name = "result_type"];
 }
 
 message Operation {
