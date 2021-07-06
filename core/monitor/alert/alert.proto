@@ -7,7 +7,7 @@ import "google/protobuf/struct.proto";
 import "google/protobuf/timestamp.proto";
 import "github.com/mwitkow/go-proto-validators/validator.proto";
 
-service MonitorService {
+service AlertService {
   rpc QueryCustomizeMetric (QueryCustomizeMetricRequest) returns (QueryCustomizeMetricResponse) {
     option (google.api.http) = {
       get: "/api/customize/alerts/metrics",
