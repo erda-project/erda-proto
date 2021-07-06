@@ -2,8 +2,8 @@ syntax = "proto3";
 
 package erda.msp.menu;
 option go_package = "github.com/erda-project/erda-proto-go/msp/menu/pb";
-import "google/api/annotations.proto";
 import "github.com/mwitkow/go-proto-validators/validator.proto";
+import "google/api/annotations.proto";
 
 service MenuService {
   rpc GetMenu (GetMenuRequest) returns (GetMenuResponse)  {
