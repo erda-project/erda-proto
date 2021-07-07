@@ -4,6 +4,7 @@ package erda.msp.apm.exception;
 option go_package = "github.com/erda-project/erda-proto-go/msp/apm/exception/pb";
 import "github.com/mwitkow/go-proto-validators/validator.proto";
 import "google/api/annotations.proto";
+import "google/protobuf/descriptor.proto";
 import "google/protobuf/struct.proto";
 
 service ExceptionService {
@@ -62,10 +63,10 @@ message Exception {
   int64  eventCount       = 5;
   string exceptionMessage = 6;
   string file             = 7;
-  string applicationID    = 8;
-  string runtimeID        = 9;
+  string applicationID    = 8 [json_name = "applicationId"];
+  string runtimeID        = 9 [json_name = "runtimeId"];
   string serviceName      = 10;
-  string scopeID          = 11;
+  string scopeID          = 11 [json_name = "scopeId"];
   string createTime       = 12;
   string updateTime       = 13;
 }
@@ -76,11 +77,11 @@ message Stacks {
 
 message ExceptionEvent {
   string              id             = 1;
-  string              exceptionID    = 2;
+  string              exceptionID    = 2 [json_name = "exceptionId"];
   map<string, string> metadata       = 3;
   map<string, string> requestContext = 4;
   map<string, string> requestHeaders = 5;
-  string              requestID      = 6;
+  string              requestID      = 6 [json_name = "requestId"];
   repeated Stacks     stacks         = 7;
   map<string, string> tags           = 8;
   int64               timestamp      = 9;
