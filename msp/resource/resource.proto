@@ -18,9 +18,15 @@ service ResourceService {
     };
   }
 
-  rpc GetRuntime(GetRuntimeRequest) returns (GetRuntimeResponse){
+  rpc GetMonitorRuntime(GetMonitorRuntimeRequest) returns (GetMonitorRuntimeResponse){
     option (google.api.http) = {
       get: "/api/msp/monitor/runtime/{runtimeId}?terminus_key={terminusKey}&application_id={applicationId}&runtime_name={runtimeName}"
+    };
+  }
+
+  rpc GetMonitorInstance(GetMonitorInstanceRequest) returns (GetMonitorInstanceResponse){
+    option (google.api.http) = {
+      get: "/api/msp/monitor/instances/{terminusKey}"
     };
   }
 }
@@ -71,15 +77,15 @@ message DeleteResourceResponse {
   bool data = 1;
 }
 
-message GetRuntimeRequest {
+message GetMonitorRuntimeRequest {
   string terminusKey   = 1;
   string applicationId = 2;
   string runtimeName   = 3;
   string runtimeId     = 4;
 }
 
-message GetRuntimeResponse {
-    MonitorRuntime data = 1;
+message GetMonitorRuntimeResponse {
+  MonitorRuntime data = 1;
 }
 
 message MonitorRuntime {
@@ -91,4 +97,25 @@ message MonitorRuntime {
   string workspace       = 6;
   string runtimeId       = 7;
   string runtimeName     = 8;
+}
+
+message GetMonitorInstanceRequest {
+  string terminusKey = 1;
+}
+
+message GetMonitorInstanceResponse {
+  MonitorInstance data = 1;
+}
+
+message MonitorInstance {
+  string monitorId   = 1;
+  string monitorName = 2;
+  string terminusKey = 3;
+  string projectId   = 4;
+  string projectName = 5;
+  string workspace   = 6;
+  // GMC+8 yyyy-MM-dd HH:mm:ss
+  string createTime  = 7;
+  // GMC+8 yyyy-MM-dd HH:mm:ss
+  string updateTime  = 8;
 }
