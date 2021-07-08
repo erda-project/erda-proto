@@ -184,12 +184,11 @@ message UpdateAlertRequest {
   bool                                             enable       = 6;
   repeated erda.core.monitor.alert.AlertExpression rules        = 7;
   repeated erda.core.monitor.alert.AlertNotify     notifies     = 8;
-  map<string, google.protobuf.Value>               filters      = 9;
-  map<string, google.protobuf.Value>               attributes   = 10;
-  repeated string                                  clusterNames = 11;
-  string                                           domain       = 12;
-  int64                                            createTime   = 13;
-  int64                                            updateTime   = 14;
+  map<string, google.protobuf.Value>               attributes   = 9;
+  repeated string                                  appIds       = 10;
+  string                                           domain       = 11;
+  int64                                            createTime   = 12;
+  int64                                            updateTime   = 13;
 }
 
 message UpdateAlertResponse {
