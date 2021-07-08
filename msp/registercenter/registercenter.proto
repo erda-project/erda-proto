@@ -159,8 +159,6 @@ message EnableHTTPService {
   string serviceName = 1;
   string address     = 2;
   bool   online      = 3;
-  string ip          = 4;
-  string port        = 5;
 }
 
 // GetRouteRule
