@@ -876,8 +876,19 @@ message CreateOrgAlertResponse {
 }
 
 message UpdateOrgAlertRequest {
-  int64 id    = 1 [(validator.field) = {int_gt: 0}];
-  Alert alert = 2;
+  uint64                             id           = 1 [(validator.field) = {int_gt: 0}];
+  string                             name         = 2;
+  string                             alertScope   = 3;
+  string                             alertScopeId = 4;
+  bool                               enable       = 5;
+  repeated AlertExpression           rules        = 6;
+  repeated AlertNotify               notifies     = 7;
+  map<string, google.protobuf.Value> filters      = 8;
+  map<string, google.protobuf.Value> attributes   = 9;
+  repeated string                    clusterNames = 10;
+  string                             domain       = 11;
+  int64                              createTime   = 12;
+  int64                              updateTime   = 13;
 }
 
 message UpdateOrgAlertResponse {
