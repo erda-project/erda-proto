@@ -153,14 +153,18 @@ message GetAlertResponse {
 }
 
 message CreateAlertRequest {
-  string                                           tenantGroup = 1;
-  string                                           name        = 2;
-  repeated string                                  appIds      = 3;
-  repeated erda.core.monitor.alert.AlertExpression rules       = 4;
-  repeated erda.core.monitor.alert.AlertNotify     notifies    = 5;
-  string                                           domain      = 6;
-  int64                                            createTime  = 7;
-  int64                                            updateTime  = 8;
+  string                                           tenantGroup  = 1;
+  string                                           name         = 2;
+  repeated string                                  appIds       = 3;
+  repeated erda.core.monitor.alert.AlertExpression rules        = 4;
+  repeated erda.core.monitor.alert.AlertNotify     notifies     = 5;
+  string                                           domain       = 6;
+  int64                                            createTime   = 7;
+  int64                                            updateTime   = 8;
+  string                                           alertScope   = 9;
+  string                                           alertScopeId = 10;
+  bool                                             enable       = 11;
+  map<string, google.protobuf.Value>               attributes   = 12;
 }
 
 message CreateAlertResponse {
@@ -180,11 +184,12 @@ message UpdateAlertRequest {
   bool                                             enable       = 6;
   repeated erda.core.monitor.alert.AlertExpression rules        = 7;
   repeated erda.core.monitor.alert.AlertNotify     notifies     = 8;
-  map<string, google.protobuf.Value>               attributes   = 9;
-  repeated string                                  appIds       = 10;
-  string                                           domain       = 11;
-  int64                                            createTime   = 12;
-  int64                                            updateTime   = 13;
+  map<string, google.protobuf.Value>               filters      = 9;
+  map<string, google.protobuf.Value>               attributes   = 10;
+  repeated string                                  clusterNames = 11;
+  string                                           domain       = 12;
+  int64                                            createTime   = 13;
+  int64                                            updateTime   = 14;
 }
 
 message UpdateAlertResponse {
