@@ -10,112 +10,112 @@ import "core/monitor/alert/alert.proto";
 service AlertService {
   rpc QueryAlertRule (QueryAlertRuleRequest) returns (QueryAlertRuleResponse) {
     option (google.api.http) = {
-      get: "/api/msp/apm/alert-rules",
+      get: "/api/msp/apm/{tenantGroup}/alert-rules",
     };
   }
   rpc QueryAlert (QueryAlertRequest) returns (QueryAlertResponse) {
     option (google.api.http) = {
-      get: "/api/msp/apm/alerts",
+      get: "/api/msp/apm/{tenantGroup}/alerts",
     };
   }
   rpc GetAlert (GetAlertRequest) returns (GetAlertResponse) {
     option (google.api.http) = {
-      get: "/api/msp/apm/alerts/{id}"
+      get: "/api/msp/apm/{tenantGroup}/alerts/{id}"
     };
   }
   rpc CreateAlert (CreateAlertRequest) returns (CreateAlertResponse) {
     option (google.api.http) = {
-      post: "/api/msp/apm/alerts",
+      post: "/api/msp/apm/{tenantGroup}/alerts",
     };
   }
   rpc UpdateAlert (UpdateAlertRequest) returns (UpdateAlertResponse) {
     option (google.api.http) = {
-      put: "/api/msp/apm/alerts/{id}",
+      put: "/api/msp/apm/{tenantGroup}/alerts/{id}",
     };
   }
   rpc UpdateAlertEnable (UpdateAlertEnableRequest) returns (UpdateAlertEnableResponse) {
     option (google.api.http) = {
-      put: "/api/msp/apm/alerts/{id}/switch",
+      put: "/api/msp/apm/{tenantGroup}/alerts/{id}/switch",
     };
   }
   rpc DeleteAlert (DeleteAlertRequest) returns (DeleteAlertResponse) {
     option (google.api.http) = {
-      delete: "/api/msp/apm/alerts/{id}",
+      delete: "/api/msp/apm/{tenantGroup}/alerts/{id}",
     };
   }
   rpc QueryCustomizeMetric (QueryCustomizeMetricRequest) returns (QueryCustomizeMetricResponse) {
     option (google.api.http) = {
-      get: "/api/msp/apm/custom-alerts/metrics",
+      get: "/api/msp/apm/{tenantGroup}/custom-alerts/metrics",
     };
   }
   rpc QueryCustomizeNotifyTarget (QueryCustomizeNotifyTargetRequest) returns (QueryCustomizeNotifyTargetResponse) {
     option (google.api.http) = {
-      get: "/api/msp/apm/custom-alerts/notifies/targets",
+      get: "/api/msp/apm/{tenantGroup}/custom-alerts/notifies/targets",
     };
   }
   rpc QueryCustomizeAlerts (QueryCustomizeAlertsRequest) returns (QueryCustomizeAlertsResponse) {
     option (google.api.http) = {
-      get: "/api/msp/apm/custom-alerts",
+      get: "/api/msp/apm/{tenantGroup}/custom-alerts",
     };
   }
   rpc GetCustomizeAlert (GetCustomizeAlertRequest) returns (GetCustomizeAlertResponse) {
     option (google.api.http) = {
-      get: "/api/msp/apm/custom-alerts/{id}"
+      get: "/api/msp/apm/{tenantGroup}/custom-alerts/{id}"
     };
   }
   rpc CreateCustomizeAlert (CreateCustomizeAlertRequest) returns (CreateCustomizeAlertResponse) {
     option (google.api.http) = {
-      post: "/api/msp/apm/custom-alerts",
+      post: "/api/msp/apm/{tenantGroup}/custom-alerts",
     };
   }
   rpc UpdateCustomizeAlert (UpdateCustomizeAlertRequest) returns (UpdateCustomizeAlertResponse) {
     option (google.api.http) = {
-      put: "/api/msp/apm/custom-alerts/{id}",
+      put: "/api/msp/apm/{tenantGroup}/custom-alerts/{id}",
     };
   }
   rpc UpdateCustomizeAlertEnable (UpdateCustomizeAlertEnableRequest) returns (UpdateCustomizeAlertEnableResponse) {
     option (google.api.http) = {
-      put: "/api/msp/apm/custom-alerts/{id}/switch",
+      put: "/api/msp/apm/{tenantGroup}/custom-alerts/{id}/switch",
     };
   }
   rpc DeleteCustomizeAlert (DeleteCustomizeAlertRequest) returns (DeleteCustomizeAlertResponse) {
     option (google.api.http) = {
-      delete: "/api/msp/apm/custom-alerts/{id}",
+      delete: "/api/msp/apm/{tenantGroup}/custom-alerts/{id}",
     };
   }
   rpc GetAlertRecordAttrs (GetAlertRecordAttrsRequest) returns (GetAlertRecordAttrsResponse) {
     option (google.api.http) = {
-      get: "/api/msp/apm/alert-record-attrs",
+      get: "/api/msp/apm/{tenantGroup}/alert-record-attrs",
     };
   }
   rpc GetAlertRecords (GetAlertRecordsRequest) returns (GetAlertRecordsResponse) {
     option (google.api.http) = {
-      get: "/api/msp/apm/alert-records",
+      get: "/api/msp/apm/{tenantGroup}/alert-records",
     };
   }
   rpc GetAlertRecord (GetAlertRecordRequest) returns (GetAlertRecordResponse) {
     option (google.api.http) = {
-      get: "/api/msp/apm/alert-records/{groupId}",
+      get: "/api/msp/apm/{tenantGroup}/alert-records/{groupId}",
     };
   }
   rpc GetAlertHistories (GetAlertHistoriesRequest) returns (GetAlertHistoriesResponse) {
     option (google.api.http) = {
-      get: "/api/msp/apm/alert-records/{groupId}/histories",
+      get: "/api/msp/apm/{tenantGroup}/alert-records/{groupId}/histories",
     };
   }
   rpc CreateAlertRecordIssue (CreateAlertRecordIssueRequest) returns (CreateAlertRecordIssueResponse) {
     option (google.api.http) = {
-      post: "/api/msp/apm/alert-records/{groupId}/issues",
+      post: "/api/msp/apm/{tenantGroup}/alert-records/{groupId}/issues",
     };
   }
   rpc UpdateAlertRecordIssue (UpdateAlertRecordIssueRequest) returns (UpdateAlertRecordIssueResponse) {
     option (google.api.http) = {
-      put: "/api/msp/apm/alert-records/{groupId}/issues"
+      put: "/api/msp/apm/{tenantGroup}/alert-records/{groupId}/issues"
     };
   }
   rpc DashboardPreview (DashboardPreviewRequest) returns (DashboardPreviewResponse) {
     option (google.api.http) = {
-      post: "/api/msp/apm/alert-records/custom-alerts/dash-preview/query"
+      post: "/api/msp/apm/{tenantGroup}/alert-records/custom-alerts/dash-preview/query"
     };
   }
 }
