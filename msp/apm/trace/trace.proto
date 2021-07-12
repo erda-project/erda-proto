@@ -141,7 +141,7 @@ message TraceDebug{
 }
 
 message TraceDebugStatus{
-  string requestID  = 1;
+  string requestID  = 1 [json_name = "requestId"];
   int32  status     = 2;
   string statusName = 3;
   string scopeID    = 4 [json_name = "terminusKey"];
