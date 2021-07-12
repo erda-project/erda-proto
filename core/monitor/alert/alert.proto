@@ -980,7 +980,7 @@ message QueryAlertHistoryRequest {
   string groupId = 1;
   int64  start   = 2 [(validator.field) = {int_gt: 0}];
   int64  end     = 3 [(validator.field) = {int_gt: 0}];
-  uint64 limit   = 4 [(validator.field) = {int_gt: 0}];
+  uint64 limit   = 4;
 }
 
 message QueryAlertHistoryResponse {
@@ -1102,7 +1102,7 @@ message ClusterReq {
 }
 
 message QueryOrgAlertRecordResponse {
-  ListResult      data    = 1;
+  ListResult data = 1;
 }
 
 message GetOrgAlertRecordRequest {
