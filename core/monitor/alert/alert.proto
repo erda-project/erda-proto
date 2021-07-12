@@ -937,8 +937,7 @@ message QueryAlertRecordRequest {
 }
 
 message QueryAlertRecordResponse {
-  repeated AlertRecord list  = 1;
-  int64                total = 2;
+  ListResult data = 1;
 }
 
 message ListResult {
@@ -1103,9 +1102,7 @@ message ClusterReq {
 }
 
 message QueryOrgAlertRecordResponse {
-  repeated AlertRecord list    = 1;
-  int64                total   = 2;
-  repeated string      userIDs = 3;
+  ListResult      data    = 1;
 }
 
 message GetOrgAlertRecordRequest {
