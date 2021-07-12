@@ -343,7 +343,6 @@ message GetAlertRecordsResponse {
 message GetAlertRecordsData {
   repeated erda.core.monitor.alert.AlertRecord list    = 1;
   int64                                        total   = 2;
-  repeated string                              userIds = 3;
 }
 
 message GetAlertRecordRequest {
