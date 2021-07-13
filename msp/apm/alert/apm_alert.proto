@@ -149,7 +149,22 @@ message GetAlertRequest {
 }
 
 message GetAlertResponse {
-  erda.core.monitor.alert.Alert data = 1;
+  GetAlertData data = 1;
+}
+
+message GetAlertData {
+  int64                                            id           = 1;
+  string                                           name         = 2;
+  string                                           alertScope   = 3;
+  string                                           alertScopeId = 4;
+  bool                                             enable       = 5;
+  repeated erda.core.monitor.alert.AlertExpression rules        = 6;
+  repeated erda.core.monitor.alert.AlertNotify     notifies     = 7;
+  repeated string                                  appIds       = 8;
+  string                                           domain       = 9;
+  map<string, google.protobuf.Value>               attributes   = 10;
+  int64                                            createTime   = 11;
+  int64                                            updateTime   = 12;
 }
 
 message CreateAlertRequest {
@@ -341,8 +356,8 @@ message GetAlertRecordsResponse {
 }
 
 message GetAlertRecordsData {
-  repeated erda.core.monitor.alert.AlertRecord list    = 1;
-  int64                                        total   = 2;
+  repeated erda.core.monitor.alert.AlertRecord list  = 1;
+  int64                                        total = 2;
 }
 
 message GetAlertRecordRequest {
