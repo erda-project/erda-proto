@@ -1117,7 +1117,7 @@ message QueryOrgAlertHistoryRequest {
   string groupId = 1;
   int64  start   = 2 [(validator.field) = {int_gt: 0}];
   int64  end     = 3 [(validator.field) = {int_gt: 0}];
-  uint64 limit   = 4 [(validator.field) = {int_gt: 0}];
+  uint64 limit   = 4;
 }
 
 message QueryOrgAlertHistoryResponse {
