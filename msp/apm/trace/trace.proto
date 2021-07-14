@@ -107,7 +107,11 @@ message GetTracesRequest {
 }
 
 message GetSpansResponse {
-  repeated Span data = 1;
+  repeated Span spans        = 1;
+  int64         duration     = 2;
+  int64         serviceCount = 3;
+  int64         depth        = 4;
+  int64         spanCount    = 5;
 }
 
 message GetTracesResponse {
@@ -170,7 +174,7 @@ message Span {
   string              id            = 1;
   // The traceId to which the current span belongs
   string              traceId       = 2;
-  //
+  // Operation name
   string              operationName = 3;
   // Start time of span
   int64               startTime     = 4;
@@ -182,6 +186,8 @@ message Span {
   // Tags store user-defined or agent defined tags in the form of K/V key-value pairs,
   // which are mainly used to query and filter link tracking results
   map<string, string> tags          = 8;
+  // The span of time, not including child-spans
+  int64               duration      = 9;
 }
 
 // Trace represents a complete trace link, and trace consists of one or more spans
