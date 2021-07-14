@@ -107,7 +107,7 @@ message GetTracesRequest {
 }
 
 message GetSpansResponse {
-  repeated Span data         = 1;
+  repeated Span spans        = 1;
   int64         duration     = 2;
   int64         serviceCount = 3;
   int64         depth        = 4;
