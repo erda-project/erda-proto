@@ -139,8 +139,8 @@ message QueryAlertResponse {
 }
 
 message QueryAlertData {
-  repeated erda.core.monitor.alert.Alert list  = 1;
-  int64                                  total = 2;
+  repeated ApmAlertData list  = 1;
+  int64                 total = 2;
 }
 
 message GetAlertRequest {
@@ -149,10 +149,10 @@ message GetAlertRequest {
 }
 
 message GetAlertResponse {
-  GetAlertData data = 1;
+  ApmAlertData data = 1;
 }
 
-message GetAlertData {
+message ApmAlertData {
   int64                                            id           = 1;
   string                                           name         = 2;
   string                                           alertScope   = 3;
