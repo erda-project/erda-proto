@@ -220,7 +220,7 @@ service AlertService {
   }
   rpc QueryOrgHostsAlertRecord (QueryOrgHostsAlertRecordRequest) returns (QueryOrgAlertRecordResponse) {
     option (google.api.http) = {
-      post: "/api/org-alert-records",
+      post: "/api/org-hosts-alert-records",
     };
   }
   rpc GetOrgAlertRecord (GetOrgAlertRecordRequest) returns (GetOrgAlertRecordResponse) {
