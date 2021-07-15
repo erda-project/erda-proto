@@ -15,7 +15,7 @@ service TraceService {
 
   rpc GetTraces (GetTracesRequest) returns (GetTracesResponse)  {
     option (google.api.http) = {
-      get: "/api/msp/apm/traces?scopeId={scopeID}&applicationId={applicationID}",
+      get: "/api/msp/apm/traces?scopeId={scopeID}&applicationId={applicationID}&traceId={traceID}",
     };
   }
 
@@ -104,6 +104,7 @@ message GetTracesRequest {
   int64  startTime     = 4;
   int64  endTime       = 5;
   int64  limit         = 6;
+  string traceID       = 7 [json_name = "traceId"];
 }
 
 message GetSpansResponse {
