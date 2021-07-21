@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+package erda.msp.tenant;
+option go_package = "github.com/erda-project/erda-proto-go/msp/tenant/pb";
+import "google/api/annotations.proto";
+import "github.com/mwitkow/go-proto-validators/validator.proto";
+import "google/protobuf/descriptor.proto";
+
+service TenantService {
+  rpc GetOrCreateTenant(GetOrCreateTenantRequest) returns (GetOrCreateTenantResponse) {
+    option (google.api.http) = {
+      get: "/api/msp/tenant?projectId={projectID}"
+    };
+  }
+}
+
+message GetOrCreateTenantRequest {
+  int64  projectID  = 1 [(validator.field) = {string_not_empty: true}];
+  string tenantType = 2 [(validator.field) = {string_not_empty: true}];
+  string workspace  = 3 [(validator.field) = {string_not_empty: true}];
+}
+
+message GetOrCreateTenantResponse {
+  Tenant data = 1;
+}
+
+// Differentiate the actual deployment environment of the service and addon
+message Tenant {
+  // Tenant id
+  string id         = 1;
+  // Tenant type
+  string type       = 2;
+  // Related project id
+  int64  projectID  = 3 [json_name = "projectId"];
+  // Related deployment workspace
+  string workspace  = 4;
+  // Create timestamp
+  int64  createTime = 5;
+  // Update timestamp
+  int64  updateTime = 6;
+  // Delete or not
+  bool   isDeleted  = 7;
+}
