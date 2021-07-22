@@ -15,7 +15,7 @@ service ProjectService {
 }
 
 message GetProjectsRequest{
-
+  repeated string projectId = 1;
 }
 
 message GetProjectsResponse{
