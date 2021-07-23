@@ -1,0 +1,74 @@
+syntax = "proto3";
+
+package erda.msp.apm.adapter;
+option go_package = "github.com/erda-project/erda-proto-go/msp/apm/adapter/pb";
+import "google/api/annotations.proto";
+import "google/protobuf/descriptor.proto";
+import "google/protobuf/struct.proto";
+
+service AdapterService {
+  rpc GetAdapters (GetAdaptersRequest) returns (GetAdaptersResponse)  {
+    option (google.api.http) = {
+      get: "/api/msp/apm/adapters",
+    };
+  }
+
+  rpc GetAdapterDocs (GetAdapterDocsRequest) returns (GetAdapterDocsResponse)  {
+    option (google.api.http) = {
+      get: "/api/msp/apm/adapter/docs",
+    };
+  }
+
+
+}
+
+message GetAdaptersRequest {
+
+}
+
+message GetAdaptersResponse{
+  repeated Adapters data = 1;
+}
+
+
+message GetAdapterDocsRequest {
+
+}
+
+message GetAdapterDocsResponse{
+  repeated Adapters data = 1;
+}
+
+
+enum AdapterLanguage{
+  JAVA    = 0;
+  GO      = 1;
+  PHP     = 2;
+  DOT_NET = 3;
+  NODEJS  = 4;
+}
+
+enum AdapterStrategyKey{
+  JAVA_AGENT        = 0;
+  APACHE_SKYWALKING = 1;
+  JAEGER            = 2;
+  OPEN_TELEMETRY    = 3;
+  NODEJS_AGENT      = 4;
+}
+
+message AdapterStrategy{
+  string displayName = 1;
+  string strategy    = 2;
+  bool   enable      = 3;
+}
+
+message Adapters{
+  string                   language    = 1;
+  string                   displayName = 2;
+  repeated AdapterStrategy strategies  = 3;
+}
+
+message AdapterDocs{
+  string serviceName = 1;
+  string type        = 2;
+}
