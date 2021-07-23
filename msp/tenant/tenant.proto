@@ -7,20 +7,36 @@ import "github.com/mwitkow/go-proto-validators/validator.proto";
 import "google/protobuf/descriptor.proto";
 
 service TenantService {
-  rpc GetOrCreateTenant(GetOrCreateTenantRequest) returns (GetOrCreateTenantResponse) {
+  rpc CreateTenant(CreateTenantRequest) returns (CreateTenantResponse) {
+    option (google.api.http) = {
+      post: "/api/msp/tenant?projectId={projectID}"
+    };
+  }
+
+  rpc GetTenant(GetTenantRequest) returns (GetTenantResponse) {
     option (google.api.http) = {
       get: "/api/msp/tenant?projectId={projectID}"
     };
   }
 }
 
-message GetOrCreateTenantRequest {
+message CreateTenantRequest {
   int64  projectID  = 1 [(validator.field) = {string_not_empty: true}];
   string tenantType = 2 [(validator.field) = {string_not_empty: true}];
   string workspace  = 3 [(validator.field) = {string_not_empty: true}];
 }
 
-message GetOrCreateTenantResponse {
+message CreateTenantResponse {
+  Tenant data = 1;
+}
+
+message GetTenantRequest {
+  int64  projectID  = 1 [(validator.field) = {string_not_empty: true}];
+  string tenantType = 2 [(validator.field) = {string_not_empty: true}];
+  string workspace  = 3 [(validator.field) = {string_not_empty: true}];
+}
+
+message GetTenantResponse {
   Tenant data = 1;
 }
 
