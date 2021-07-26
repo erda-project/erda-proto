@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package erda.msp.tenant.project;
+option go_package = "github.com/erda-project/erda-proto-go/msp/tenant/project/pb";
+import "github.com/mwitkow/go-proto-validators/validator.proto";
+import "google/api/annotations.proto";
+import "google/protobuf/descriptor.proto";
+
+service ProjectService {
+  rpc GetProjects (GetProjectsRequest) returns (GetProjectsResponse)  {
+    option (google.api.http) = {
+      get: "/api/msp/tenant/projects",
+    };
+  }
+}
+
+message GetProjectsRequest{
+  repeated string projectId = 1;
+}
+
+message GetProjectsResponse{
+  repeated Project data = 1;
+}
+
+message Project{
+  // Project id
+  string              id         = 1;
+  // Project name
+  string              name       = 2;
+  // Project type
+  string              type       = 3;
+  // Project logo Url
+  string              logUrl     = 4;
+  // Workspace list, k is env, v is tenantId
+  map<string, string> workspaces = 5;
+}
