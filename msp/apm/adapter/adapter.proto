@@ -23,7 +23,7 @@ service AdapterService {
 }
 
 message GetAdaptersRequest {
-
+  int64 projectID = 1 [(validator.field) = {string_not_empty: true}];
 }
 
 message GetAdaptersResponse{
@@ -32,7 +32,9 @@ message GetAdaptersResponse{
 
 
 message GetAdapterDocsRequest {
-
+  int64  projectID   = 1 [(validator.field) = {string_not_empty: true}];
+  string serviceName = 2;
+  string type        = 3;
 }
 
 message GetAdapterDocsResponse{
@@ -69,6 +71,9 @@ message Adapters{
 }
 
 message AdapterDocs{
-  string serviceName = 1;
-  string type        = 2;
+  string serviceName     = 1;
+  string type            = 2;
+  string content         = 3;
+  string adapterLanguage = 4;
+  string adapterStrategy = 5;
 }
