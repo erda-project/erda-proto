@@ -54,7 +54,7 @@ message PipelineCmsConfigValue {
   string value = 1;
 
   // EncryptInDB means whether encrypt in db
-  bool encrypt_in_db = 2 [json_name="encryptInDB"];
+  bool encryptInDB = 2;
 
   // Type
   // - if not specified, default type is `kv`;
@@ -72,46 +72,46 @@ message PipelineCmsConfigValue {
   string from = 6;
 
   // no need to provide these fields when creating or updating.
-  google.protobuf.Timestamp time_created = 7;
-  google.protobuf.Timestamp time_updated = 8;
+  google.protobuf.Timestamp timeCreated = 7;
+  google.protobuf.Timestamp timeUpdated = 8;
 }
 
 message PipelineCmsConfigOperations {
-  bool can_download = 1;
-  bool can_edit = 2;
+  bool canDownload = 1;
+  bool canEdit = 2;
   // can_delete only take affect when deleting a single config.
   // If you delete ns, all configs will be deleted.
-  bool can_delete = 3;
+  bool canDelete = 3;
 }
 
 message PipelineCmsConfigKey {
   string key = 1;
   bool decrypt = 2;
-  bool show_encrypted_value = 3; // whether to show original value which is encrypted
+  bool showEncryptedValue = 3; // whether to show original value which is encrypted
 }
 
 message PipelineCmsConfig {
   string key = 1;
   string value = 2;
-  bool encrypt_in_db = 3 [json_name="encryptInDB"];
+  bool encryptInDB = 3;
   string type = 4;
   PipelineCmsConfigOperations operations = 5;
   string comment = 6;
   string from = 7;
-  google.protobuf.Timestamp time_created = 8;
-  google.protobuf.Timestamp time_updated = 9;
+  google.protobuf.Timestamp timeCreated = 8;
+  google.protobuf.Timestamp timeUpdated = 9;
 }
 
 message CmsCreateNsRequest {
-  string pipeline_source = 1 [(validator.field) = {string_not_empty: true}];
+  string pipelineSource = 1 [(validator.field) = {string_not_empty: true}];
   string ns = 2 [(validator.field) = {string_not_empty: true}];
 }
 message CmsCreateNsResponse {
 }
 
 message CmsListNsRequest {
-  string pipeline_source = 1 [(validator.field) = {string_not_empty: true}];
-  string ns_prefix = 2;
+  string pipelineSource = 1 [(validator.field) = {string_not_empty: true}];
+  string nsPrefix = 2;
 }
 message CmsListNsResponse {
   repeated PipelineCmsNs data = 1;
@@ -120,30 +120,32 @@ message CmsListNsResponse {
 message CmsNsConfigsUpdateRequest {
   string ns = 1;
   string pipeline_source = 2 [(validator.field) = {string_not_empty: true}];
-  map<string, PipelineCmsConfigValue> kvs = 3;
+  map<string, PipelineCmsConfigValue> KVs = 3 [json_name="kvs"];
 }
 message CmsNsConfigsUpdateV1Request {
   string ns = 1;
-  map<string, string> kvs = 2;
+  map<string, string> KVs = 2 [json_name="kvs"];
 }
 message CmsNsConfigsUpdateResponse {
 }
 
 message CmsNsConfigsDeleteRequest {
   string ns = 1;
-  string pipeline_source = 2 [(validator.field) = {string_not_empty: true}];
-  bool delete_ns = 3 [json_name="deleteNS"];
-  bool delete_force = 4;
-  repeated string delete_keys = 5;
+  string pipelineSource = 2 [(validator.field) = {string_not_empty: true}];
+  // Use custom json_name option `deleteNS` for backward-compatible, like fdp.
+  // Use field name `deleteNs` for a unified format with other message.
+  bool deleteNs = 3 [json_name="deleteNS"];
+  bool deleteForce = 4;
+  repeated string deleteKeys = 5;
 }
 message CmsNsConfigsDeleteResponse {
 }
 
 message CmsNsConfigsGetRequest {
   string ns = 1;
-  string pipeline_source = 2 [(validator.field) = {string_not_empty: true}];
+  string pipelineSource = 2 [(validator.field) = {string_not_empty: true}];
   repeated PipelineCmsConfigKey keys = 3; // only fetch specified keys
-  bool global_decrypt = 4; // global-level setting's priority is lower than key-level
+  bool globalDecrypt = 4; // global-level setting's priority is lower than key-level
 }
 message CmsNsConfigsGetResponse {
   repeated PipelineCmsConfig data = 1;
