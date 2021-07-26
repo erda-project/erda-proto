@@ -1,7 +1,7 @@
 syntax = "proto3";
 
-package erda.msp.apm.project;
-option go_package = "github.com/erda-project/erda-proto-go/msp/project/pb";
+package erda.msp.apm.tenant.project;
+option go_package = "github.com/erda-project/erda-proto-go/msp/tenant/project/pb";
 import "github.com/mwitkow/go-proto-validators/validator.proto";
 import "google/api/annotations.proto";
 import "google/protobuf/descriptor.proto";
@@ -9,7 +9,7 @@ import "google/protobuf/descriptor.proto";
 service ProjectService {
   rpc GetProjects (GetProjectsRequest) returns (GetProjectsResponse)  {
     option (google.api.http) = {
-      get: "/api/msp/projects",
+      get: "/api/msp/tenant/projects",
     };
   }
 }
