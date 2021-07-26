@@ -1,7 +1,7 @@
 syntax = "proto3";
 
-package erda.dicehub.image;
-option go_package = "github.com/erda-project/erda-proto-go/dicehub/image/pb";
+package erda.core.dicehub.image;
+option go_package = "github.com/erda-project/erda-proto-go/core/dicehub/image/pb";
 import "google/api/annotations.proto";
 import "google/protobuf/timestamp.proto";
 
