@@ -1,0 +1,18 @@
+syntax = "proto3";
+package erda.core.monitor.log.storage;
+option go_package = "github.com/erda-project/erda-proto-go/core/monitor/log/storage/pb";
+
+message Log {
+    string id = 1;
+    string source = 2;
+    string stream = 3;
+    int64 offset = 4;
+    int64 timestamp = 5;
+    string content = 6;
+    map<string, string> tags = 7;
+    map<string, string> labels = 8;
+}
+
+message LogBatch {
+    repeated Log Logs = 1;
+}
