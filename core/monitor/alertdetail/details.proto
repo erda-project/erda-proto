@@ -30,21 +30,21 @@ message PodInfo {
 }
 
 message PodInfoSummary {
-  google.protobuf.Value clusterName      = 1;
-  google.protobuf.Value nodeName         = 2;
-  google.protobuf.Value hostIP           = 3;
-  google.protobuf.Value namespace        = 4;
-  google.protobuf.Value podName          = 5;
-  google.protobuf.Value restartTotal     = 6;
-  google.protobuf.Value stateCode        = 7;
-  google.protobuf.Value terminatedReason = 8;
+  string clusterName      = 1;
+  string nodeName         = 2;
+  string hostIP           = 3;
+  string namespace        = 4;
+  string podName          = 5;
+  int64  restartTotal     = 6;
+  int64  stateCode        = 7;
+  string terminatedReason = 8;
 }
 
 message PodInfoInstanse {
-  google.protobuf.Value containerId = 1;
-  google.protobuf.Value hostIP      = 2;
-  google.protobuf.Value startedAt   = 3;
-  google.protobuf.Value finishedAt  = 4;
-  google.protobuf.Value exitCode    = 5;
-  google.protobuf.Value oomKilled   = 6;
+  string containerId = 1;
+  string hostIP      = 2;
+  string startedAt   = 3;
+  string finishedAt  = 4;
+  int64  exitCode    = 5;
+  bool   oomKilled   = 6;
 }
