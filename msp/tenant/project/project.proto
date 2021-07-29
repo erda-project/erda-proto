@@ -29,9 +29,10 @@ message GetProjectsResponse{
 }
 
 message CreateProjectRequest{
-  int64  id   = 1;
-  string name = 2;
-  string type = 3;
+  int64  id          = 1;
+  string name        = 2;
+  string displayName = 3;
+  string type        = 4;
 }
 
 message CreateProjectResponse{
@@ -52,6 +53,8 @@ message Project{
   // Update timestamp
   int64                       updateTime   = 6;
   bool                        isDeleted    = 7;
+  // Project display name
+  string                      displayName  = 8;
 }
 
 message TenantRelationship {
