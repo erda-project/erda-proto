@@ -12,25 +12,50 @@ service ProjectService {
       get: "/api/msp/tenant/projects",
     };
   }
+
+  rpc CreateProject (CreateProjectRequest) returns (CreateProjectResponse)  {
+    option (google.api.http) = {
+      post: "/api/msp/tenant/project",
+    };
+  }
 }
 
 message GetProjectsRequest{
-  repeated string projectId = 1;
+  repeated int64 projectId = 1;
 }
 
 message GetProjectsResponse{
   repeated Project data = 1;
 }
 
+message CreateProjectRequest{
+  int64  id   = 1;
+  string name = 2;
+  string type = 3;
+}
+
+message CreateProjectResponse{
+  Project data = 1;
+}
+
 message Project{
   // Project id
-  string              id         = 1;
+  int64                       id           = 1;
   // Project name
-  string              name       = 2;
+  string                      name         = 2;
   // Project type
-  string              type       = 3;
-  // Project logo Url
-  string              logUrl     = 4;
-  // Workspace list, k is env, v is tenantId
-  map<string, string> workspaces = 5;
+  string                      type         = 3;
+  // Tenant relationship list, k is workspace, v is tenantId
+  repeated TenantRelationship relationship = 4;
+  // Create timestamp
+  int64                       createTime   = 5;
+  // Update timestamp
+  int64                       updateTime   = 6;
+  bool                        isDeleted    = 7;
+}
+
+message TenantRelationship {
+  string workspace        = 1;
+  string tenantID         = 2 [json_name = "tenantId"];
+  string displayWorkspace = 3;
 }
