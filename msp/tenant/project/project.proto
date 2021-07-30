@@ -18,6 +18,20 @@ service ProjectService {
       post: "/api/msp/tenant/project",
     };
   }
+
+  rpc GetProject(GetProjectRequest) returns (GetProjectResponse) {
+    option (google.api.http) = {
+      get: "/api/msp/tenant/project?projectId={projectID}"
+    };
+  }
+}
+
+message GetProjectRequest {
+  int64 projectID = 1 [(validator.field) = {string_not_empty: true}, json_name = "projectId"];
+}
+
+message GetProjectResponse {
+  Project data = 1;
 }
 
 message GetProjectsRequest{
@@ -55,6 +69,8 @@ message Project{
   bool                        isDeleted    = 7;
   // Project display name
   string                      displayName  = 8;
+  // Project type display name
+  string                      displayType  = 9;
 }
 
 message TenantRelationship {
