@@ -1,7 +1,7 @@
 syntax = "proto3";
 
-package erda.msp.tenant.menu;
-option go_package = "github.com/erda-project/erda-proto-go/msp/tenant/menu/pb";
+package erda.msp.menu;
+option go_package = "github.com/erda-project/erda-proto-go/msp/menu/pb";
 import "github.com/mwitkow/go-proto-validators/validator.proto";
 import "google/api/annotations.proto";
 
