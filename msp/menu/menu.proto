@@ -8,7 +8,7 @@ import "google/api/annotations.proto";
 service MenuService {
   rpc GetMenu (GetMenuRequest) returns (GetMenuResponse)  {
     option (google.api.http) = {
-      get: "/api/msp/menu/{tenantGroup}",
+      get: "/api/msp/tenant/menu",
     };
   }
 
@@ -20,8 +20,8 @@ service MenuService {
 }
 
 message GetMenuRequest {
-  string tenantGroup = 1 [(validator.field) = {string_not_empty: true}];
-  string tenantId    = 2;
+  string tenantId = 1 [(validator.field) = {string_not_empty: true}];
+  string type     = 2 [(validator.field) = {string_not_empty: true}];
 }
 
 message GetMenuResponse {
