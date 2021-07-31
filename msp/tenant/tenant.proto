@@ -21,7 +21,7 @@ service TenantService {
 }
 
 message CreateTenantRequest {
-  int64           projectID  = 1 [(validator.field) = {string_not_empty: true}, json_name = "projectId"];
+  string          projectID  = 1 [(validator.field) = {string_not_empty: true}, json_name = "projectId"];
   string          tenantType = 2 [(validator.field) = {string_not_empty: true}];
   repeated string workspaces = 3 [(validator.field) = {string_not_empty: true}];
 }
@@ -31,7 +31,7 @@ message CreateTenantResponse {
 }
 
 message GetTenantRequest {
-  int64  projectID  = 1 [(validator.field) = {string_not_empty: true}, json_name = "projectId"];
+  string projectID  = 1 [(validator.field) = {string_not_empty: true}, json_name = "projectId"];
   string tenantType = 2 [(validator.field) = {string_not_empty: true}];
   string workspace  = 3 [(validator.field) = {string_not_empty: true}];
 }
@@ -60,7 +60,7 @@ message Tenant {
   // Tenant type
   string type       = 2;
   // Related project id
-  int64  projectID  = 3 [json_name = "projectId"];
+  string projectID  = 3 [json_name = "projectId"];
   // Related deployment workspace
   string workspace  = 4;
   // Create timestamp

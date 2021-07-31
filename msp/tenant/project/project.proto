@@ -27,7 +27,7 @@ service ProjectService {
 }
 
 message GetProjectRequest {
-  int64 projectID = 1 [(validator.field) = {string_not_empty: true}, json_name = "projectId"];
+  string projectID = 1 [(validator.field) = {string_not_empty: true}, json_name = "projectId"];
 }
 
 message GetProjectResponse {
@@ -35,7 +35,7 @@ message GetProjectResponse {
 }
 
 message GetProjectsRequest{
-  repeated int64 projectId = 1;
+  repeated string projectId = 1;
 }
 
 message GetProjectsResponse{
@@ -43,7 +43,7 @@ message GetProjectsResponse{
 }
 
 message CreateProjectRequest{
-  int64  id          = 1;
+  string id          = 1;
   string name        = 2;
   string displayName = 3;
   string type        = 4;
@@ -55,7 +55,7 @@ message CreateProjectResponse{
 
 message Project{
   // Project id
-  int64                       id           = 1;
+  string                      id           = 1;
   // Project name
   string                      name         = 2;
   // Project type
