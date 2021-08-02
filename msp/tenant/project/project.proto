@@ -49,7 +49,7 @@ message GetProjectsResponse{
 }
 
 message DeleteProjectRequest{
-  repeated string projectId = 1;
+  string projectId = 1;
 }
 
 message DeleteProjectResponse{
