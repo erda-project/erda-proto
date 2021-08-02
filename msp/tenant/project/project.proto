@@ -19,6 +19,12 @@ service ProjectService {
     };
   }
 
+  rpc DeleteProject (DeleteProjectRequest) returns (DeleteProjectResponse)  {
+    option (google.api.http) = {
+      delete: "/api/msp/tenant/project",
+    };
+  }
+
   rpc GetProject(GetProjectRequest) returns (GetProjectResponse) {
     option (google.api.http) = {
       get: "/api/msp/tenant/project?projectId={projectID}"
@@ -39,6 +45,14 @@ message GetProjectsRequest{
 }
 
 message GetProjectsResponse{
+  repeated Project data = 1;
+}
+
+message DeleteProjectRequest{
+  repeated string projectId = 1;
+}
+
+message DeleteProjectResponse{
   repeated Project data = 1;
 }
 

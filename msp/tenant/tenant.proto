@@ -18,6 +18,12 @@ service TenantService {
       get: "/api/msp/tenant?projectId={projectID}"
     };
   }
+
+  rpc DeleteTenant(DeleteTenantRequest) returns (DeleteTenantResponse) {
+    option (google.api.http) = {
+      delete: "/api/msp/tenant?projectId={projectID}"
+    };
+  }
 }
 
 message CreateTenantRequest {
@@ -37,6 +43,16 @@ message GetTenantRequest {
 }
 
 message GetTenantResponse {
+  Tenant data = 1;
+}
+
+message DeleteTenantRequest {
+  string projectID  = 1 [(validator.field) = {string_not_empty: true}, json_name = "projectId"];
+  string tenantType = 2 [(validator.field) = {string_not_empty: true}];
+  string workspace  = 3 [(validator.field) = {string_not_empty: true}];
+}
+
+message DeleteTenantResponse {
   Tenant data = 1;
 }
 
