@@ -30,6 +30,21 @@ service ProjectService {
       get: "/api/msp/tenant/project?projectId={projectID}"
     };
   }
+
+  rpc GetProjectOverview(GetProjectOverviewRequest) returns (GetProjectOverviewResponse) {
+    option (google.api.http) = {
+      get: "/api/msp/tenant/project/overview"
+    };
+  }
+}
+
+message GetProjectOverviewRequest{
+  repeated string projectId = 1;
+}
+
+message GetProjectOverviewResponse{
+  int64 projectCount   = 1;
+  int64 workspaceCount = 2;
 }
 
 message GetProjectRequest {
