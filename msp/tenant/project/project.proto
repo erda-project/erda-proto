@@ -19,6 +19,12 @@ service ProjectService {
     };
   }
 
+  rpc UpdateProject (UpdateProjectRequest) returns (UpdateProjectResponse)  {
+    option (google.api.http) = {
+      put: "/api/msp/tenant/project",
+    };
+  }
+
   rpc DeleteProject (DeleteProjectRequest) returns (DeleteProjectResponse)  {
     option (google.api.http) = {
       delete: "/api/msp/tenant/project",
@@ -88,6 +94,17 @@ message CreateProjectRequest{
 }
 
 message CreateProjectResponse{
+  Project data = 1;
+}
+
+message UpdateProjectRequest{
+  string id          = 1;
+  string name        = 2;
+  string displayName = 3;
+  string type        = 4;
+}
+
+message UpdateProjectResponse{
   Project data = 1;
 }
 
