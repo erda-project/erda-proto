@@ -13,6 +13,12 @@ service ProjectService {
     };
   }
 
+  rpc GetProjectsTenantsIDs (GetProjectsTenantsIDsRequest) returns (GetProjectsTenantsIDsResponse)  {
+    option (google.api.http) = {
+      get: "/api/msp/tenant/projects/tenants/ids",
+    };
+  }
+
   rpc CreateProject (CreateProjectRequest) returns (CreateProjectResponse)  {
     option (google.api.http) = {
       post: "/api/msp/tenant/project",
@@ -76,6 +82,15 @@ message GetProjectsRequest{
 
 message GetProjectsResponse{
   repeated Project data = 1;
+}
+
+
+message GetProjectsTenantsIDsRequest{
+  repeated string projectId = 1;
+}
+
+message GetProjectsTenantsIDsResponse{
+  repeated string data = 1;
 }
 
 message DeleteProjectRequest{
