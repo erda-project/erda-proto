@@ -70,6 +70,7 @@ message CreateTraceDebugRequest {
   string              createTime   = 12;
   string              updateTime   = 13;
   string              projectID    = 14 [json_name = "projectId"];
+  string              name         = 15;
 }
 
 message StopTraceDebugRequest {
@@ -166,6 +167,7 @@ message TraceDebugHistory {
   string              method       = 11;
   string              createTime   = 12;
   string              updateTime   = 13;
+  string              name         = 14;
 }
 
 // Span is the basic component of a trace, a span represents an independent unit of work,
