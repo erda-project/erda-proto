@@ -28,11 +28,15 @@ message Event {
 
         EVENT_KIND_CONTAINER = 2;
 
-        EVENT_KIND_EXCEPTION = 3;
+        EVENT_KIND_ERDA_PLATFORM = 3;
 
-        EVENT_KIND_SPAN = 4;
+        EVENT_KIND_EXCEPTION = 4;
 
-        EVENT_KIND_CUSTOM = 5;
+        EVENT_KIND_SPAN = 5;
+
+        EVENT_KIND_ALERT = 6;
+
+        EVENT_KIND_CUSTOM = 7;
     }
 
     EventKind kind = 4;
