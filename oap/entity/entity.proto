@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package erda.oap.entity;
+
+option go_package = "github.com/erda-project/erda-proto-go/oap/entity/pb";
+
+import "oap/common/common.proto";
+
+// The Entity data model 
+//   of the observability analysis platform.
+// Unlike time series data, entity data has a unique ID,
+//   and data can be inserted, updated, and deleted according to the unique ID.
+message EntityRow {
+
+    // unique
+    string id = 1;
+
+    string table = 2;
+
+    bytes row_id = 3; 
+
+    KeyValueList row_data = 4;
+
+    fixed64 create_time_unix_nano = 5;
+
+    fixed64 update_time_unix_nano = 6;
+}
