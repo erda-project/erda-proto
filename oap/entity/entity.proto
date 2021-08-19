@@ -21,7 +21,10 @@ message EntityRow {
 
     KeyValueList row_data = 4;
 
-    fixed64 create_time_unix_nano = 5;
+    // Including label, attributes and resource 
+    map<string, string> attributes = 5;
 
-    fixed64 update_time_unix_nano = 6;
+    fixed64 create_time_unix_nano = 6;
+
+    fixed64 update_time_unix_nano = 7;
 }
