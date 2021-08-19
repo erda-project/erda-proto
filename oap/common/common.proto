@@ -51,11 +51,12 @@ message Relation {
     // Related trace id . optional
     bytes trace_id = 1;
 
-    // Related resource id
+    // Related resource id . Optional
     string res_id = 2;
 
-    // Related resource type
+    // Related resource type . Optional
     string res_type = 3;
 
+    // Optional
     repeated string resource_keys = 4;
 }
