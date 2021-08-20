@@ -29,13 +29,13 @@ message AnyValue {
     // The value is one of the listed fields. It is valid for all values to be unspecified
     // in which case this AnyValue is considered to be "null".
     oneof value {
-      string string_value = 1;
-      bool bool_value = 2;
-      int64 int_value = 3;
-      double double_value = 4;
-      ArrayValue array_value = 5;
-      KeyValueList kvlist_value = 6;
-      bytes bytes_value = 7;
+      string stringValue = 1;
+      bool boolValue = 2;
+      int64 intValue = 3;
+      double doubleValue = 4;
+      ArrayValue arrayValue = 5;
+      KeyValueList kvlistValue = 6;
+      bytes bytesValue = 7;
     }
 }
 
@@ -49,14 +49,14 @@ message ArrayValue {
 message Relation {
 
     // Related trace id . optional
-    bytes trace_id = 1;
+    bytes traceId = 1;
 
     // Related resource id . Optional
-    string res_id = 2;
+    string resId = 2;
 
     // Related resource type . Optional
-    string res_type = 3;
+    string resType = 3;
 
     // Optional
-    repeated string resource_keys = 4;
+    repeated string resourceKeys = 4;
 }
