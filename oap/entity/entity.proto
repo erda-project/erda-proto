@@ -13,18 +13,18 @@ import "oap/common/common.proto";
 message EntityRow {
 
     // unique
-    string id = 1;
+    string entityID = 1;
 
     string table = 2;
 
-    bytes row_id = 3; 
+    bytes rowID = 3; 
 
-    KeyValueList row_data = 4;
+    KeyValueList rowData = 4;
 
     // Including label, attributes and resource 
     map<string, string> attributes = 5;
 
-    fixed64 create_time_unix_nano = 6;
+    fixed64 createTimeUnixNano = 6;
 
-    fixed64 update_time_unix_nano = 7;
+    fixed64 updateTimeUnixNano = 7;
 }

@@ -12,7 +12,7 @@ message Metric {
 
     string name = 1;
 
-    fixed64 time_unix_nano = 2;
+    fixed64 timeUnixNano = 2;
 
     // Store trace and resource pointer
     Relation relations = 3;
@@ -22,5 +22,5 @@ message Metric {
 
     // Multi data points
     // The data point can be the original value or the aggregated value 
-    map<string, AnyValue> data_points  = 5;
+    map<string, AnyValue> dataPoints  = 5;
 }

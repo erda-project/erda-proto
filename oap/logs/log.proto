@@ -10,7 +10,7 @@ import "oap/common.proto";
 //   of the observability analysis platform.
 message Log {
 
-    fixed64 time_unix_nano = 1;
+    fixed64 timeUnixNano = 1;
 
     // log source , like contaoner_log, job_log, deploy_log, app_log .
     string name = 2;
