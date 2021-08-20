@@ -13,11 +13,11 @@ import "oap/common/common.proto";
 message EntityRow {
 
     // unique
-    string id = 1;
+    string entityID = 1;
 
     string table = 2;
 
-    bytes rowId = 3; 
+    bytes rowID = 3; 
 
     KeyValueList rowData = 4;
 

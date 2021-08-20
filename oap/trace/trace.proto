@@ -19,7 +19,7 @@ message Span {
     // random trace_id if empty or invalid trace_id was received.
     //
     // This field is required.
-    bytes traceId = 1;
+    bytes traceID = 1;
 
     // A unique identifier for a span within a trace, assigned when the span
     // is created. The ID is an 8-byte array. An ID with all zeroes is considered
@@ -29,12 +29,12 @@ message Span {
     // random span_id if empty or invalid span_id was received.
     //
     // This field is required.
-    bytes spanId = 2;
+    bytes spanID = 2;
 
 
     // The `span_id` of this span's parent span. If this is a root span, then this
     // field must be empty. The ID is an 8-byte array.
-    bytes parentSpanId = 3;
+    bytes parentSpanID = 3;
 
     fixed64 stratTimeUnixNano = 4;
 

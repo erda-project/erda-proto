@@ -49,10 +49,10 @@ message ArrayValue {
 message Relation {
 
     // Related trace id . optional
-    bytes traceId = 1;
+    bytes traceID = 1;
 
     // Related resource id . Optional
-    string resId = 2;
+    string resID = 2;
 
     // Related resource type . Optional
     string resType = 3;
