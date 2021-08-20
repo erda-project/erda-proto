@@ -4,7 +4,7 @@ package erda.oap.metrics;
 
 option go_package = "github.com/erda-project/erda-proto-go/oap/metrics/pb";
 
-import "oap/common.proto";
+import "oap/common/common.proto";
 
 // The metrics data model 
 //   of the observability analysis platform.
