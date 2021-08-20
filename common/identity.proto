@@ -14,4 +14,8 @@ message IdentityInfo {
   // Cannot be null if UserID is null.
   // +optional
   string internalClient = 2;
+
+  // OrgID is org id. It must be provided in some cases.
+  // +optional
+  string orgID = 3;
 }
