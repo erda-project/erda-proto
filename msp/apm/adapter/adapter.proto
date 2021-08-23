@@ -67,8 +67,3 @@ message InstrumentationLibrary {
   string            strategy    = 2;
   repeated Language languages   = 4;
 }
-
-message DownloadInstrumentationLibraryFileRequest {
-  string accessKeyId = 1;
-  string path        = 2;
-}
