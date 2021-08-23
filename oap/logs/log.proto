@@ -20,7 +20,7 @@ message Log {
     string severity = 3;
 
     // Store trace and resource pointer
-    Relation relations = 4;
+    oap.common.Relation relations = 4;
 
     // Including label, attributes and resource 
     map<string, string> attributes = 5;

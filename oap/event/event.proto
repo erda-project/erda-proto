@@ -44,7 +44,7 @@ message Event {
     fixed64 timeUnixNano = 5;
 
     // Store trace and resource pointer
-    Relation relations = 6;
+    oap.common.Relation relations = 6;
 
     // Including label, attributes and resource 
     map<string, string> attributes = 7;
