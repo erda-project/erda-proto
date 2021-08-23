@@ -1,0 +1,100 @@
+syntax = "proto3";
+package erda.core.services.accesskey;
+option go_package = "github.com/erda-project/erda-proto-go/core/services/accesskey/pb";
+
+import "google/api/annotations.proto";
+import "google/protobuf/timestamp.proto";
+
+service AccessKeyService {
+    rpc ListAccessKeys (ListAccessKeysRequest) returns (ListAccessKeysResponse) {
+        option (google.api.http) = {
+            get: "/api/credential/access-keys",
+        };
+    }
+
+    rpc GetAccessKey (GetAccessKeysRequest) returns (GetAccessKeysResponse) {
+        option (google.api.http) = {
+            get: "/api/credential/access-keys/{id}",
+        };
+    }
+
+    rpc CreateAccessKeys (CreateAccessKeysRequest) returns (CreateAccessKeysResponse) {
+        option (google.api.http) = {
+            post: "/api/credential/access-keys",
+        };
+    }
+
+    rpc UpdateAccessKeys (UpdateAccessKeysRequest) returns (UpdateAccessKeysResponse) {
+        option (google.api.http) = {
+            put: "/api/credential/access-keys/{id}",
+        };
+    }
+
+    rpc DeleteAccessKeys (DeleteAccessKeysRequest) returns (DeleteAccessKeysResponse) {
+        option (google.api.http) = {
+            delete: "/api/credential/access-keys/{id}",
+        };
+    }
+}
+
+message ListAccessKeysRequest {
+    optional GenericEnum.Status status = 1;
+    optional GenericEnum.SubjectType subjectType = 2;
+    optional string subject = 3;
+}
+
+message ListAccessKeysResponse {
+    repeated AccessKeysItem data = 1;
+}
+
+message GetAccessKeysRequest {
+    int64  id = 1;
+}
+message GetAccessKeysResponse {
+    AccessKeysItem data = 1;
+}
+
+message CreateAccessKeysRequest {
+    GenericEnum.SubjectType subjectType = 1;
+    string subject = 2;
+    string description = 3;
+}
+message CreateAccessKeysResponse {
+    AccessKeysItem data = 1;
+}
+
+message UpdateAccessKeysRequest {
+    int64  id = 1;
+    optional GenericEnum.Status status = 2;
+    optional string description = 3;
+}
+message UpdateAccessKeysResponse {}
+
+message DeleteAccessKeysRequest {
+    int64  id = 1;
+}
+message DeleteAccessKeysResponse {}
+
+message AccessKeysItem {
+    int64 id = 1;
+    string accessKey = 2;
+    string secretKey = 3;
+    GenericEnum.Status status = 4;
+    GenericEnum.SubjectType subjectType = 5;
+    string subject = 6;
+    string description = 7;
+    google.protobuf.Timestamp createdAt = 8;
+}
+
+message GenericEnum {
+    enum SubjectType {
+        OTHERS = 0;
+        SYSTEM = 1;
+        MICRO_SERVICES = 2;
+    }
+    enum Status {
+        ACTIVATE = 0;
+        DISABLED = 1;
+        DELETED = 2;
+    }
+}
