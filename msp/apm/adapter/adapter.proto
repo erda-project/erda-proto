@@ -40,23 +40,6 @@ message GetInstrumentationLibraryDocsResponse{
   string data = 1;
 }
 
-
-enum InstrumentationLanguage{
-  JAVA    = 0;
-  GO      = 1;
-  PHP     = 2;
-  DOT_NET = 3;
-  NODEJS  = 4;
-}
-
-enum InstrumentationStrategy{
-  JAVA_AGENT        = 0;
-  APACHE_SKYWALKING = 1;
-  JAEGER            = 2;
-  OPEN_TELEMETRY    = 3;
-  NODEJS_AGENT      = 4;
-}
-
 message Language {
   string language    = 1;
   string displayName = 2;
