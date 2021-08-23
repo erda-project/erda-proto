@@ -62,7 +62,7 @@ message Span {
     string name = 6;
 
     // Store trace and resource pointer
-    Relation relations = 7;
+    oap.common.Relation relations = 7;
 
     // Including label, attributes and resource 
     map<string, string> attributes = 8;
