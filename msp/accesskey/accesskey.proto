@@ -1,7 +1,7 @@
 syntax = "proto3";
 
-package erda.msp.apm.accesskey;
-option go_package = "github.com/erda-project/erda-proto-go/msp/apm/accesskey/pb";
+package erda.msp.accesskey;
+option go_package = "github.com/erda-project/erda-proto-go/msp/accesskey/pb";
 import "google/api/annotations.proto";
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/descriptor.proto";
@@ -9,25 +9,25 @@ import "google/protobuf/descriptor.proto";
 service AccessKeyService {
   rpc CreateAccessKey (CreateAccessKeyRequest) returns (CreateAccessKeyResponse) {
     option (google.api.http) = {
-      post: "/api/msp/apm/credential/access-keys"
+      post: "/api/msp/credential/access-keys"
     };
   }
 
   rpc DeleteAccessKey (DeleteAccessKeyRequest) returns (DeleteAccessKeyResponse) {
     option (google.api.http) = {
-      delete: "/api/msp/apm/credential/access-keys/{accessKeyId}"
+      delete: "/api/msp/credential/access-keys/{accessKeyId}"
     };
   }
 
   rpc GetAccessKey (GetAccessKeyRequest) returns (GetAccessKeyResponse) {
     option (google.api.http) = {
-      get: "/api/msp/apm/credential/access-keys/{accessKeyId}"
+      get: "/api/msp/credential/access-keys/{accessKeyId}"
     };
   }
 
   rpc DownloadAccessKeyFile (DownloadAccessKeyFileRequest) returns (DownloadAccessKeyFileResponse){
     option (google.api.http) = {
-      post: "/api/msp/apm/adapters/download",
+      post: "/api/msp/credential/access-keys/download",
     };
   }
 }

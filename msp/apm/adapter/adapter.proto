@@ -9,13 +9,13 @@ import "google/protobuf/descriptor.proto";
 service InstrumentationLibraryService {
   rpc GetInstrumentationLibrary (GetInstrumentationLibraryRequest) returns (GetInstrumentationLibraryResponse)  {
     option (google.api.http) = {
-      get: "/api/msp/apm/instrumentation-library/select",
+      get: "/api/msp/apm/instrumentation-library",
     };
   }
 
   rpc GetInstrumentationLibraryDocs (GetInstrumentationLibraryDocsRequest) returns (GetInstrumentationLibraryDocsResponse)  {
     option (google.api.http) = {
-      get: "/api/msp/apm/instrumentation-library/docs",
+      get: "/api/msp/apm/instrumentation-library/config-docs",
     };
   }
 }
