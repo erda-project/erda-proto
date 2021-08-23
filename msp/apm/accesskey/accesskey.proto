@@ -77,5 +77,4 @@ message DownloadAccessKeyFileRequest {
 }
 
 message DownloadAccessKeyFileResponse {
-  //  bytes data = 1;
 }
