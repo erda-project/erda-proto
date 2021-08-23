@@ -44,7 +44,7 @@ message CreateAccessKeyResponse {
 }
 
 message AccessKey {
-  int64                     id          = 1;
+  string                    uuid        = 1;
   string                    accessKeyId = 2;
   string                    secretKey   = 3;
   bool                      isSystem    = 4;
