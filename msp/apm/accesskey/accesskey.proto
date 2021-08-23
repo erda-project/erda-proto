@@ -1,0 +1,81 @@
+syntax = "proto3";
+
+package erda.msp.apm.accesskey;
+option go_package = "github.com/erda-project/erda-proto-go/msp/apm/accesskey/pb";
+import "google/api/annotations.proto";
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/descriptor.proto";
+
+service AccessKeyService {
+  rpc CreateAccessKey (CreateAccessKeyRequest) returns (CreateAccessKeyResponse) {
+    option (google.api.http) = {
+      post: "/api/msp/apm/credential/access-keys"
+    };
+  }
+
+  rpc DeleteAccessKey (DeleteAccessKeyRequest) returns (DeleteAccessKeyResponse) {
+    option (google.api.http) = {
+      delete: "/api/msp/apm/credential/access-keys/{accessKeyId}"
+    };
+  }
+
+  rpc GetAccessKey (GetAccessKeyRequest) returns (GetAccessKeyResponse) {
+    option (google.api.http) = {
+      get: "/api/msp/apm/credential/access-keys/{accessKeyId}"
+    };
+  }
+
+  rpc DownloadAccessKeyFile (DownloadAccessKeyFileRequest) returns (DownloadAccessKeyFileResponse){
+    option (google.api.http) = {
+      post: "/api/msp/apm/adapters/download",
+    };
+  }
+}
+
+message CreateAccessKeyRequest {
+  string subjectType = 1;
+  string subject     = 2;
+  bool   isSystem    = 3;
+  string description = 4;
+}
+
+message CreateAccessKeyResponse {
+  AccessKey data = 1;
+}
+
+message AccessKey {
+  int64                     id          = 1;
+  string                    accessKeyId = 2;
+  string                    secretKey   = 3;
+  bool                      isSystem    = 4;
+  string                    status      = 5;
+  string                    subjectType = 6;
+  string                    subject     = 7;
+  string                    description = 8;
+  google.protobuf.Timestamp createdAt   = 9;
+  google.protobuf.Timestamp updatedAt   = 10;
+}
+
+message DeleteAccessKeyRequest {
+  string accessKeyId = 1;
+}
+
+message DeleteAccessKeyResponse {
+}
+
+message GetAccessKeyRequest {
+  string accessKeyId = 1;
+}
+
+message GetAccessKeyResponse {
+  AccessKey data = 1;
+}
+
+message DownloadAccessKeyFileRequest {
+  string accessKeyId = 1;
+  string path        = 2;
+}
+
+message DownloadAccessKeyFileResponse {
+  //  bytes data = 1;
+}

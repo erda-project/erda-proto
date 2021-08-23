@@ -5,45 +5,43 @@ option go_package = "github.com/erda-project/erda-proto-go/msp/apm/adapter/pb";
 import "google/api/annotations.proto";
 import "github.com/mwitkow/go-proto-validators/validator.proto";
 import "google/protobuf/descriptor.proto";
-import "google/protobuf/struct.proto";
 
-service AdapterService {
-  rpc GetAdapters (GetAdaptersRequest) returns (GetAdaptersResponse)  {
+service InstrumentationLibraryService {
+  rpc GetInstrumentationLibrary (GetInstrumentationLibraryRequest) returns (GetInstrumentationLibraryResponse)  {
     option (google.api.http) = {
-      get: "/api/msp/apm/adapters",
+      get: "/api/msp/apm/instrumentation-library/select",
     };
   }
 
-  rpc GetAdapterDocs (GetAdapterDocsRequest) returns (GetAdapterDocsResponse)  {
+  rpc GetInstrumentationLibraryDocs (GetInstrumentationLibraryDocsRequest) returns (GetInstrumentationLibraryDocsResponse)  {
     option (google.api.http) = {
-      get: "/api/msp/apm/adapter/docs",
+      get: "/api/msp/apm/instrumentation-library/docs",
     };
   }
-
-
 }
 
-message GetAdaptersRequest {
-  int64 projectID = 1 [(validator.field) = {string_not_empty: true}];
+message GetInstrumentationLibraryRequest {
 }
 
-message GetAdaptersResponse{
-  repeated Adapters data = 1;
+message GetInstrumentationLibraryResponse{
+  repeated InstrumentationLibrary data = 1;
 }
 
 
-message GetAdapterDocsRequest {
+message GetInstrumentationLibraryDocsRequest {
   int64  projectID   = 1 [(validator.field) = {string_not_empty: true}];
   string serviceName = 2;
   string type        = 3;
+  string language    = 4;
+  string strategy    = 5;
 }
 
-message GetAdapterDocsResponse{
-  repeated Adapters data = 1;
+message GetInstrumentationLibraryDocsResponse{
+  string data = 1;
 }
 
 
-enum AdapterLanguage{
+enum InstrumentationLanguage{
   JAVA    = 0;
   GO      = 1;
   PHP     = 2;
@@ -51,7 +49,7 @@ enum AdapterLanguage{
   NODEJS  = 4;
 }
 
-enum AdapterStrategyKey{
+enum InstrumentationStrategy{
   JAVA_AGENT        = 0;
   APACHE_SKYWALKING = 1;
   JAEGER            = 2;
@@ -59,22 +57,18 @@ enum AdapterStrategyKey{
   NODEJS_AGENT      = 4;
 }
 
-message AdapterStrategy{
-  string displayName = 1;
-  string strategy    = 2;
-  bool   enable      = 3;
+message Language {
+  string language    = 1;
+  string displayName = 2;
 }
 
-message Adapters{
-  string                   language    = 1;
-  string                   displayName = 2;
-  repeated AdapterStrategy strategies  = 3;
+message InstrumentationLibrary {
+  string            displayName = 1;
+  string            strategy    = 2;
+  repeated Language languages   = 4;
 }
 
-message AdapterDocs{
-  string serviceName     = 1;
-  string type            = 2;
-  string content         = 3;
-  string adapterLanguage = 4;
-  string adapterStrategy = 5;
+message DownloadInstrumentationLibraryFileRequest {
+  string accessKeyId = 1;
+  string path        = 2;
 }
