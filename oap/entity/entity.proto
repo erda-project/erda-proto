@@ -4,6 +4,7 @@ package erda.oap.entity;
 
 option go_package = "github.com/erda-project/erda-proto-go/oap/entity/pb";
 
+import "google/protobuf/struct.proto";
 import "oap/common/common.proto";
 
 // The Entity data model 
@@ -19,7 +20,7 @@ message EntityRow {
 
     bytes rowID = 3; 
 
-    map<string, oap.common.AnyValue> rowData = 4;
+    map<string, google.protobuf.Value> rowData = 4;
 
     // Including label, attributes and resource 
     map<string, string> attributes = 5;

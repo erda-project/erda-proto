@@ -4,6 +4,7 @@ package erda.oap.trace;
 
 option go_package = "github.com/erda-project/erda-proto-go/oap/trace/pb";
 
+import "google/protobuf/struct.proto";
 import "oap/common/common.proto";
 
 // The span data model 
