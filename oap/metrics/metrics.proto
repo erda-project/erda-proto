@@ -15,12 +15,12 @@ message Metric {
     fixed64 timeUnixNano = 2;
 
     // Store trace and resource pointer
-    Relation relations = 3;
+    oap.common.Relation relations = 3;
 
     // Including label, attributes and resource 
     map<string, string> attributes = 4;
 
     // Multi data points
     // The data point can be the original value or the aggregated value 
-    map<string, AnyValue> dataPoints  = 5;
+    map<string, oap.common.AnyValue> dataPoints  = 5;
 }
