@@ -6,9 +6,9 @@ import "google/api/annotations.proto";
 import "google/protobuf/timestamp.proto";
 
 service AccessKeyService {
-    rpc ListAccessKeys (ListAccessKeysRequest) returns (ListAccessKeysResponse) {
+    rpc QueryAccessKeys (QueryAccessKeysRequest) returns (QueryAccessKeysResponse) {
         option (google.api.http) = {
-            get: "/api/credential/access-keys",
+            post: "/api/credential/access-keys/query",
         };
     }
 
@@ -37,18 +37,19 @@ service AccessKeyService {
     }
 }
 
-message ListAccessKeysRequest {
+message QueryAccessKeysRequest {
     optional GenericEnum.Status status = 1;
     optional GenericEnum.SubjectType subjectType = 2;
     optional string subject = 3;
+    optional string accessKey = 4;
 }
 
-message ListAccessKeysResponse {
+message QueryAccessKeysResponse {
     repeated AccessKeysItem data = 1;
 }
 
 message GetAccessKeysRequest {
-    int64  id = 1;
+    string id = 1;
 }
 message GetAccessKeysResponse {
     AccessKeysItem data = 1;
@@ -64,19 +65,19 @@ message CreateAccessKeysResponse {
 }
 
 message UpdateAccessKeysRequest {
-    int64  id = 1;
+    string id = 1;
     optional GenericEnum.Status status = 2;
     optional string description = 3;
 }
 message UpdateAccessKeysResponse {}
 
 message DeleteAccessKeysRequest {
-    int64  id = 1;
+    string id = 1;
 }
 message DeleteAccessKeysResponse {}
 
 message AccessKeysItem {
-    int64 id = 1;
+    string id = 1;
     string accessKey = 2;
     string secretKey = 3;
     GenericEnum.Status status = 4;
@@ -88,9 +89,9 @@ message AccessKeysItem {
 
 message GenericEnum {
     enum SubjectType {
-        OTHERS = 0;
+        OTHER = 0;
         SYSTEM = 1;
-        MICRO_SERVICES = 2;
+        MICRO_SERVICE = 2;
     }
     enum Status {
         ACTIVATE = 0;
