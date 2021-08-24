@@ -38,10 +38,10 @@ service AccessKeyService {
 }
 
 message QueryAccessKeysRequest {
-    optional GenericEnum.Status status = 1;
-    optional GenericEnum.SubjectType subjectType = 2;
-    optional string subject = 3;
-    optional string accessKey = 4;
+    StatusEnum.Status status = 1;
+    SubjectTypeEnum.SubjectType subjectType = 2;
+    string subject = 3;
+    string accessKey = 4;
 }
 
 message QueryAccessKeysResponse {
@@ -56,7 +56,7 @@ message GetAccessKeysResponse {
 }
 
 message CreateAccessKeysRequest {
-    GenericEnum.SubjectType subjectType = 1;
+    SubjectTypeEnum.SubjectType subjectType = 1;
     string subject = 2;
     string description = 3;
 }
@@ -66,8 +66,8 @@ message CreateAccessKeysResponse {
 
 message UpdateAccessKeysRequest {
     string id = 1;
-    optional GenericEnum.Status status = 2;
-    optional string description = 3;
+    StatusEnum.Status status = 2;
+    string description = 3;
 }
 message UpdateAccessKeysResponse {}
 
@@ -80,22 +80,26 @@ message AccessKeysItem {
     string id = 1;
     string accessKey = 2;
     string secretKey = 3;
-    GenericEnum.Status status = 4;
-    GenericEnum.SubjectType subjectType = 5;
+    StatusEnum.Status status = 4;
+    SubjectTypeEnum.SubjectType subjectType = 5;
     string subject = 6;
     string description = 7;
     google.protobuf.Timestamp createdAt = 8;
 }
 
-message GenericEnum {
+message SubjectTypeEnum {
     enum SubjectType {
-        OTHER = 0;
-        SYSTEM = 1;
-        MICRO_SERVICE = 2;
+        NOT_SPECIFIED = 0; // TODO workaround for optional
+        OTHER = 1;
+        SYSTEM = 2;
+        MICRO_SERVICE = 3;
     }
+}
+message StatusEnum {
     enum Status {
-        ACTIVATE = 0;
-        DISABLED = 1;
-        DELETED = 2;
+        NOT_SPECIFIED = 0; // TODO workaround for optional
+        ACTIVATE = 1;
+        DISABLED = 2;
+        DELETED = 3;
     }
 }
