@@ -4,6 +4,7 @@ package erda.oap.metrics;
 
 option go_package = "github.com/erda-project/erda-proto-go/oap/metrics/pb";
 
+import "google/protobuf/struct.proto";
 import "oap/common/common.proto";
 
 // The metrics data model 
@@ -22,5 +23,5 @@ message Metric {
 
     // Multi data points
     // The data point can be the original value or the aggregated value 
-    map<string, oap.common.AnyValue> dataPoints  = 5;
+    map<string, google.protobuf.Value> dataPoints  = 5;
 }

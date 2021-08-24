@@ -4,6 +4,7 @@ package erda.oap.event;
 
 option go_package = "github.com/erda-project/erda-proto-go/oap/event/pb";
 
+import "google/protobuf/struct.proto";
 import "oap/common/common.proto";
 
 // The event data model 

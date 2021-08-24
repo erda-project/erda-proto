@@ -4,6 +4,7 @@ package erda.oap.logs;
 
 option go_package = "github.com/erda-project/erda-proto-go/oap/logs/pb";
 
+import "google/protobuf/struct.proto";
 import "oap/common/common.proto";
 
 // The logging data model 
