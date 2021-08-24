@@ -19,7 +19,7 @@ message EntityRow {
 
     bytes rowID = 3; 
 
-    oap.common.KeyValueList rowData = 4;
+    map<string, oap.common.AnyValue> rowData = 4;
 
     // Including label, attributes and resource 
     map<string, string> attributes = 5;
