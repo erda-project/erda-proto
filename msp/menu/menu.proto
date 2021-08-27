@@ -16,7 +16,7 @@ service MenuService {
       get: "/api/msp/tenant/menu",
     };
     option (erda.core.common.openapi) = {
-      path: "/hello/{name}",
+      path: "/api/msp/tenant/menu",
       auth: {
         check_login: true,
         check_token: true,
@@ -29,7 +29,7 @@ service MenuService {
       get: "/api/msp/setting/{tenantGroup}",
     };
     option (erda.core.common.openapi) = {
-      path: "/hello/{name}",
+      path: "/api/micro-service/setting/tenantGroup/{tenantGroup}",
       auth: {
         check_login: true,
         check_token: true,
