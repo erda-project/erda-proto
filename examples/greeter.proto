@@ -1,9 +1,9 @@
 syntax = "proto3";
 
 package erda.examples;
+option go_package = "github.com/erda-project/erda-proto-go/examples/pb";
 import "google/api/annotations.proto";
 import "common/openapi.proto";
-option go_package = "github.com/erda-project/erda-proto-go/examples/pb";
 
 // the greeting service definition.
 service GreeterService {
@@ -19,7 +19,10 @@ service GreeterService {
       get: "/api/hello/{name}",
     };
     option (erda.core.common.openapi) = {
-      path: "/hello/{name}"
+      path: "/hello/{name}",
+      auth: {
+        check_login: true
+      }
     };
   }
 }
