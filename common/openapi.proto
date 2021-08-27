@@ -19,4 +19,13 @@ message OpenAPIOption {
     string backend_prefix = 3;
     string service = 4;
     bool private = 5;
+    APIAuth auth = 6;
+}
+
+message APIAuth {
+    bool no_check = 1;
+    bool check_login = 2;
+    bool try_check_login = 3;
+    bool check_token = 4;
+    bool check_basic_auth = 5;
 }

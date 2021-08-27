@@ -4,17 +4,36 @@ package erda.msp.menu;
 option go_package = "github.com/erda-project/erda-proto-go/msp/menu/pb";
 import "github.com/mwitkow/go-proto-validators/validator.proto";
 import "google/api/annotations.proto";
+import "common/openapi.proto";
 
 service MenuService {
+  option (erda.core.common.openapi_service) = {
+    service: "msp",
+  };
+
   rpc GetMenu (GetMenuRequest) returns (GetMenuResponse)  {
     option (google.api.http) = {
       get: "/api/msp/tenant/menu",
+    };
+    option (erda.core.common.openapi) = {
+      path: "/hello/{name}",
+      auth: {
+        check_login: true,
+        check_token: true,
+      }
     };
   }
 
   rpc GetSetting (GetSettingRequest) returns (GetSettingResponse)  {
     option (google.api.http) = {
       get: "/api/msp/setting/{tenantGroup}",
+    };
+    option (erda.core.common.openapi) = {
+      path: "/hello/{name}",
+      auth: {
+        check_login: true,
+        check_token: true,
+      }
     };
   }
 }
