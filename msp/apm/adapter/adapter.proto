@@ -29,11 +29,8 @@ message GetInstrumentationLibraryResponse{
 
 
 message GetInstrumentationLibraryDocsRequest {
-  int64  projectID   = 1 [(validator.field) = {string_not_empty: true}];
-  string serviceName = 2;
-  string type        = 3;
-  string language    = 4;
-  string strategy    = 5;
+  string language    = 1;
+  string strategy    = 2;
 }
 
 message GetInstrumentationLibraryDocsResponse{
@@ -42,11 +39,9 @@ message GetInstrumentationLibraryDocsResponse{
 
 message Language {
   string language    = 1;
-  string displayName = 2;
 }
 
 message InstrumentationLibrary {
-  string            displayName = 1;
   string            strategy    = 2;
   repeated Language languages   = 4;
 }
