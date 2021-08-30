@@ -2,13 +2,25 @@ syntax = "proto3";
 
 package erda.msp.configcenter;
 option go_package = "github.com/erda-project/erda-proto-go/msp/configcenter/pb";
-import "google/api/annotations.proto";
 import "github.com/mwitkow/go-proto-validators/validator.proto";
+import "google/api/annotations.proto";
+import "common/openapi.proto";
 
 service ConfigCenterService {
+  option (erda.core.common.openapi_service) = {
+    service: "msp",
+  };
+
   rpc GetGroups (GetGroupRequest) returns (GetGroupResponse)  {
     option (google.api.http) = {
       get: "/api/msp/config/tenants/{tenantID}/groups?pageNo={pageNum}",
+    };
+    option (erda.core.common.openapi) = {
+      path: "/api/config/tenants/{tenantID}/groups",
+      auth: {
+        check_login: true,
+        check_token: true,
+      }
     };
   }
 
@@ -16,12 +28,26 @@ service ConfigCenterService {
     option (google.api.http) = {
       get: "/api/msp/config/tenants/{tenantID}/groups/{groupID}",
     };
+    option (erda.core.common.openapi) = {
+      path: "/api/config/tenants/{tenantID}/groups/{groupID}",
+      auth: {
+        check_login: true,
+        check_token: true,
+      }
+    };
   }
 
   rpc SaveGroupProperties (SaveGroupPropertiesRequest) returns (SaveGroupPropertiesResponse)  {
     option (google.api.http) = {
       post: "/api/msp/config/tenants/{tenantID}/groups/{groupID}",
       body: "properties",
+    };
+    option (erda.core.common.openapi) = {
+      path: "/api/config/tenants/{tenantID}/groups/{groupID}",
+      auth: {
+        check_login: true,
+        check_token: true,
+      }
     };
   }
 }
