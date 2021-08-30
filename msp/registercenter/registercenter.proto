@@ -2,18 +2,37 @@ syntax = "proto3";
 
 package erda.msp.registercenter;
 option go_package = "github.com/erda-project/erda-proto-go/msp/registercenter/pb";
-import "google/api/annotations.proto";
 import "github.com/mwitkow/go-proto-validators/validator.proto";
+import "google/api/annotations.proto";
+import "common/openapi.proto";
 
 service RegisterCenterService {
+  option (erda.core.common.openapi_service) = {
+    service: "msp",
+  };
+
   rpc ListInterface (ListInterfaceRequest) returns (ListInterfaceResponse)  {
     option (google.api.http) = {
       get: "/api/msp/register/interfaces/{projectID}/{env}?az={clusterName}&appid={appID}&tenantId={tenantID}&runtimeId={runtimeID}",
+    };
+    option (erda.core.common.openapi) = {
+      path: "/api/tmc/mesh/listinterface/{projectID}/{env}",
+      auth: {
+        check_login: true,
+        check_token: true,
+      }
     };
   }
   rpc GetHTTPServices (GetHTTPServicesRequest) returns (GetHTTPServicesResponse)  {
     option (google.api.http) = {
       get: "/api/msp/register/http-interfaces/{projectID}/{env}?az={clusterName}&appid={appID}&nacosId={nacosID}",
+    };
+    option (erda.core.common.openapi) = {
+      path: "/api/tmc/mesh/listhttpinterface/{projectID}/{env}",
+      auth: {
+        check_login: true,
+        check_token: true,
+      }
     };
   }
   rpc EnableHTTPService (EnableHTTPServiceRequest) returns (EnableHTTPServiceResponse)  {
@@ -21,11 +40,25 @@ service RegisterCenterService {
       post: "/api/msp/register/http-interfaces/{projectID}/{env}/enable?az={clusterName}&nacosId={nacosID}",
       body: "service",
     };
+    option (erda.core.common.openapi) = {
+      path: "/api/tmc/mesh/enable/{projectID}/{env}",
+      auth: {
+        check_login: true,
+        check_token: true,
+      }
+    };
   }
 
   rpc GetServiceIpInfo (ServiceIpRequest) returns (ServiceIpInfoResponse) {
     option (google.api.http) = {
       get: "/api/msp/register/service-ip",
+    };
+    option (erda.core.common.openapi) = {
+      path: "/api/tmc/service-ip",
+      auth: {
+        check_login: true,
+        check_token: true,
+      }
     };
   }
 
