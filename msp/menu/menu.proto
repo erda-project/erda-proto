@@ -9,6 +9,10 @@ import "common/openapi.proto";
 service MenuService {
   option (erda.core.common.openapi_service) = {
     service: "msp",
+    auth: {
+      check_login: true,
+      check_token: true,
+    }
   };
 
   rpc GetMenu (GetMenuRequest) returns (GetMenuResponse)  {
@@ -16,11 +20,7 @@ service MenuService {
       get: "/api/msp/tenant/menu",
     };
     option (erda.core.common.openapi) = {
-      path: "/hello/{name}",
-      auth: {
-        check_login: true,
-        check_token: true,
-      }
+      path: "/api/msp/tenant/menu"
     };
   }
 
@@ -29,11 +29,7 @@ service MenuService {
       get: "/api/msp/setting/{tenantGroup}",
     };
     option (erda.core.common.openapi) = {
-      path: "/hello/{name}",
-      auth: {
-        check_login: true,
-        check_token: true,
-      }
+      path: "/api/micro-service/setting/tenantGroup/{tenantGroup}"
     };
   }
 }

@@ -24,7 +24,7 @@ message ComponentProtocol {
   string scenario = 2;
 
   // globalState stores global states for all components.
-  map<string, google.protobuf.Value> globalState = 3;
+  map<string, google.protobuf.Value> globalState = 3 [json_name = "state"];
 
   // hierarchy represents components' hierarchy.
   Hierarchy hierarchy = 4;
@@ -124,8 +124,5 @@ message RenderResponse {
 
   // protocol means rendered protocol detail.
   ComponentProtocol protocol = 2;
-
-  // userIDs is used for batch query user infos.
-  repeated string userIDs = 3;
 }
 
