@@ -6,12 +6,23 @@ import "github.com/mwitkow/go-proto-validators/validator.proto";
 import "google/protobuf/descriptor.proto";
 import "google/api/annotations.proto";
 import "google/protobuf/struct.proto";
+import "common/openapi.proto";
 
 service SettingsService {
+  option (erda.core.common.openapi_service) = {
+    service: "monitor",
+    auth: {
+      check_login: true,
+      check_token: true,
+    }
+  };
   
   rpc GetSettings (GetSettingsRequest) returns (GetSettingsResponse)  {
     option (google.api.http) = {
       get: "/api/global/settings?org_id={orgID}"
+    };
+    option (erda.core.common.openapi) = {
+      path: "/api/monitor/settings",
     };
   }
 
@@ -19,6 +30,9 @@ service SettingsService {
     option (google.api.http) = {
       put: "/api/global/settings?org_id={orgID}",
       body: "data"
+    };
+    option (erda.core.common.openapi) = {
+      path: "/api/monitor/settings",
     };
   }
 
@@ -28,7 +42,6 @@ service SettingsService {
       body: "data"
     };
   }
-
 }
 
 // GetSettings
