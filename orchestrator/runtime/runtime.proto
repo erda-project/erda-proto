@@ -1,0 +1,91 @@
+syntax = "proto3";
+
+package erda.orchestrator.runtime;
+import "google/api/annotations.proto";
+import "google/protobuf/struct.proto";
+import "google/protobuf/any.proto";
+import "google/protobuf/timestamp.proto";
+import "common/http.proto";
+
+option go_package = "github.com/erda-project/erda-proto-go/orchestrator/runtime/pb";
+
+message GetRuntimeRequest {
+  string nameOrID = 1;
+  string appID = 2;
+  string workspace = 3;
+}
+
+message Resources {
+  double cpu = 1;
+  int64 mem = 2;
+  int64 disk = 3;
+}
+
+message Deployments {
+  uint64 replicas = 1;
+}
+
+message Service {
+  string status = 1;
+  Deployments deployments = 2;
+  Resources resources = 3;
+  map<string, string> envs = 4;
+  repeated string addrs = 5;
+  repeated string expose = 6;
+  repeated ErrorResponse errors = 7;
+}
+
+message StatusMap {
+  string msg = 1 [json_name = "Msg"];
+  string reason = 2 [json_name = "Reason"];
+}
+
+message Extra {
+  uint64 applicationId = 1;
+  uint64 buildId = 2;
+  string workspace = 3;
+}
+
+message ErrorResponse {
+  string code = 1;
+  string msg = 2;
+  string ctx = 3;
+}
+
+message RuntimeInspect {
+  uint64 id = 1;
+  string name = 2;
+  string serviceGroupName = 3;
+  string serviceGroupNamespace = 4;
+  string source = 5;
+  string status = 6;
+  string deployStatus = 7;
+  string deleteStatus = 8;
+  string releaseId = 9;
+  uint64 clusterId = 10;
+  string clusterName = 11;
+  string clusterType = 12;
+  Resources resources = 13;
+  Extra extra = 14;
+  uint64 projectID = 15;
+  map<string, Service> services = 16;
+  map<string, StatusMap> lastMessage = 17;
+  google.protobuf.Timestamp timeCreated = 18;
+  google.protobuf.Timestamp createdAt = 19;
+  google.protobuf.Timestamp updatedAt = 20;
+  repeated ErrorResponse errors = 21;
+}
+
+service RuntimeService {
+  rpc Healthz (erda.common.VoidRequest) returns (erda.common.VoidResponse) {
+    option (google.api.http) = {
+      get: "/api/runtimes/healthz",
+    };
+  }
+
+  rpc GetRuntime (GetRuntimeRequest) returns (RuntimeInspect) {
+    option (google.api.http) = {
+      get: "/api/runtimes/{nameOrID}?applicationId={appID}&workspace={workspace}",
+    };
+  }
+}
