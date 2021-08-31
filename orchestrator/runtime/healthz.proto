@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+// oap ~ Observability Analysis Platform
+package erda.orchestrator.runtime;
+import "google/api/annotations.proto";
+import "google/protobuf/struct.proto";
+option go_package = "github.com/erda-project/erda-proto-go/orchestrator/runtime/pb";
+
+message HealthzResponse {}
+message HealthzRequest {
+  string ok = 1;
+}
+
+service RuntimeService {
+  rpc Healthz (HealthzRequest) returns (HealthzResponse) {
+    option (google.api.http) = {
+      get: "/api/runtimes/healthz",
+    };
+  }
+}
