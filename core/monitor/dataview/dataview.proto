@@ -6,17 +6,31 @@ import "github.com/mwitkow/go-proto-validators/validator.proto";
 import "google/protobuf/descriptor.proto";
 import "google/api/annotations.proto";
 import "google/protobuf/struct.proto";
+import "common/openapi.proto";
 
 service DataViewService {
+  option (erda.core.common.openapi_service) = {
+    service: "monitor",
+    auth: {
+      check_login: true,
+      check_token: true,
+    }
+  };
 
   rpc ListSystemViews (ListSystemViewsRequest) returns (ListSystemViewsResponse)  {
     option (google.api.http) = {
       get: "/api/dashboard/system/blocks?scopeId={scopeID}"
     };
+    option (erda.core.common.openapi) = {
+      path: "/api/dashboard/system/blocks",
+    };
   }
   rpc GetSystemView (GetSystemViewRequest) returns (GetSystemViewResponse)  {
     option (google.api.http) = {
       get: "/api/dashboard/system/blocks/{id}"
+    };
+    option (erda.core.common.openapi) = {
+      path: "/api/dashboard/system/blocks/{id}",
     };
   }
 
@@ -24,25 +38,40 @@ service DataViewService {
     option (google.api.http) = {
       get: "/api/dashboard/blocks?scopeId={scopeID}"
     };
+    option (erda.core.common.openapi) = {
+      path: "/api/dashboard/blocks",
+    };
   }
   rpc GetCustomView (GetCustomViewRequest) returns (GetCustomViewResponse) {
     option (google.api.http) = {
       get: "/api/dashboard/blocks/{id}"
+    };
+    option (erda.core.common.openapi) = {
+      path: "/api/dashboard/blocks/{id}",
     };
   }
   rpc CreateCustomView (CreateCustomViewRequest) returns (CreateCustomViewResponse) {
     option (google.api.http) = {
       post: "/api/dashboard/blocks",
     };
+    option (erda.core.common.openapi) = {
+      path: "/api/dashboard/blocks",
+    };
   }
   rpc UpdateCustomView (UpdateCustomViewRequest) returns (UpdateCustomViewResponse) {
     option (google.api.http) = {
       put: "/api/dashboard/blocks/{id}",
     };
+    option (erda.core.common.openapi) = {
+      path: "/api/dashboard/blocks/{id}",
+    };
   }
   rpc DeleteCustomView (DeleteCustomViewRequest) returns (DeleteCustomViewResponse) {
     option (google.api.http) = {
       delete: "/api/dashboard/blocks/{id}"
+    };
+    option (erda.core.common.openapi) = {
+      path: "/api/dashboard/blocks/{id}",
     };
   }
 

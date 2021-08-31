@@ -9,6 +9,10 @@ import "common/openapi.proto";
 service ConfigCenterService {
   option (erda.core.common.openapi_service) = {
     service: "msp",
+    auth: {
+      check_login: true,
+      check_token: true,
+    }
   };
 
   rpc GetGroups (GetGroupRequest) returns (GetGroupResponse)  {
@@ -16,11 +20,7 @@ service ConfigCenterService {
       get: "/api/msp/config/tenants/{tenantID}/groups?pageNo={pageNum}",
     };
     option (erda.core.common.openapi) = {
-      path: "/api/config/tenants/{tenantID}/groups",
-      auth: {
-        check_login: true,
-        check_token: true,
-      }
+      path: "/api/config/tenants/{tenantID}/groups"
     };
   }
 
@@ -29,11 +29,7 @@ service ConfigCenterService {
       get: "/api/msp/config/tenants/{tenantID}/groups/{groupID}",
     };
     option (erda.core.common.openapi) = {
-      path: "/api/config/tenants/{tenantID}/groups/{groupID}",
-      auth: {
-        check_login: true,
-        check_token: true,
-      }
+      path: "/api/config/tenants/{tenantID}/groups/{groupID}"
     };
   }
 
@@ -43,11 +39,7 @@ service ConfigCenterService {
       body: "properties",
     };
     option (erda.core.common.openapi) = {
-      path: "/api/config/tenants/{tenantID}/groups/{groupID}",
-      auth: {
-        check_login: true,
-        check_token: true,
-      }
+      path: "/api/config/tenants/{tenantID}/groups/{groupID}"
     };
   }
 }
