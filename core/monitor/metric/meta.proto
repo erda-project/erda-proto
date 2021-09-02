@@ -6,9 +6,17 @@ import "github.com/mwitkow/go-proto-validators/validator.proto";
 import "google/protobuf/descriptor.proto";
 import "google/api/annotations.proto";
 import "google/protobuf/struct.proto";
+import "common/openapi.proto";
 
 service MetricMetaService {
-  
+  option (erda.core.common.openapi_service) = {
+    service: "monitor",
+    auth: {
+      check_login: true,
+      check_token: true,
+    }
+  };
+
   rpc ListMetricNames (ListMetricNamesRequest) returns (ListMetricNamesResponse)  {
     option (google.api.http) = {
       get: "/api/metric-names?scopeId={scopeID}"
@@ -24,10 +32,16 @@ service MetricMetaService {
     option (google.api.http) = {
       get: "/api/metric-groups?scopeId={scopeID}"
     };
+    option (erda.core.common.openapi) = {
+      path: "/api/metadata/groups"
+    };
   }
   rpc GetMetricGroup (GetMetricGroupRequest) returns (GetMetricGroupResponse)  {
     option (google.api.http) = {
       get: "/api/metric-groups/{id}?scopeId={scopeID}"
+    };
+    option (erda.core.common.openapi) = {
+      path: "/api/metadata/groups/{id}"
     };
   }
 
