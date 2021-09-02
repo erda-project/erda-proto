@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package erda.core.pipeline.trigger;
+
+import "github.com/mwitkow/go-proto-validators/validator.proto";
+import "google/api/annotations.proto";
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/erda-project/erda-proto-go/core/pipeline/trigger/pb";
+
+service TriggerService {
+  rpc RunPipelineByTriggerRequest (PipelineTriggerRequest) returns (PipelineTriggerResponse) {
+    option (google.api.http) = {
+      post: "/api/triggers/actions/run",
+    };
+  }
+}
+
+message PipelineTriggerRequest {
+  string eventName = 1;
+  map<string, string> label = 2 [json_name="lable"];
+}
+
+message PipelineTriggerResponse {
+  repeated uint64 pipelineIDs = 1 [json_name="pipelineIDs"];
+}
