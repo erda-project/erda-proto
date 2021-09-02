@@ -1,33 +1,33 @@
 syntax = "proto3";
-package erda.msp.apm.member;
-option go_package = "github.com/erda-project/erda-proto-go/msp/apm/member/pb";
+package erda.msp.member;
+option go_package = "github.com/erda-project/erda-proto-go/msp/member/pb";
 
 import "google/api/annotations.proto";
 
 service MemberService {
   rpc ScopeRoleAccess (ScopeRoleAccessRequest) returns (ScopeRoleAccessResponse) {
     option (google.api.http) = {
-      post: "/api/msp/apm/permission/access"
+      post: "/api/msp/permission/access"
     };
   }
   rpc ListMember (ListMemberRequest) returns (ListMemberResponse) {
     option (google.api.http) = {
-      get: "/api/apm/msp/members"
+      get: "/api/msp/members"
     };
   }
   rpc CreateOrUpdateMember (CreateOrUpdateMemberRequest) returns (CreateOrUpdateMemberResponse) {
     option (google.api.http) = {
-      post: "/api/msp/apm/members"
+      post: "/api/msp/members"
     };
   }
   rpc DeleteMember (DeleteMemberRequest) returns (DeleteMemberResponse) {
     option (google.api.http) = {
-      post: "/api/msp/apm/members/action/remove"
+      post: "/api/msp/members/action/remove"
     };
   }
   rpc ListMemberRoles (ListMemberRolesRequest) returns (ListMemberRolesResponse) {
     option (google.api.http) = {
-      get: "/api/msp/apm/members/action/list-roles"
+      get: "/api/msp/members/action/list-roles"
     };
   }
 }
