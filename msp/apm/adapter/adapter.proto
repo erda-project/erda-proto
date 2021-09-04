@@ -5,17 +5,31 @@ option go_package = "github.com/erda-project/erda-proto-go/msp/apm/adapter/pb";
 import "google/api/annotations.proto";
 import "github.com/mwitkow/go-proto-validators/validator.proto";
 import "google/protobuf/descriptor.proto";
+import "common/openapi.proto";
 
 service InstrumentationLibraryService {
+  option (erda.core.common.openapi_service) = {
+    service: "msp",
+    auth: {
+      check_login: true,
+      check_token: true,
+    }
+  };
   rpc GetInstrumentationLibrary (GetInstrumentationLibraryRequest) returns (GetInstrumentationLibraryResponse)  {
     option (google.api.http) = {
       get: "/api/msp/apm/instrumentation-library",
+    };
+    option (erda.core.common.openapi) = {
+      path: "/api/msp/apm/instrumentation-library"
     };
   }
 
   rpc GetInstrumentationLibraryDocs (GetInstrumentationLibraryDocsRequest) returns (GetInstrumentationLibraryDocsResponse)  {
     option (google.api.http) = {
       get: "/api/msp/apm/instrumentation-library/config-docs",
+    };
+    option (erda.core.common.openapi) = {
+      path: "/api/msp/apm/instrumentation-library/config-docs"
     };
   }
 }
