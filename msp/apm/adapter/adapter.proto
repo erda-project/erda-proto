@@ -29,8 +29,8 @@ message GetInstrumentationLibraryResponse{
 
 
 message GetInstrumentationLibraryDocsRequest {
-  string language    = 1;
-  string strategy    = 2;
+  string language = 1;
+  string strategy = 2;
 }
 
 message GetInstrumentationLibraryDocsResponse{
@@ -38,10 +38,10 @@ message GetInstrumentationLibraryDocsResponse{
 }
 
 message Language {
-  string language    = 1;
+  string language = 1;
 }
 
 message InstrumentationLibrary {
-  string            strategy    = 2;
-  repeated Language languages   = 4;
+  string            strategy  = 2;
+  repeated Language languages = 4;
 }
