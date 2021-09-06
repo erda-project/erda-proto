@@ -9,7 +9,7 @@ import "google/protobuf/struct.proto";
 import "common/openapi.proto";
 
 service DataViewService {
-  option (erda.core.common.openapi_service) = {
+  option (erda.common.openapi_service) = {
     service: "monitor",
     auth: {
       check_login: true,
@@ -21,7 +21,7 @@ service DataViewService {
     option (google.api.http) = {
       get: "/api/dashboard/system/blocks?scopeId={scopeID}"
     };
-    option (erda.core.common.openapi) = {
+    option (erda.common.openapi) = {
       path: "/api/dashboard/system/blocks",
     };
   }
@@ -29,7 +29,7 @@ service DataViewService {
     option (google.api.http) = {
       get: "/api/dashboard/system/blocks/{id}"
     };
-    option (erda.core.common.openapi) = {
+    option (erda.common.openapi) = {
       path: "/api/dashboard/system/blocks/{id}",
     };
   }
@@ -38,7 +38,7 @@ service DataViewService {
     option (google.api.http) = {
       get: "/api/dashboard/blocks?scopeId={scopeID}"
     };
-    option (erda.core.common.openapi) = {
+    option (erda.common.openapi) = {
       path: "/api/dashboard/blocks",
     };
   }
@@ -46,7 +46,7 @@ service DataViewService {
     option (google.api.http) = {
       get: "/api/dashboard/blocks/{id}"
     };
-    option (erda.core.common.openapi) = {
+    option (erda.common.openapi) = {
       path: "/api/dashboard/blocks/{id}",
     };
   }
@@ -54,7 +54,7 @@ service DataViewService {
     option (google.api.http) = {
       post: "/api/dashboard/blocks",
     };
-    option (erda.core.common.openapi) = {
+    option (erda.common.openapi) = {
       path: "/api/dashboard/blocks",
     };
   }
@@ -62,7 +62,7 @@ service DataViewService {
     option (google.api.http) = {
       put: "/api/dashboard/blocks/{id}",
     };
-    option (erda.core.common.openapi) = {
+    option (erda.common.openapi) = {
       path: "/api/dashboard/blocks/{id}",
     };
   }
@@ -70,7 +70,7 @@ service DataViewService {
     option (google.api.http) = {
       delete: "/api/dashboard/blocks/{id}"
     };
-    option (erda.core.common.openapi) = {
+    option (erda.common.openapi) = {
       path: "/api/dashboard/blocks/{id}",
     };
   }

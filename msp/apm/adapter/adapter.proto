@@ -8,7 +8,7 @@ import "google/protobuf/descriptor.proto";
 import "common/openapi.proto";
 
 service InstrumentationLibraryService {
-  option (erda.core.common.openapi_service) = {
+  option (erda.common.openapi_service) = {
     service: "msp",
     auth: {
       check_login: true,
@@ -19,7 +19,7 @@ service InstrumentationLibraryService {
     option (google.api.http) = {
       get: "/api/msp/apm/instrumentation-library",
     };
-    option (erda.core.common.openapi) = {
+    option (erda.common.openapi) = {
       path: "/api/msp/apm/instrumentation-library"
     };
   }
@@ -28,7 +28,7 @@ service InstrumentationLibraryService {
     option (google.api.http) = {
       get: "/api/msp/apm/instrumentation-library/config-docs",
     };
-    option (erda.core.common.openapi) = {
+    option (erda.common.openapi) = {
       path: "/api/msp/apm/instrumentation-library/config-docs"
     };
   }

@@ -7,7 +7,7 @@ import "google/api/annotations.proto";
 import "common/openapi.proto";
 
 service MenuService {
-  option (erda.core.common.openapi_service) = {
+  option (erda.common.openapi_service) = {
     service: "msp",
     auth: {
       check_login: true,
@@ -19,7 +19,7 @@ service MenuService {
     option (google.api.http) = {
       get: "/api/msp/tenant/menu",
     };
-    option (erda.core.common.openapi) = {
+    option (erda.common.openapi) = {
       path: "/api/msp/tenant/menu"
     };
   }
@@ -28,7 +28,7 @@ service MenuService {
     option (google.api.http) = {
       get: "/api/msp/setting/{tenantGroup}",
     };
-    option (erda.core.common.openapi) = {
+    option (erda.common.openapi) = {
       path: "/api/micro-service/setting/tenantGroup/{tenantGroup}"
     };
   }

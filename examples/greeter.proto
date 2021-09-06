@@ -8,7 +8,7 @@ import "common/openapi.proto";
 // the greeting service definition.
 service GreeterService {
 
-  option (erda.core.common.openapi_service) = {
+  option (erda.common.openapi_service) = {
     prefix: "/api/examples/greeter",
     service: "erda.example",
   };
@@ -18,7 +18,7 @@ service GreeterService {
     option (google.api.http) = {
       get: "/api/hello/{name}",
     };
-    option (erda.core.common.openapi) = {
+    option (erda.common.openapi) = {
       path: "/hello/{name}",
       auth: {
         check_login: true

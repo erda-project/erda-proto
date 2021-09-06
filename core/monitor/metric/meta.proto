@@ -9,7 +9,7 @@ import "google/protobuf/struct.proto";
 import "common/openapi.proto";
 
 service MetricMetaService {
-  option (erda.core.common.openapi_service) = {
+  option (erda.common.openapi_service) = {
     service: "monitor",
     auth: {
       check_login: true,
@@ -32,7 +32,7 @@ service MetricMetaService {
     option (google.api.http) = {
       get: "/api/metric-groups?scopeId={scopeID}"
     };
-    option (erda.core.common.openapi) = {
+    option (erda.common.openapi) = {
       path: "/api/metadata/groups"
     };
   }
@@ -40,7 +40,7 @@ service MetricMetaService {
     option (google.api.http) = {
       get: "/api/metric-groups/{id}?scopeId={scopeID}"
     };
-    option (erda.core.common.openapi) = {
+    option (erda.common.openapi) = {
       path: "/api/metadata/groups/{id}"
     };
   }

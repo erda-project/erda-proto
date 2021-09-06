@@ -1,7 +1,7 @@
 
 syntax = "proto3";
 
-package erda.core.common;
+package erda.common;
 import "google/protobuf/descriptor.proto";
 option go_package = "github.com/erda-project/erda-proto-go/common/pb";
 
