@@ -3,10 +3,9 @@ syntax = "proto3";
 package erda.core.dop.autotest.testplan;
 option go_package = "github.com/erda-project/erda-proto-go/core/dop/autotest/testplan/pb";
 import "google/api/annotations.proto";
-import "google/protobuf/timestamp.proto";
 
 service TestPlanService {
-  rpc UpdateTestPlanByHook (TestPlanV2UpdateByHookRequest) returns (TestPlanUpdateByHookResponse)  {
+  rpc UpdateTestPlanByHook (TestPlanUpdateByHookRequest) returns (TestPlanUpdateByHookResponse)  {
     option (google.api.http) = {
       post: "/api/autotests/actions/plan-execute-callback",
     };
