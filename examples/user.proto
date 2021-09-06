@@ -13,7 +13,7 @@ service UserService {
     option (google.api.http) = {
       get: "/api/user/{id}",
     };
-    option (erda.core.common.openapi) = {
+    option (erda.common.openapi) = {
       path: "/api/examples/user/{id}",
       service: "erda.example",
     };

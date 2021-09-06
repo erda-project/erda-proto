@@ -7,7 +7,7 @@ import "google/api/annotations.proto";
 import "common/openapi.proto";
 
 service ConfigCenterService {
-  option (erda.core.common.openapi_service) = {
+  option (erda.common.openapi_service) = {
     service: "msp",
     auth: {
       check_login: true,
@@ -19,7 +19,7 @@ service ConfigCenterService {
     option (google.api.http) = {
       get: "/api/msp/config/tenants/{tenantID}/groups?pageNo={pageNum}",
     };
-    option (erda.core.common.openapi) = {
+    option (erda.common.openapi) = {
       path: "/api/config/tenants/{tenantID}/groups"
     };
   }
@@ -28,7 +28,7 @@ service ConfigCenterService {
     option (google.api.http) = {
       get: "/api/msp/config/tenants/{tenantID}/groups/{groupID}",
     };
-    option (erda.core.common.openapi) = {
+    option (erda.common.openapi) = {
       path: "/api/config/tenants/{tenantID}/groups/{groupID}"
     };
   }
@@ -38,7 +38,7 @@ service ConfigCenterService {
       post: "/api/msp/config/tenants/{tenantID}/groups/{groupID}",
       body: "properties",
     };
-    option (erda.core.common.openapi) = {
+    option (erda.common.openapi) = {
       path: "/api/config/tenants/{tenantID}/groups/{groupID}"
     };
   }

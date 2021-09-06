@@ -7,7 +7,7 @@ import "google/api/annotations.proto";
 import "common/openapi.proto";
 
 service RegisterCenterService {
-  option (erda.core.common.openapi_service) = {
+  option (erda.common.openapi_service) = {
     service: "msp",
     auth: {
       check_login: true,
@@ -19,7 +19,7 @@ service RegisterCenterService {
     option (google.api.http) = {
       get: "/api/msp/register/interfaces/{projectID}/{env}?az={clusterName}&appid={appID}&tenantId={tenantID}&runtimeId={runtimeID}",
     };
-    option (erda.core.common.openapi) = {
+    option (erda.common.openapi) = {
       path: "/api/tmc/mesh/listinterface/{projectID}/{env}"
     };
   }
@@ -27,7 +27,7 @@ service RegisterCenterService {
     option (google.api.http) = {
       get: "/api/msp/register/http-interfaces/{projectID}/{env}?az={clusterName}&appid={appID}&nacosId={nacosID}",
     };
-    option (erda.core.common.openapi) = {
+    option (erda.common.openapi) = {
       path: "/api/tmc/mesh/listhttpinterface/{projectID}/{env}"
     };
   }
@@ -36,7 +36,7 @@ service RegisterCenterService {
       post: "/api/msp/register/http-interfaces/{projectID}/{env}/enable?az={clusterName}&nacosId={nacosID}",
       body: "service",
     };
-    option (erda.core.common.openapi) = {
+    option (erda.common.openapi) = {
       path: "/api/tmc/mesh/enable/{projectID}/{env}"
     };
   }
@@ -45,7 +45,7 @@ service RegisterCenterService {
     option (google.api.http) = {
       get: "/api/msp/register/service-ip",
     };
-    option (erda.core.common.openapi) = {
+    option (erda.common.openapi) = {
       path: "/api/tmc/service-ip"
     };
   }

@@ -6,7 +6,7 @@ import "google/api/annotations.proto";
 import "common/openapi.proto";
 
 service MemberService {
-  option (erda.core.common.openapi_service) = {
+  option (erda.common.openapi_service) = {
     service: "msp",
     auth: {
       check_login: true,
@@ -18,7 +18,7 @@ service MemberService {
     option (google.api.http)          = {
       post: "/api/msp/permission/access"
     };
-    option (erda.core.common.openapi) = {
+    option (erda.common.openapi) = {
       path: "/api/msp/permission/access"
     };
   }
@@ -26,7 +26,7 @@ service MemberService {
     option (google.api.http)          = {
       get: "/api/msp/members"
     };
-    option (erda.core.common.openapi) = {
+    option (erda.common.openapi) = {
       path: "/api/msp/members"
     };
   }
@@ -34,7 +34,7 @@ service MemberService {
     option (google.api.http)          = {
       post: "/api/msp/members"
     };
-    option (erda.core.common.openapi) = {
+    option (erda.common.openapi) = {
       path: "/api/msp/members"
     };
   }
@@ -42,7 +42,7 @@ service MemberService {
     option (google.api.http)          = {
       post: "/api/msp/members/action/remove"
     };
-    option (erda.core.common.openapi) = {
+    option (erda.common.openapi) = {
       path: "/api/msp/members/action/remove"
     };
   }
@@ -50,7 +50,7 @@ service MemberService {
     option (google.api.http)          = {
       get: "/api/msp/members/action/list-roles"
     };
-    option (erda.core.common.openapi) = {
+    option (erda.common.openapi) = {
       path: "/api/msp/members/action/list-roles"
     };
   }

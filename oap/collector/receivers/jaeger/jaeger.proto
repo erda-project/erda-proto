@@ -1,7 +1,7 @@
 syntax = "proto3";
 
-package erda.oap.collector.jaeger;
-option go_package = "github.com/erda-project/erda-proto-go/oap/collector/jaeger/pb";
+package erda.oap.collector.receiver.jaeger;
+option go_package = "github.com/erda-project/erda-proto-go/oap/collector/receiver/jaeger/pb";
 
 import "google/api/annotations.proto";
 
