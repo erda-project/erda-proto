@@ -13,13 +13,13 @@ import "oap/common/common.proto";
 
 
 message PostSpansRequest {
-    repeated oap.trace.Span spans = 1;
+    repeated erda.oap.trace.Span spans = 1;
 
-    oap.common.Principal principal = 2;
+    erda.oap.common.Principal principal = 2;
 }
 
 service JaegerService {
-  rpc SpansWithThrift (PostSpansRequest) returns (common.VoidResponse) {
+  rpc SpansWithThrift (PostSpansRequest) returns (erda.common.VoidResponse) {
     option (google.api.http) = {
       post: "/api/jaeger/traces",
     };
