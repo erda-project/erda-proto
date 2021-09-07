@@ -9,10 +9,13 @@ import "google/protobuf/duration.proto";
 
 import "common/http.proto";
 import "oap/trace/tracing.proto";
+import "oap/common/common.proto";
 
 
 message PostSpansRequest {
     repeated oap.trace.Span spans = 1;
+
+    oap.common.Principal principal = 2;
 }
 
 service JaegerService {

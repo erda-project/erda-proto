@@ -18,3 +18,12 @@ message Relation {
     // Optional
     repeated string resourceKeys = 4;
 }
+
+message Principal {
+
+    string identity = 1;
+ 
+    string accessKey = 1;
+
+    string accessSecret = 1;
+}
