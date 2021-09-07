@@ -23,7 +23,7 @@ message Principal {
 
     string identity = 1;
  
-    string accessKey = 1;
+    string accessKey = 2;
 
-    string accessSecret = 1;
+    string accessSecret = 3;
 }
