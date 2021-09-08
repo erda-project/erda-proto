@@ -76,16 +76,35 @@ message RuntimeInspect {
   repeated ErrorResponse errors = 21;
 }
 
-service RuntimeService {
-  rpc Healthz (erda.common.VoidRequest) returns (erda.common.VoidResponse) {
-    option (google.api.http) = {
-      get: "/api/runtimes/healthz",
-    };
-  }
+message DelRuntimeRequest {
+  string id = 1;
+}
 
+message Runtime {
+  uint64 id = 1;
+  string name = 2;
+  string gitBranch = 3;
+  string workspace = 4;
+  string clusterName = 5;
+  uint64 clusterId = 6;
+  string status = 7;
+  uint64 applicationId = 8;
+  string applicationName = 9;
+  uint64 projectId = 10;
+  string projectName = 11;
+  uint64 orgId = 12;
+  repeated ErrorResponse errors = 13;
+}
+
+service RuntimeService {
   rpc GetRuntime (GetRuntimeRequest) returns (RuntimeInspect) {
     option (google.api.http) = {
       get: "/api/runtimes/{nameOrID}?applicationId={appID}&workspace={workspace}",
+    };
+  }
+  rpc DelRuntime (DelRuntimeRequest) returns (Runtime) {
+    option (google.api.http) = {
+      delete: "/api/runtimes/{id}",
     };
   }
 }
