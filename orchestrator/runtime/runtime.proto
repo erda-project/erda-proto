@@ -41,8 +41,8 @@ message StatusMap {
 }
 
 message Extra {
-  uint64 applicationId = 1;
-  uint64 buildId = 2;
+  uint64 applicationID = 1 [json_name = "applicationId"] ;
+  uint64 buildID = 2 [json_name = "buildId"];
   string workspace = 3;
 }
 
@@ -61,13 +61,13 @@ message RuntimeInspect {
   string status = 6;
   string deployStatus = 7;
   string deleteStatus = 8;
-  string releaseId = 9;
-  uint64 clusterId = 10;
+  string releaseID = 9 [json_name = "releaseId"];
+  uint64 clusterID = 10 [json_name = "clusterId"] ;
   string clusterName = 11;
   string clusterType = 12;
   Resources resources = 13;
   Extra extra = 14;
-  uint64 projectID = 15;
+  uint64 projectID = 15 [json_name = "projectId"] ;
   map<string, Service> services = 16;
   map<string, StatusMap> lastMessage = 17;
   google.protobuf.Timestamp timeCreated = 18;
@@ -86,13 +86,13 @@ message Runtime {
   string gitBranch = 3;
   string workspace = 4;
   string clusterName = 5;
-  uint64 clusterId = 6;
+  uint64 clusterID = 6 [json_name = "clusterId"] ;
   string status = 7;
-  uint64 applicationId = 8;
+  uint64 applicationID = 8 [json_name = "applicationId"] ;
   string applicationName = 9;
-  uint64 projectId = 10;
+  uint64 projectID = 10 [json_name = "projectId"];
   string projectName = 11;
-  uint64 orgId = 12;
+  uint64 orgID = 12 [json_name = "orgId"];
   repeated ErrorResponse errors = 13;
 }
 
