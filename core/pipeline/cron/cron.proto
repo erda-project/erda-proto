@@ -42,6 +42,11 @@ service CronService {
       post: "/api/pipeline-crons/{cronID}",
     };
   }
+  rpc CronUpdate (CronUpdateRequest) returns (CronUpdateResponse) {
+    option (google.api.http) = {
+      put: "/api/pipeline-crons/{cronID}",
+    };
+  }
 }
 
 message Cron {
@@ -81,7 +86,7 @@ message CronStopResponse {
   Cron data = 1;
 }
 
-message CronCreateRequest {
+message CronCreateRequestV1 {
   string pipelineYml = 1 [(validator.field) = {string_not_empty: true}];
   string clusterName = 2 [(validator.field) = {string_not_empty: true}];
   string pipelineYmlName = 3 [(validator.field) = {string_not_empty: true}];
@@ -93,6 +98,10 @@ message CronCreateRequest {
   bool autoStartCron = 9;
   google.protobuf.Timestamp cronStartFrom = 10;
 }
+
+message CronCreateRequest {
+  CronCreateRequestV1 pipelineCreateRequest = 1;
+}
 message CronCreateResponse {
   uint64 data = 1;
 }
@@ -101,7 +110,6 @@ message CronDeleteRequest {
   uint64 cronID = 1;
 }
 message CronDeleteResponse {
-  Cron data = 1;
 }
 
 message CronGetRequest {
@@ -109,4 +117,13 @@ message CronGetRequest {
 }
 message CronGetResponse {
   Cron data = 1;
+}
+
+message CronUpdateRequest {
+  uint64 cronID = 1;
+  uint64 id = 2;
+  string pipelineYml = 3;
+  string cronExpr = 4;
+}
+message CronUpdateResponse {
 }
