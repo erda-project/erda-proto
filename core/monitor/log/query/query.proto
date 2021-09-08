@@ -37,6 +37,7 @@ message LogItem {
     string content = 7;
     string level = 8;
     string requestId = 9;
+    string pattern = 10;
 }
 
 message GetLogRequest {
