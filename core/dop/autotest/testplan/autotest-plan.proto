@@ -28,6 +28,8 @@ message Content {
   uint64 testPlanID = 1;
   string executeTime = 2;
   double passRate = 3;
+  double executeMinutes = 4;
+  int64 apiTotalNum = 5;
 }
 
 message TestPlanUpdateByHookResponse {
