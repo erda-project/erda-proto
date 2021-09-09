@@ -57,11 +57,11 @@ message GetServiceApiPrefixResponse {
 }
 
 message ServiceRuntime {
-  string runtimeId = 1;
-  string runtimeName = 2;
-  string appId = 3;
-  string appName = 4;
-  string serviceName = 5;
+  string runtimeId = 1 [json_name = "runtime_id"]; 
+  string runtimeName = 2 [json_name = "runtime_name"];
+  string appId = 3 [json_name = "app_id"];
+  string appName = 4 [json_name = "app_name"];
+  string serviceName = 5 [json_name = "service_name"];
 }
 
 message GetServiceRuntimesResponse {
