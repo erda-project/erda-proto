@@ -114,16 +114,16 @@ message ServiceDetail {
 
 message ChangeRuntimeRequest {
   string orgId = 1;
-  string projectID = 2;
+  string projectId = 2;
   string env = 3;
   string clusterName = 4;
-  string runtimeID = 5;
+  string runtimeId = 5;
   string runtimeName = 6;
   string releaseId = 7;
   string serviceGroupNamespace = 8;
   string projectNamespace = 9;
   string serviceGroupName = 10;
-  string appID = 11;
+  string appId = 11;
   string appName = 12;
   repeated ServiceDetail services = 13;
   bool useApigw = 14;
