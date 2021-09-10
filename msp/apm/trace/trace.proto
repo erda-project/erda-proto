@@ -26,7 +26,7 @@ service TraceService {
     option (google.api.http)          = {
       get: "/api/msp/apm/trace/span-analysis?tenantId={tenantID}&serviceInstanceId={serviceInstanceID}",
     };
-    option (erda.core.common.openapi) = {
+    option (erda.common.openapi) = {
       path: "/api/msp/apm/trace/span-analysis",
     };
   }
