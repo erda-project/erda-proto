@@ -221,7 +221,7 @@ message GetSpansResponse {
   int64         spanCount    = 5;
 }
 
-message SpanAnalysis{
+message SpanAnalysis {
   string          dashboardID = 1 [json_name = "dashboardId"];
   repeated string conditions  = 2;
 }
