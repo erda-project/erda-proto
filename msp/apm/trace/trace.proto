@@ -5,8 +5,17 @@ option go_package = "github.com/erda-project/erda-proto-go/msp/apm/trace/pb";
 import "github.com/mwitkow/go-proto-validators/validator.proto";
 import "google/api/annotations.proto";
 import "google/protobuf/descriptor.proto";
+import "common/openapi.proto";
 
 service TraceService {
+  option (erda.common.openapi_service) = {
+    service: "msp",
+    auth: {
+      check_login: true,
+      check_token: true,
+    }
+  };
+
   rpc GetSpans (GetSpansRequest) returns (GetSpansResponse)  {
     option (google.api.http) = {
       get: "/api/msp/apm/traces/{traceID}/spans?scopeId={scopeID}",
@@ -14,8 +23,11 @@ service TraceService {
   }
 
   rpc GetSpanDashboards (GetSpanDashboardsRequest) returns (GetSpanDashboardsResponse)  {
-    option (google.api.http) = {
+    option (google.api.http)          = {
       get: "/api/msp/apm/trace/span-analysis?tenantId={tenantID}&serviceInstanceId={serviceInstanceID}",
+    };
+    option (erda.core.common.openapi) = {
+      path: "/api/msp/apm/trace/span-analysis",
     };
   }
 
