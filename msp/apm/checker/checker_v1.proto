@@ -5,12 +5,24 @@ option go_package = "github.com/erda-project/erda-proto-go/msp/apm/checker/pb";
 import "github.com/mwitkow/go-proto-validators/validator.proto";
 import "google/api/annotations.proto";
 import "google/protobuf/struct.proto";
+import "common/openapi.proto";
 
 service CheckerV1Service {
+  option (erda.common.openapi_service) = {
+    service: "msp",
+    auth: {
+      check_login: true,
+      check_token: true,
+    }
+  };
+
   rpc CreateCheckerV1 (CreateCheckerV1Request) returns (CreateCheckerV1Response)  {
     option (google.api.http) = {
       post: "/api/v1/msp/checkers/projects/{data.projectID}/metrics",
       body: "data",
+    };
+    option (erda.common.openapi) = {
+      path: "/api/projects/{data.projectID}/metrics"
     };
   }
   rpc UpdateCheckerV1 (UpdateCheckerV1Request) returns (UpdateCheckerV1Response)  {
@@ -18,10 +30,16 @@ service CheckerV1Service {
       post: "/api/v1/msp/checkers/metrics/{id}",
       body: "data",
     };
+    option (erda.common.openapi) = {
+      path: "/api/metrics/{id}"
+    };
   }
   rpc DeleteCheckerV1 (DeleteCheckerV1Request) returns (DeleteCheckerV1Response) {
     option (google.api.http) = {
       delete: "/api/v1/msp/checkers/metrics/{id}",
+    };
+    option (erda.common.openapi) = {
+      path: "/api/metrics/{id}"
     };
   }
   rpc GetCheckerV1 (GetCheckerV1Request) returns (GetCheckerV1Response) {
@@ -34,11 +52,17 @@ service CheckerV1Service {
     option (google.api.http) = {
       get: "/api/v1/msp/checkers/projects/{projectID}/dashboard",
     };
+    option (erda.common.openapi) = {
+      path: "/api/projects/{projectID}/dashboard"
+    };
   }
 
   rpc DescribeCheckerV1 (DescribeCheckerV1Request) returns (DescribeCheckerV1Response)  {
     option (google.api.http) = {
       get: "/api/v1/msp/checkers/metrics/{id}/dashboard",
+    };
+    option (erda.common.openapi) = {
+      path: "/api/metrics/{id}/dashboard"
     };
   }
 
@@ -46,12 +70,18 @@ service CheckerV1Service {
     option (google.api.http) = {
       get: "/api/v1/msp/checkers/metrics/{id}/status",
     };
+    option (erda.common.openapi) = {
+      path: "/api/metrics/{id}/status"
+    };
   }
 
   // +depracated
   rpc GetCheckerIssuesV1 (GetCheckerIssuesV1Request) returns (GetCheckerIssuesV1Response)  {
     option (google.api.http) = {
       get: "/api/v1/msp/checkers/metrics/{id}/issues",
+    };
+    option (erda.common.openapi) = {
+      path: "/api/metrics/{id}/issues"
     };
   }
 
