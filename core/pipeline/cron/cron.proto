@@ -58,6 +58,13 @@ message Cron {
   google.protobuf.Timestamp cronStartTime = 5;
   string pipelineYmlName = 6;
   bool enable = 7;
+  uint64 applicationID = 8;
+  string branch = 9;
+  uint64 basePipelineID = 10;
+  repeated string configManageNamespaces = 11;
+  string userID = 12;
+  uint64 orgID = 13;
+  string pipelineYml = 14;
 }
 
 message CronPagingRequest {
