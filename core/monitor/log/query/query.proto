@@ -8,21 +8,21 @@ service LogQueryService {
     rpc GetLog (GetLogRequest) returns (GetLogResponse) {
         option (google.api.http) = {
             get: "/api/logs",
-          };
+        };
     }
 
     // for runtime log
     rpc GetLogByRuntime (GetLogByRuntimeRequest) returns (GetLogByRuntimeResponse) {
         option (google.api.http) = {
             get: "/api/runtime/logs",
-          };
+        };
     }
 
     // for organization log
     rpc GetLogByOrganization (GetLogByOrganizationRequest) returns (GetLogByOrganizationResponse) {
         option (google.api.http) = {
             get: "/api/orgCenter/logs",
-          };
+        };
     }
 
 }
@@ -37,6 +37,7 @@ message LogItem {
     string content = 7;
     string level = 8;
     string requestId = 9;
+    string pattern = 10;
 }
 
 message GetLogRequest {
@@ -47,6 +48,7 @@ message GetLogRequest {
     int64 start = 5;
     int64 end = 6;
     int64 count = 7;
+    string pattern = 8;
 }
 
 message GetLogByRuntimeRequest {
@@ -58,6 +60,7 @@ message GetLogByRuntimeRequest {
     int64 end = 6;
     int64 count = 7;
     string applicationId = 8;
+    string pattern = 9;
 }
 
 message GetLogByOrganizationRequest {
@@ -69,6 +72,7 @@ message GetLogByOrganizationRequest {
     int64 end = 6;
     int64 count = 7;
     string clusterName = 8;
+    string pattern = 9;
 }
 
 message GetLogResponse {
