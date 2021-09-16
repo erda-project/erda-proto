@@ -20,6 +20,9 @@ service TraceService {
     option (google.api.http) = {
       get: "/api/msp/apm/traces/{traceID}/spans?scopeId={scopeID}",
     };
+    option (erda.common.openapi) = {
+      path: "/api/msp/apm/traces/{traceID}/spans",
+    };
   }
 
   rpc GetSpanDashboards (GetSpanDashboardsRequest) returns (GetSpanDashboardsResponse)  {
@@ -35,11 +38,17 @@ service TraceService {
     option (google.api.http) = {
       get: "/api/msp/apm/traces?tenantId={tenantID}&traceId={traceID}",
     };
+    option (erda.common.openapi) = {
+      path: "/api/msp/apm/traces",
+    };
   }
 
   rpc GetTraceQueryConditions (GetTraceQueryConditionsRequest) returns (GetTraceQueryConditionsResponse)  {
     option (google.api.http) = {
       get: "/api/msp/apm/trace/conditions?tenantId={tenantID}",
+    };
+    option (erda.common.openapi) = {
+      path: "/api/msp/apm/trace/conditions",
     };
   }
 
@@ -47,11 +56,17 @@ service TraceService {
     option (google.api.http) = {
       get: "/api/msp/apm/trace/debug/histories?terminusKey={scopeID}",
     };
+    option (erda.common.openapi) = {
+      path: "/api/msp/apm/trace/debug/histories",
+    };
   }
 
   rpc GetTraceDebugByRequestID (GetTraceDebugRequest) returns (GetTraceDebugResponse)  {
     option (google.api.http) = {
       get: "/api/msp/apm/trace/debug/{requestID}?terminusKey={scopeID}",
+    };
+    option (erda.common.openapi) = {
+      path: "/api/msp/apm/trace/debug/{requestID}",
     };
   }
 
@@ -59,17 +74,26 @@ service TraceService {
     option (google.api.http) = {
       post: "/api/msp/apm/trace/debug",
     };
+    option (erda.common.openapi) = {
+      path: "/api/msp/apm/trace/debug",
+    };
   }
 
   rpc StopTraceDebug (StopTraceDebugRequest) returns (StopTraceDebugResponse)  {
     option (google.api.http) = {
       put: "/api/msp/apm/trace/debug/{requestID}?terminusKey={scopeID}",
     };
+    option (erda.common.openapi) = {
+      path: "/api/msp/apm/trace/debug/{requestID}",
+    };
   }
 
   rpc GetTraceDebugHistoryStatusByRequestID (GetTraceDebugStatusByRequestIDRequest) returns (GetTraceDebugStatusByRequestIDResponse)  {
     option (google.api.http) = {
       get: "/api/msp/apm/trace/debug/{requestID}/history/status?terminusKey={scopeID}",
+    };
+    option (erda.common.openapi) = {
+      path: "/api/msp/apm/trace/debug/{requestID}/history/status",
     };
   }
 }
