@@ -181,11 +181,8 @@ message GetSpanDashboardsRequest {
   string tenantID          = 1 [(validator.field) = {string_not_empty: true}];
   string type              = 2 [(validator.field) = {string_not_empty: true}];
   string serviceInstanceID = 3 [(validator.field) = {string_not_empty: true}];
-    <<<<<<<HEAD
-                           = = = = = = =
   int64  startTime         = 4;
   int64  endTime           = 5;
-    >>>>>>> 4bc226efb72d05f2b544e7d9cfed2a3607c47a7e
 }
 
 enum SpanType{
