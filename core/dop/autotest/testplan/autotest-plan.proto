@@ -27,7 +27,7 @@ message TestPlanUpdateByHookRequest{
 
 message Content {
   uint64 testPlanID = 1;
-  google.protobuf.Timestamp executeTime = 2;
+  string executeTime = 2;
   double passRate = 3;
   int64 apiTotalNum = 4;
   // time duration of the test plan execution
