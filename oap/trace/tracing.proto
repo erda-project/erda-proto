@@ -37,7 +37,7 @@ message Span {
     // field must be empty. The ID is an 8-byte array.
     bytes parentSpanID = 3;
 
-    fixed64 stratTimeUnixNano = 4;
+    fixed64 startTimeUnixNano = 4;
 
     // end_time_unix_nano is the end time of the span. On the client side, this is the time
     // kept by the local machine where the span execution ends. On the server side, this
